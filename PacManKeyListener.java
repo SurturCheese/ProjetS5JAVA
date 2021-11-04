@@ -30,7 +30,7 @@ public class PacManKeyListener extends KeyAdapter {
 		else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			System.out.println("VK_UP Pressed");
 		}
-		// view.repaint();
+		view.repaint();
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class PacManKeyListener extends KeyAdapter {
 		else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			System.out.println("VK_UP Released");
 		}
-
+		view.repaint();
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class PacManKeyListener extends KeyAdapter {
 		else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			System.out.println("VK_UP Typed");
 		}
-
+		view.repaint();
 	}
 
 }

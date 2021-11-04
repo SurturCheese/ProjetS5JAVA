@@ -23,8 +23,6 @@ public class PacManView extends JComponent {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		int width = getSize().width;
-		int height = getSize().height;
 		drawMap(g);
 		drawGhosts(g);
 		drawPacMan(g);
@@ -34,7 +32,8 @@ public class PacManView extends JComponent {
 
 	public void drawPellets(Graphics g) {
 		for (Pellet pellet : game.getListPellet()) {
-			// g.fillOval()
+			g.setColor(pellet.getColor());
+			 g.fillOval(10,10,10,10);
 		}
 	}
 
@@ -50,7 +49,6 @@ public class PacManView extends JComponent {
 
 	public void drawPacMan(Graphics g) {
 		PacMan pacMan = game.getPacman();
-
 	}
 
 }
