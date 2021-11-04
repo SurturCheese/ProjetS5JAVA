@@ -15,10 +15,14 @@ public class Pellet {
 		if (color == Color.ORANGE)
 			points = 500;
 		if (color == Color.GREEN)
-			points = 0;
+			points = 1000;
 	}
 
 	public int getPoints() {
 		return points;
+	}
+	
+	public Color getColor() {
+		return color;
 	}
 }

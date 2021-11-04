@@ -5,13 +5,11 @@ import java.awt.Color;
 public class PacMan implements Runnable {
 	private String state; //normal, invisible, superpacman
 	private Color color; //yellow, lightyellow, orange
-	private int points;
 	private int lifes;
 	
 	public PacMan() {
 		this.state = "normal";
 		color = color.YELLOW;
-		this.points = 0;
 		this.lifes = 3;
 	}
 	
@@ -20,8 +18,16 @@ public class PacMan implements Runnable {
 		
 	}
 	
-	public void LifeUp(PacMan pm) {
-		if (pm.points >= 5000) pm.lifes++;
+	public void lifeUp() {
+		lifes = getLifes() + 1;
+	}
+	
+	public void lifeDown() {
+		lifes = getLifes() - 1;
+	}
+
+	public int getLifes() {
+		return lifes;
 	}
 
 }

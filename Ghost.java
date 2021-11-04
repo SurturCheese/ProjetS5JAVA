@@ -5,14 +5,20 @@ import java.awt.Color;
 public class Ghost implements Runnable{
 	
 	private String state; //normal, scared
+	public static final String NORMAL = "NORMAL";
+	public static final String SCARED = "SCARED";
 	private Color color; //normal, blue
 	private String direction; //north, east, south, west
 	
-	public Ghost() {
-		this.state = "normal";
-		color = Color.BLUE;
+	public Ghost(Color color) {
+		state = NORMAL;
+		this.color = color;
 		//this.direction = ?
 		new Thread(this).start();
+	}
+	
+	public void scared() {
+		color = Color.BLUE;
 	}
 	
 	@Override
