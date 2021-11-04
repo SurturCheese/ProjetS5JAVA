@@ -15,60 +15,42 @@ public class PacManKeyListener extends KeyAdapter {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		PacMan pacman = game.getPacman();
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			System.out.println("VK_RIGHT Pressed");
+			pacman.moveRight();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			System.out.println("VK_LEFT Pressed");
+			pacman.moveLeft();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			System.out.println("VK_DOWN Pressed");
+			pacman.moveDown();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("VK_UP Pressed");
-		}
-		view.repaint();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			System.out.println("VK_RIGHT Released");
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			System.out.println("VK_LEFT Released");
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			System.out.println("VK_DOWN Released");
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("VK_UP Released");
+			pacman.moveUp();
 		}
 		view.repaint();
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		PacMan pacman = game.getPacman();
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			System.out.println("VK_RIGHT Typed");
+			pacman.moveRight();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			System.out.println("VK_LEFT Typed");
+			pacman.moveLeft();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			System.out.println("VK_DOWN Typed");
+			pacman.moveDown();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("VK_UP Typed");
+			pacman.moveUp();
 		}
 		view.repaint();
 	}

@@ -21,7 +21,7 @@ public class Pellet {
 	public int getPoints() {
 		return points;
 	}
-	
+
 	public Color getColor() {
 		return color;
 	}

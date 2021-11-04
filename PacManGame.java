@@ -40,7 +40,7 @@ public class PacManGame {
 	public Ghost getGhost3() {
 		return ghost3;
 	}
-	
+
 	public Ghost getGhost4() {
 		return ghost4;
 	}
@@ -54,9 +54,9 @@ public class PacManGame {
 	}
 
 	public void checkBonusLife() {
-		if (score >= 5000 && !bonusLifeGiven ) {
+		if (score >= 5000 && !bonusLifeGiven) {
 			pacman.lifeUp();
 		}
 	}
-	
+
 }

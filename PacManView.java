@@ -1,6 +1,5 @@
 package projetS5;
 
-
 import java.awt.Graphics;
 import javax.swing.JComponent;
 
@@ -8,8 +7,8 @@ public class PacManView extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 	private final PacManGame game;
-	private final static int WIDTH = 500;
-	private final static int HEIGHT = 500;
+	private final static int WIDTH = 462;
+	private final static int HEIGHT = 462;
 
 	public PacManView(PacManGame game) {
 		super();
@@ -33,7 +32,7 @@ public class PacManView extends JComponent {
 	public void drawPellets(Graphics g) {
 		for (Pellet pellet : game.getListPellet()) {
 			g.setColor(pellet.getColor());
-			 g.fillOval(10,10,10,10);
+			g.fillOval(10, 10, 22, 22);
 		}
 	}
 
@@ -49,6 +48,8 @@ public class PacManView extends JComponent {
 
 	public void drawPacMan(Graphics g) {
 		PacMan pacMan = game.getPacman();
+		g.setColor(pacMan.getColor());
+		g.fillOval(pacMan.getPosX(), pacMan.getPosY(), 20, 20);
 	}
 
 }
