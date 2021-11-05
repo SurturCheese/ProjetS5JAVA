@@ -7,8 +7,8 @@ public class PacManView extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 	private final PacManGame game;
-	private final static int WIDTH = 462;
-	private final static int HEIGHT = 462;
+	private int WIDTH = 462;
+	private int HEIGHT = 462;
 
 	public PacManView(PacManGame game) {
 		super();
@@ -32,7 +32,7 @@ public class PacManView extends JComponent {
 	public void drawPellets(Graphics g) {
 		for (Pellet pellet : game.getListPellet()) {
 			g.setColor(pellet.getColor());
-			g.fillOval(10, 10, 22, 22);
+			g.fillOval(10, 10, 20, 20);
 		}
 	}
 
@@ -41,9 +41,21 @@ public class PacManView extends JComponent {
 	}
 
 	public void drawGhosts(Graphics g) {
-		Ghost ghost1 = game.getGhost1();
-		Ghost ghost2 = game.getGhost2();
-		Ghost ghost3 = game.getGhost3();
+		Ghost temp = game.getGhost1();
+		g.setColor(temp.getColor());
+		g.fillOval(temp.getPosX(), temp.getPosY(), 20, 20);
+		
+		temp = game.getGhost2();
+		g.setColor(temp.getColor());
+		g.fillOval(temp.getPosX(), temp.getPosY(), 20, 20);
+		
+		temp = game.getGhost3();
+		g.setColor(temp.getColor());
+		g.fillOval(temp.getPosX(), temp.getPosY(), 20, 20);
+		
+		temp = game.getGhost4();
+		g.setColor(temp.getColor());
+		g.fillOval(temp.getPosX(), temp.getPosY(), 20, 20);
 	}
 
 	public void drawPacMan(Graphics g) {
