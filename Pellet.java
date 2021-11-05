@@ -1,15 +1,28 @@
 package projetS5;
 
+import java.awt.Color;
+
 public class Pellet {
-	private String color; //blue, purple, orange, green
-	private int points; //blue=100, purple=300, orange=500, green=0
-	
-	Pellet(){
-		this.color = "blue";
-		if(this.color.equals("blue"))this.points=100;
-		if(this.color.equals("purple"))this.points=300;
-		if(this.color.equals("orange"))this.points=500;
-		if(this.color.equals("green"))this.points=0;
-		else this.points=100;
+	private Color color;
+	private int points;
+
+	public Pellet(Color color) {
+		this.color = color;
+		if (color == Color.BLUE)
+			points = 100;
+		if (color == Color.MAGENTA)
+			points = 300;
+		if (color == Color.ORANGE)
+			points = 500;
+		if (color == Color.GREEN)
+			points = 1000;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public Color getColor() {
+		return color;
 	}
 }
