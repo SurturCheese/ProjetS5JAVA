@@ -11,7 +11,7 @@ public class Map {
 	public static final String GOOGLE = "GOOGLE";
 	private int spawnX;
 	private int spawnY;
-	private final int[][] googleMAp = {
+	private final int[][] googleMap = {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 					1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -109,8 +109,9 @@ public class Map {
 		return type;
 	}
 
-	public void setCase(int x, int y, int newCase) {
-		map[x][y] = newCase;
+	public void setCase(int x, int y, int i) {
+	if(type.equals(DEFAULT)) defaultMap[x][y] = i;
+	if(type.equals(GOOGLE)) defaultMap[x][y] = i;
 	}
 
 	public void setSpawn() {
