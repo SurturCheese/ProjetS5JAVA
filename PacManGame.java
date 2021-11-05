@@ -23,6 +23,28 @@ public class PacManGame {
 		ghost3 = new Ghost(Color.ORANGE);
 		ghost4 = new Ghost(Color.BLUE);
 		listPellet = new ArrayList<>();
+		map = new Map(Map.GOOGLE);
+		int[][] temp = map.getMap();
+		for (int i = 0; i < temp.length; i++) {
+			for (int j = 0; j < temp[i].length; j++) {
+				int valCase = temp[i][j];
+				switch (valCase) {
+				case 2:
+					listPellet.add(new Pellet(Color.BLUE,j,i) );
+					break;
+
+				case 3:
+					listPellet.add(new Pellet(Color.MAGENTA,j,i) );
+					break;
+				case 4:
+					listPellet.add(new Pellet(Color.ORANGE,j,i) );
+					break;
+				case 5: 
+					listPellet.add(new Pellet(Color.GREEN,j,i) );
+					break;
+				}
+			}
+		}
 	}
 
 	public PacMan getPacman() {

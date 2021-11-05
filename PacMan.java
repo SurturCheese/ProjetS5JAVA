@@ -71,25 +71,32 @@ public class PacMan implements Runnable {
 	public int getPosX() {
 		return posX;
 	}
-
 	public int getPosY() {
 		return posY;
 	}
 
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+
 	public void moveRight() {
-		posX = posX + 22;
+		posX = posX + 10;
 	}
 
 	public void moveLeft() {
-		posX = posX - 22;
+		posX = posX - 10;
 	}
 
 	public void moveDown() {
-		posY = posY + 22;
+		posY = posY + 10;
 	}
 
 	public void moveUp() {
-		posY = posY - 22;
+		posY = posY - 10;
 	}
 
 }

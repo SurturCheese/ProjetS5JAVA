@@ -85,7 +85,7 @@ public class Map {
 			this.hauteur = 31;
 			this.longueur = 28;
 		}
-		if (type.equals("google")) {
+		if (type.equals(GOOGLE)) {
 			this.hauteur = 17;
 			this.longueur = 58;
 		}

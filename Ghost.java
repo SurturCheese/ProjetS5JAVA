@@ -2,7 +2,7 @@ package projetS5;
 
 import java.awt.Color;
 
-public class Ghost implements Runnable {
+public class Ghost {
 
 	private String state;
 	public static final String NORMAL = "NORMAL";
@@ -14,13 +14,14 @@ public class Ghost implements Runnable {
 	public static final String EAST = "EAST";
 	public static final String SOUTH = "SOUTH";
 	public static final String WEST = "WEST";
+	private int posX;
+	private int posY;
 
 	public Ghost(Color color) {
 		state = NORMAL;
 		this.color = color;
 		baseColor = color;
 		// this.direction = ?
-		new Thread(this).start();
 	}
 
 	public void scared() {
@@ -31,15 +32,6 @@ public class Ghost implements Runnable {
 	public void normal() {
 		color = baseColor;
 		state = NORMAL;
-	}
-
-	@Override
-	public void run() {
-
-	}
-
-	public void spawn() {
-		// tp au centre de la map
 	}
 
 	public String getState() {
@@ -59,11 +51,28 @@ public class Ghost implements Runnable {
 	}
 
 	public void setColor(Color color) {
-		this.color = color;
+		this.color=color;
 	}
 
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
+	
+	public int getPosX() {
+		return posX;
+	}
+	public int getPosY() {
+		return posY;
+	}
+
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+	
+	
 
 }
