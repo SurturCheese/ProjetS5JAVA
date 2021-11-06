@@ -24,7 +24,7 @@ public class PacManGame {
 		score = 0;
 		listPellet = new ArrayList<>();
 		map = new Map(Map.GOOGLE);
-		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY());
+		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(),this);
 		ghost1 = new Ghost(Color.RED, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		ghost2 = new Ghost(Color.WHITE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		ghost3 = new Ghost(Color.ORANGE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
@@ -113,7 +113,7 @@ public class PacManGame {
 
 	public void swapMap() {
 		map.swapMap();
-		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY());
+		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(),this);
 		ghost1 = new Ghost(Color.RED, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		ghost2 = new Ghost(Color.WHITE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		ghost3 = new Ghost(Color.ORANGE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
@@ -166,8 +166,11 @@ public class PacManGame {
 		switch (temp[posX / PacManView.TILESIZE][posY / PacManView.TILESIZE]) {
 		case 2:
 			/* blue pellet */
-			score += 100;
-			deletePellet(posX / PacManView.TILESIZE,posY / PacManView.TILESIZE);
+			if(existPellet(posX / PacManView.TILESIZE,posY / PacManView.TILESIZE)) {
+				score += 100;
+				deletePellet(posX / PacManView.TILESIZE,posY / PacManView.TILESIZE);
+			}
+			
 			break;
 		case 3:
 			/* magenta pellet */
@@ -214,6 +217,16 @@ public class PacManGame {
                 it.remove();
             } 
         }
+    }
+	
+	public boolean existPellet(int posX, int posY) {
+        for (Iterator<Pellet> it = listPellet.iterator(); it.hasNext(); ) {
+            Pellet pellet = it.next();
+            if (pellet.getPosX() == posX && pellet.getPosY() == posY) {
+               return true;
+            } 
+        }
+        return false;
     }
 
 	

@@ -4,6 +4,7 @@ import java.awt.Color;
 
 public class PacMan {
 
+	private PacManGame game;
 	private String state;
 	public static final String NORMAL = "NORMAL";
 	public static final String INVISIBLE = "INVISIBLE";
@@ -12,7 +13,8 @@ public class PacMan {
 	private int posX;
 	private int posY;
 
-	public PacMan(int posX, int posY) {
+	public PacMan(int posX, int posY, PacManGame game) {
+		this.game = game;
 		state = NORMAL;
 		color = Color.YELLOW;
 		this.posX = posX * PacManView.TILESIZE;
@@ -67,18 +69,22 @@ public class PacMan {
 	}
 
 	public void moveRight() {
+		if (game.checkerEast(posX, posY) != 1)
 		posX = posX + PacManView.TILESIZE;
 	}
 
 	public void moveLeft() {
+		if (game.checkerWest(posX, posY) != 1)
 		posX = posX - PacManView.TILESIZE;
 	}
 
 	public void moveDown() {
+		if (game.checkerSouth(posX, posY) != 1)
 		posY = posY + PacManView.TILESIZE;
 	}
 
 	public void moveUp() {
+		if (game.checkerNorth(posX, posY) != 1)
 		posY = posY - PacManView.TILESIZE;
 	}
 	public void tp(int x, int y) {
