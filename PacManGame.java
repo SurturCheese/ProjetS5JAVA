@@ -177,13 +177,16 @@ public class PacManGame {
 			break;
 		case 3:
 			/* magenta pellet */
+			if (existPellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE)) {
 			score += 300;
 			pacman.invisible();
 			powerTime = 20;
 			deletePellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE);
+			}
 			break;
 		case 4:
 			/* orange pellet */
+			if (existPellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE)) {
 			score += 500;
 			pacman.superpacman();
 			ghost1.scared();
@@ -192,6 +195,7 @@ public class PacManGame {
 			ghost4.scared();
 			powerTime = 15;
 			deletePellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE);
+			}
 			break;
 		case 5:
 			/* green pellet */
