@@ -25,8 +25,7 @@ public class PacManView extends JComponent {
 		addKeyListener(new PacManKeyListener(game, this));
 		setFocusable(true);
 		requestFocusInWindow();
-		if (map.getType().equals(Map.GOOGLE)) setSize(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur() * 42/40);
-		if (map.getType().equals(Map.DEFAULT)) setSize(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur() * 41/40);
+		setSize(WIDTH, HEIGHT);
 	}
 
 	@Override
