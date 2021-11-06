@@ -21,10 +21,10 @@ public class PacManKeyListener extends KeyAdapter {
 			game.moveGhost();
 			game.checkCase(pacman.getPosX(), pacman.getPosY());
 			game.checkBonusLive();
-			if (game.powerTime > 0) {
-				game.powerTime--;
+			if (game.getPowerTime() > 0) {
+				game.downPowerTime();
 			}
-			if (game.powerTime == 0) {
+			if (game.getPowerTime() == 0) {
 				pacman.normal();
 				game.getGhost1().normal();
 				game.getGhost2().normal();
@@ -40,10 +40,10 @@ public class PacManKeyListener extends KeyAdapter {
 			game.moveGhost();
 			game.checkCase(pacman.getPosX(), pacman.getPosY());
 			game.checkBonusLive();
-			if (game.powerTime > 0) {
-				game.powerTime--;
+			if (game.getPowerTime() > 0) {
+				game.downPowerTime();
 			}
-			if (game.powerTime == 0) {
+			if (game.getPowerTime() == 0) {
 				pacman.normal();
 				game.getGhost1().normal();
 				game.getGhost2().normal();
@@ -59,10 +59,10 @@ public class PacManKeyListener extends KeyAdapter {
 			game.moveGhost();
 			game.checkCase(pacman.getPosX(), pacman.getPosY());
 			game.checkBonusLive();
-			if (game.powerTime > 0) {
-				game.powerTime--;
+			if (game.getPowerTime() > 0) {
+				game.downPowerTime();
 			}
-			if (game.powerTime == 0) {
+			if (game.getPowerTime() == 0) {
 				pacman.normal();
 				game.getGhost1().normal();
 				game.getGhost2().normal();
@@ -78,10 +78,10 @@ public class PacManKeyListener extends KeyAdapter {
 			game.moveGhost();
 			game.checkCase(pacman.getPosX(), pacman.getPosY());
 			game.checkBonusLive();
-			if (game.powerTime > 0) {
-				game.powerTime--;
+			if (game.getPowerTime() > 0) {
+				game.downPowerTime();
 			}
-			if (game.powerTime == 0) {
+			if (game.getPowerTime() == 0) {
 				pacman.normal();
 				game.getGhost1().normal();
 				game.getGhost2().normal();

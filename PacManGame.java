@@ -20,7 +20,7 @@ public class PacManGame {
 	private int lives;
 	private boolean bonusLifeGiven;
 	private PacManView view;
-	public static int powerTime;
+	private int powerTime;
 
 	public PacManGame() {
 		lives = 3;
@@ -310,8 +310,8 @@ public class PacManGame {
 		return powerTime;
 	}
 
-	public void downPowerTime(int powerTime) {
-		powerTime = powerTime--;
+	public void downPowerTime() {
+		powerTime--;
 	}
 
 	public void lose() {
