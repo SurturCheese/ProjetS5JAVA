@@ -187,8 +187,7 @@ public class Map {
 			type = DEFAULT;
 			setSpawnPacman();
 			setSpawnGhost();
-		}
-		else if (type.equals(DEFAULT)) {
+		} else if (type.equals(DEFAULT)) {
 			hauteur = 17;
 			longueur = 58;
 			type = GOOGLE;

@@ -31,7 +31,6 @@ public class PacManView extends JComponent {
 		game.setView(this);
 	}
 
-	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -40,11 +39,11 @@ public class PacManView extends JComponent {
 		drawGhosts(g);
 		drawPacMan(g);
 		g.setColor(Color.BLACK);
-		g.setFont(new Font("pacManFont",Font.BOLD,TILESIZE));
-        g.drawString(game.getScore(),1,30);
-        g.drawString("Lives : " + String.valueOf(game.getLives()),this.getWidth()/2 - TILESIZE *2 ,TILESIZE);
+		g.setFont(new Font("pacManFont", Font.BOLD, TILESIZE));
+		g.drawString(game.getScore(), 1, 30);
+		g.drawString("Lives : " + String.valueOf(game.getLives()), this.getWidth() / 2 - TILESIZE * 2, TILESIZE);
 	}
-	
+
 	@Override
 	public Dimension getPreferredSize() {
 		return boxSize;
@@ -53,7 +52,8 @@ public class PacManView extends JComponent {
 	public void drawPellets(Graphics g) {
 		for (Pellet pellet : game.getListPellet()) {
 			g.setColor(pellet.getColor());
-			g.fillOval(pellet.getPosX() * TILESIZE, pellet.getPosY() * TILESIZE, TILESIZE, TILESIZE);
+			g.fillOval((pellet.getPosX() * TILESIZE) + (TILESIZE / 3), (pellet.getPosY() * TILESIZE) + (TILESIZE / 3),
+					TILESIZE / 3, TILESIZE / 3);
 		}
 	}
 
@@ -94,7 +94,7 @@ public class PacManView extends JComponent {
 		g.fillOval(pacMan.getPosX(), pacMan.getPosY(), TILESIZE, TILESIZE);
 	}
 
-	public void swapMap() { 
+	public void swapMap() {
 		Map map = game.getMap();
 		if (map.getType().equals(Map.DEFAULT)) {
 			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
@@ -105,6 +105,5 @@ public class PacManView extends JComponent {
 		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
 		frame.pack();
 	}
-	
-	
+
 }

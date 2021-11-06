@@ -2,6 +2,9 @@ package projetS5;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 
 public class PacManGame {
@@ -17,7 +20,7 @@ public class PacManGame {
 	private int lives;
 	private boolean bonusLifeGiven;
 	private PacManView view;
-	private int powerTime;
+	public static int powerTime;
 
 	public PacManGame() {
 		lives = 3;
@@ -27,8 +30,8 @@ public class PacManGame {
 		map = new Map(Map.DEFAULT);
 		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(), this);
 		ghost1 = new Ghost(Color.RED, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
-		ghost2 = new Ghost(Color.WHITE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
-		ghost3 = new Ghost(Color.ORANGE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
+		ghost2 = new Ghost(Color.ORANGE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
+		ghost3 = new Ghost(Color.MAGENTA, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		ghost4 = new Ghost(Color.CYAN, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		int[][] temp = map.getMap();
 		for (int i = 0; i < temp.length; i++) {
@@ -176,7 +179,7 @@ public class PacManGame {
 			/* magenta pellet */
 			score += 300;
 			pacman.invisible();
-			powerTime = 30;
+			powerTime = 20;
 			deletePellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE);
 			break;
 		case 4:
@@ -187,7 +190,7 @@ public class PacManGame {
 			ghost2.scared();
 			ghost3.scared();
 			ghost4.scared();
-			powerTime = 20;
+			powerTime = 15;
 			deletePellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE);
 			break;
 		case 5:
@@ -215,8 +218,9 @@ public class PacManGame {
 				break;
 			}
 		}
-	}
 
+	}
+	
 	public void checkGhostContact() {
 		if (!(pacman.getState().equals(PacMan.INVISIBLE))) {
 			int ghost1PosX = ghost1.getPosX() / PacManView.TILESIZE;
@@ -303,7 +307,12 @@ public class PacManGame {
 	}
 
 	public void downPowerTime(int powerTime) {
-		this.powerTime = powerTime--;
+		powerTime = powerTime--;
+	}
+
+	public void lose() {
+		JOptionPane.showMessageDialog(null, "Perdu! (>_<) Score : " + getScore());
+		System.exit(0);
 	}
 
 }

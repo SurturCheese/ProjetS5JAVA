@@ -9,8 +9,6 @@ public class App {
 	private static final int FRAME_LOCATION_X = 100;
 	private static final int FRAME_LOCATION_Y = 100;
 
-	
-	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Pacman");
 		PacManView view = new PacManView(new PacManGame());
@@ -21,5 +19,4 @@ public class App {
 		frame.pack();
 		frame.setVisible(true);
 	}
-
 }

@@ -70,25 +70,26 @@ public class PacMan {
 
 	public void moveRight() {
 		if (game.checkerEast(posX, posY) != 1)
-		posX = posX + PacManView.TILESIZE;
+			posX = posX + PacManView.TILESIZE;
 	}
 
 	public void moveLeft() {
 		if (game.checkerWest(posX, posY) != 1)
-		posX = posX - PacManView.TILESIZE;
+			posX = posX - PacManView.TILESIZE;
 	}
 
 	public void moveDown() {
 		if (game.checkerSouth(posX, posY) != 1)
-		posY = posY + PacManView.TILESIZE;
+			posY = posY + PacManView.TILESIZE;
 	}
 
 	public void moveUp() {
 		if (game.checkerNorth(posX, posY) != 1)
-		posY = posY - PacManView.TILESIZE;
+			posY = posY - PacManView.TILESIZE;
 	}
+
 	public void tp(int x, int y) {
-        posX = x * PacManView.TILESIZE;
-        posY = y * PacManView.TILESIZE;
-    }
+		posX = x * PacManView.TILESIZE;
+		posY = y * PacManView.TILESIZE;
+	}
 }

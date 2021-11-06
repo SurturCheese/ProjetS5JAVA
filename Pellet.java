@@ -7,7 +7,7 @@ public class Pellet {
 	private int points;
 	private int posX;
 	private int posY;
-	
+
 	public Pellet(Color color, int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
@@ -25,7 +25,7 @@ public class Pellet {
 	public Color getColor() {
 		return color;
 	}
-	
+
 	public int getPoints() {
 		return points;
 	}
@@ -33,6 +33,7 @@ public class Pellet {
 	public int getPosX() {
 		return posX;
 	}
+
 	public int getPosY() {
 		return posY;
 	}
