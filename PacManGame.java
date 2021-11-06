@@ -17,13 +17,16 @@ public class PacManGame {
 	private int lives;
 	private boolean bonusLifeGiven;
 	private PacManView view;
+	private int powerTime;
+	
+	
 
 	public PacManGame() {
 		lives = 3;
 		bonusLifeGiven = false;
 		score = 0;
 		listPellet = new ArrayList<>();
-		map = new Map(Map.GOOGLE);
+		map = new Map(Map.DEFAULT);
 		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(),this);
 		ghost1 = new Ghost(Color.RED, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		ghost2 = new Ghost(Color.WHITE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
@@ -175,11 +178,19 @@ public class PacManGame {
 		case 3:
 			/* magenta pellet */
 			score += 300;
+			pacman.invisible();
+			powerTime = 30;
 			deletePellet(posX / PacManView.TILESIZE,posY / PacManView.TILESIZE);
 			break;
 		case 4:
 			/* orange pellet */
 			score += 500;
+			pacman.superpacman();
+			ghost1.scared();
+			ghost2.scared();
+			ghost3.scared();
+			ghost4.scared();
+			powerTime = 20;
 			deletePellet(posX / PacManView.TILESIZE,posY / PacManView.TILESIZE);
 			break;
 		case 5:
@@ -228,6 +239,14 @@ public class PacManGame {
         }
         return false;
     }
+
+	public int getPowerTime() {
+		return powerTime;
+	}
+
+	public void downPowerTime(int powerTime) {
+		this.powerTime = powerTime--;
+	}
 
 	
 

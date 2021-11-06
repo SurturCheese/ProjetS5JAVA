@@ -94,7 +94,7 @@ public class PacManView extends JComponent {
 		g.fillOval(pacMan.getPosX(), pacMan.getPosY(), TILESIZE, TILESIZE);
 	}
 
-	public void swapMap() {
+	public void swapMap() { 
 		Map map = game.getMap();
 		if (map.getType().equals(Map.DEFAULT)) {
 			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
