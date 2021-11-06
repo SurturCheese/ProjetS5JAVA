@@ -79,6 +79,7 @@ public class PacManKeyListener extends KeyAdapter {
 				game.getGhost4().normal();
 			}
 		}
+		game.checkGhostContact();
 		view.repaint();
 	}
 
