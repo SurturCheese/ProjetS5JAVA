@@ -17,43 +17,35 @@ public class Ghost {
 	private int posX;
 	private int posY;
 
-	public Ghost(Color color) {
+	public Ghost(Color color,int posX, int posY) {
 		state = NORMAL;
 		this.color = color;
 		baseColor = color;
+		this.posX = posY* PacManView.TILESIZE;
+		this.posY = posX* PacManView.TILESIZE;
 		// this.direction = ?
 	}
-
-	public void scared() {
-		color = Color.BLUE;
-		state = SCARED;
-	}
-
-	public void normal() {
-		color = baseColor;
-		state = NORMAL;
-	}
-
+	
 	public String getState() {
 		return state;
 	}
-
-	public Color getColor() {
-		return color;
-	}
-
-	public String getDirection() {
-		return direction;
-	}
-
+	
 	public void setState(String state) {
 		this.state = state;
 	}
-
+	
 	public void setColor(Color color) {
-		this.color=color;
+		this.color = color;
 	}
-
+	
+	public Color getColor() {
+		return color;
+	}
+	
+	public String getDirection() {
+		return direction;
+	}
+	
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
@@ -61,18 +53,53 @@ public class Ghost {
 	public int getPosX() {
 		return posX;
 	}
-	public int getPosY() {
-		return posY;
-	}
-
+	
 	public void setPosX(int posX) {
 		this.posX = posX;
+	}
+
+	public int getPosY() {
+		return posY;
 	}
 
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
-	
-	
 
+	public void normal() {
+		color = baseColor;
+		state = NORMAL;
+	}
+	
+	public void scared() {
+		color = Color.BLUE;
+		state = SCARED;
+	}
+	
+	public void moveRight() {
+		posX = posX + PacManView.TILESIZE;
+	}
+
+	public void moveLeft() {
+		posX = posX - PacManView.TILESIZE;
+	}
+
+	public void moveDown() {
+		posY = posY + PacManView.TILESIZE;
+	}
+
+	public void moveUp() {
+		posY = posY - PacManView.TILESIZE;
+	}
+	
+	public void moveRandom() {
+		int direction = 1 + (int)(Math.random() * ((4 - 1) + 1));
+		switch(direction) {
+		case 1: moveUp();break;
+		case 2: moveRight();break;
+		case 3: moveDown();break;
+		case 4: moveLeft();break;
+		}
+	}
+	
 }

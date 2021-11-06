@@ -4,39 +4,40 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 public class PacManView extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 	private final PacManGame game;
-	public final static int TILESIZE = 30;
+	public static final int TILESIZE = 30;
 	private Dimension boxSize;
 
 	public PacManView(PacManGame game) {
 		super();
 		this.game = game;
 		Map map = game.getMap();
-		if (map.getType().equals(Map.DEFAULT))
+		if (map.getType().equals(Map.DEFAULT)) {
 			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
-
-		if (map.getType().equals(Map.GOOGLE))
+		}
+		if (map.getType().equals(Map.GOOGLE)) {
 			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
-
+		}
 		addKeyListener(new PacManKeyListener(game, this));
 		setFocusable(true);
 		requestFocusInWindow();
-		setSize(WIDTH, HEIGHT);
 	}
 
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		drawMap(g);
+		drawPellets(g);
 		drawGhosts(g);
 		drawPacMan(g);
-		drawPellets(g);
+		
 	}
-
+	
 	@Override
 	public Dimension getPreferredSize() {
 		return boxSize;
@@ -46,6 +47,11 @@ public class PacManView extends JComponent {
 		for (Pellet pellet : game.getListPellet()) {
 			g.setColor(pellet.getColor());
 			g.fillOval(pellet.getPosX() * TILESIZE, pellet.getPosY() * TILESIZE, TILESIZE, TILESIZE);
+			g.setColor(Color.BLACK);
+			g.setFont(new Font("pacManFont",Font.BOLD,TILESIZE));
+	        g.drawString(game.getScore(),1,30);
+	        g.drawString("Vie : " + String.valueOf(game.getPacman().getLifes()),this.getWidth()/2 - TILESIZE *2 ,TILESIZE);
+
 		}
 	}
 

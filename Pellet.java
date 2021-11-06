@@ -22,14 +22,14 @@ public class Pellet {
 			points = 1000;
 	}
 
-	public int getPoints() {
-		return points;
-	}
-
 	public Color getColor() {
 		return color;
 	}
 	
+	public int getPoints() {
+		return points;
+	}
+
 	public int getPosX() {
 		return posX;
 	}

@@ -16,15 +16,16 @@ public class PacManGame {
 	private boolean bonusLifeGiven;
 
 	public PacManGame() {
+		
 		bonusLifeGiven = false;
 		score = 0;
-		ghost1 = new Ghost(Color.RED);
-		ghost2 = new Ghost(Color.WHITE);
-		ghost3 = new Ghost(Color.ORANGE);
-		ghost4 = new Ghost(Color.BLUE);
 		listPellet = new ArrayList<>();
 		map = new Map(Map.DEFAULT);
 		pacman = new PacMan(map.getSpawnPacmanX(),map.getSpawnPacmanY());
+		ghost1 = new Ghost(Color.RED,map.getSpawnGhostX(),map.getSpawnGhostY());
+		ghost2 = new Ghost(Color.WHITE,map.getSpawnGhostX(),map.getSpawnGhostY());
+		ghost3 = new Ghost(Color.ORANGE,map.getSpawnGhostX(),map.getSpawnGhostY());
+		ghost4 = new Ghost(Color.BLUE,map.getSpawnGhostX(),map.getSpawnGhostY());
 		int[][] temp = map.getMap();
 		for (int i = 0; i < temp.length; i++) {
 			for (int j = 0; j < temp[i].length; j++) {
@@ -73,6 +74,10 @@ public class PacManGame {
 
 	public Map getMap() {
 		return map;
+	}
+	
+	public String getScore() {
+		return String.valueOf(score);
 	}
 
 	public void checkBonusLife() {
