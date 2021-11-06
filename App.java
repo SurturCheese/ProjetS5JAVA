@@ -18,6 +18,7 @@ public class App {
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
 		frame.setVisible(true);
 
 	}
