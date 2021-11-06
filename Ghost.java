@@ -78,49 +78,204 @@ public class Ghost {
 		state = SCARED;
 	}
 
-	private void moveRight() {
+	private void moveEast() {
 		posX = posX + PacManView.TILESIZE;
 	}
 
-	private void moveLeft() {
+	private void moveWest() {
 		posX = posX - PacManView.TILESIZE;
 	}
 
-	private void moveDown() {
+	private void moveSouth() {
 		posY = posY + PacManView.TILESIZE;
 	}
 
-	private void moveUp() {
+	private void moveNorth() {
 		posY = posY - PacManView.TILESIZE;
 	}
 
 	public void move() {
-		int north = game.checkerNorth(posX, posY);
-		int south = game.checkerSouth(posX, posY);
-		int east = game.checkerEast(posX, posY);
-		int west = game.checkerWest(posX, posY);
-		
-		if(north == 1 ) {
-			
+
+		boolean tp = false;
+
+		int[][] temp = game.getMap().getMap();
+		int tile = temp[posX / PacManView.TILESIZE][posY / PacManView.TILESIZE];
+		if (tile == 8) {
+			if (game.getMap().getType().equals(Map.DEFAULT)) {
+				if (posX * PacManView.TILESIZE == 0) {
+					posX = 26 * PacManView.TILESIZE;
+					posY = 14 * PacManView.TILESIZE;
+				} else {
+					posX = 1 * PacManView.TILESIZE;
+					posY = 14 * PacManView.TILESIZE;
+				}
+			}
+			if (game.getMap().getType().equals(Map.GOOGLE)) {
+				if (posX * PacManView.TILESIZE == 0) {
+					posX = 56 * PacManView.TILESIZE;
+					posY = 8 * PacManView.TILESIZE;
+				} else {
+					posX = 1 * PacManView.TILESIZE;
+					posY = 8 * PacManView.TILESIZE;
+				}
+			}
+		}
+
+		if (!tp) {
+			int north = game.checkerNorth(posX, posY);
+			int south = game.checkerSouth(posX, posY);
+			int east = game.checkerEast(posX, posY);
+			int west = game.checkerWest(posX, posY);
+			if (north != 1 && south != 1 && east == 1 && west == 1) {
+				if (direction.equals(NORTH))
+					moveNorth();
+				else
+					moveSouth();
+			} else if (north == 1 && south == 1 && east != 1 && west != 1) {
+				if (direction.equals(EAST))
+					moveEast();
+				else
+					moveWest();
+			} else if (north != 1 && south != 1 && east != 1 && west != 1) {
+				int sens = 1 + (int) (Math.random() * ((4 - 1) + 1));
+				switch (sens) {
+				case 1:
+					moveNorth();
+					direction = NORTH;
+					break;
+				case 2:
+					moveEast();
+					direction = EAST;
+					break;
+				case 3:
+					moveSouth();
+					direction = SOUTH;
+					break;
+				case 4:
+					moveWest();
+					direction = WEST;
+					break;
+				}
+			} else if (north == 1 && south != 1 && east != 1 && west != 1) {
+				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
+				switch (sens) {
+				case 1:
+					moveWest();
+					direction = WEST;
+					break;
+				case 2:
+					moveEast();
+					direction = EAST;
+					break;
+				case 3:
+					moveSouth();
+					direction = SOUTH;
+					break;
+				}
+			}
+
+			else if (north != 1 && south == 1 && east != 1 && west != 1) {
+				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
+				switch (sens) {
+				case 1:
+					moveWest();
+					direction = WEST;
+					break;
+				case 2:
+					moveEast();
+					direction = EAST;
+					break;
+				case 3:
+					moveNorth();
+					direction = NORTH;
+					break;
+				}
+			}
+
+			else if (north != 1 && south != 1 && east == 1 && west != 1) {
+				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
+				switch (sens) {
+				case 1:
+					moveWest();
+					direction = WEST;
+					break;
+				case 2:
+					moveNorth();
+					direction = NORTH;
+					break;
+				case 3:
+					moveSouth();
+					direction = SOUTH;
+					break;
+				}
+			}
+
+			else if (north != 1 && south != 1 && east != 1 && west == 1) {
+				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
+				switch (sens) {
+				case 1:
+					moveNorth();
+					direction = NORTH;
+					break;
+				case 2:
+					moveEast();
+					direction = EAST;
+					break;
+				case 3:
+					moveSouth();
+					direction = SOUTH;
+					break;
+				}
+			} else if (north == 1 && south != 1 && east != 1 && west == 1) {
+				int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
+				switch (sens) {
+				case 1:
+					moveSouth();
+					direction = SOUTH;
+					break;
+				case 2:
+					moveEast();
+					direction = EAST;
+					break;
+				}
+			} else if (north == 1 && south != 1 && east == 1 && west != 1) {
+				int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
+				switch (sens) {
+				case 1:
+					moveSouth();
+					direction = SOUTH;
+					break;
+				case 2:
+					moveWest();
+					direction = WEST;
+					break;
+				}
+			} else if (north != 1 && south == 1 && east == 1 && west != 1) {
+				int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
+				switch (sens) {
+				case 1:
+					moveNorth();
+					direction = NORMAL;
+					break;
+				case 2:
+					moveWest();
+					direction = WEST;
+					break;
+				}
+			} else if (north != 1 && south == 1 && east != 1 && west == 1) {
+				int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
+				switch (sens) {
+				case 1:
+					moveNorth();
+					direction = NORMAL;
+					break;
+				case 2:
+					moveEast();
+					direction = EAST;
+					break;
+				}
+			}
+
 		}
 	}
-
-	public void moveRandom() {
-		int direction = 1 + (int) (Math.random() * ((4 - 1) + 1));
-		switch (direction) {
-		case 1:
-			moveUp();
-			break;
-		case 2:
-			moveRight();
-			break;
-		case 3:
-			moveDown();
-			break;
-		case 4:
-			moveLeft();
-			break;
-		}
-	}
-
 }

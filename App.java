@@ -12,16 +12,14 @@ public class App {
 	
 	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame();
+		JFrame frame = new JFrame("Pacman");
 		PacManView view = new PacManView(new PacManGame());
-		frame.setTitle("Pacman");
 		frame.add(view);
 		frame.setLocation(FRAME_LOCATION_X, FRAME_LOCATION_Y);
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
-	
 	}
 
 }

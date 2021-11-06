@@ -70,10 +70,10 @@ public class PacManGame {
 	}
 	
 	public void moveGhost() {
-		ghost1.moveRandom();
-		ghost2.moveRandom();
-		ghost3.moveRandom();
-		ghost4.moveRandom();
+		ghost1.move();
+		ghost2.move();
+		ghost3.move();
+		ghost4.move();
 	}
 
 	public ArrayList<Pellet> getListPellet() {
@@ -151,4 +151,36 @@ public class PacManGame {
 		return temp[posX/PacManView.TILESIZE - 1][posY/PacManView.TILESIZE ]; 
 	}
 
+	public void checkCase(int posX, int posY) {
+        int[][] temp = map.getMap();
+        switch (temp[posX / PacManView.TILESIZE][posY / PacManView.TILESIZE]) {
+        case 2:
+            score += 100;
+            break;
+        case 3:
+            /* magenta pellet */ break;
+        case 4:
+            /* orange pellet */ break;
+        case 5:
+            /* green pellet */ break;
+        case 8: /* wrap around */
+            if (map.getType().equals(Map.DEFAULT)) {
+                if (pacman.getPosX() * PacManView.TILESIZE == 0) {
+                    pacman.tp(26, 14);
+                } else {
+                    pacman.tp(1, 14);
+                }
+            }
+            if (map.getType().equals(Map.GOOGLE)) {
+                if((pacman.getPosX() * PacManView.TILESIZE) == 0) {
+                pacman.tp(56, 8);
+            } else {
+                pacman.tp(1, 8);
+            }
+            break;
+        }
+    }
+
+}
+	
 }

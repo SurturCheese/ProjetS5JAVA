@@ -68,7 +68,6 @@ public class PacMan {
 
 	public void moveRight() {
 		posX = posX + PacManView.TILESIZE;
-		System.out.println(posX + " " + posY);
 	}
 
 	public void moveLeft() {
@@ -82,5 +81,8 @@ public class PacMan {
 	public void moveUp() {
 		posY = posY - PacManView.TILESIZE;
 	}
-
+	public void tp(int x, int y) {
+        posX = x * PacManView.TILESIZE;
+        posY = y * PacManView.TILESIZE;
+    }
 }
