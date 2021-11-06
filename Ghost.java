@@ -255,7 +255,7 @@ public class Ghost {
 				switch (sens) {
 				case 1:
 					moveNorth();
-					direction = NORMAL;
+					direction = NORTH;
 					break;
 				case 2:
 					moveWest();
@@ -267,13 +267,22 @@ public class Ghost {
 				switch (sens) {
 				case 1:
 					moveNorth();
-					direction = NORMAL;
+					direction = NORTH;
 					break;
 				case 2:
 					moveEast();
 					direction = EAST;
 					break;
 				}
+
+			} else if (north == 1 && south == 1 && east == 1 && west != 1) {
+				moveWest();
+				direction = WEST;
+			}
+
+			else if (north == 1 && south == 1 && east != 1 && west == 1) {
+				moveEast();
+				direction = EAST;
 			}
 
 		}
