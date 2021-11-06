@@ -9,16 +9,14 @@ public class PacMan {
 	public static final String INVISIBLE = "INVISIBLE";
 	public static final String SUPERPACMAN = "SUPERPACMAN";
 	private Color color;
-	private int lifes;
 	private int posX;
 	private int posY;
 
 	public PacMan(int posX, int posY) {
 		state = NORMAL;
 		color = Color.YELLOW;
-		lifes = 3;
-		this.posX = posY * PacManView.TILESIZE;
-		this.posY = posX * PacManView.TILESIZE;
+		this.posX = posX * PacManView.TILESIZE;
+		this.posY = posY * PacManView.TILESIZE;
 	}
 
 	public String getState() {
@@ -35,18 +33,6 @@ public class PacMan {
 
 	public void setColor(Color color) {
 		this.color = color;
-	}
-
-	public int getLifes() {
-		return lifes;
-	}
-
-	public void lifeUp() {
-		lifes = getLifes() + 1;
-	}
-
-	public void lifeDown() {
-		lifes = getLifes() - 1;
 	}
 
 	public int getPosX() {
@@ -82,6 +68,7 @@ public class PacMan {
 
 	public void moveRight() {
 		posX = posX + PacManView.TILESIZE;
+		System.out.println(posX + " " + posY);
 	}
 
 	public void moveLeft() {

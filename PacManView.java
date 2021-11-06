@@ -2,8 +2,11 @@ package projetS5;
 
 import java.awt.Graphics;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 public class PacManView extends JComponent {
 
@@ -25,9 +28,9 @@ public class PacManView extends JComponent {
 		addKeyListener(new PacManKeyListener(game, this));
 		setFocusable(true);
 		requestFocusInWindow();
-		setSize(WIDTH, HEIGHT);
 	}
 
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -35,6 +38,10 @@ public class PacManView extends JComponent {
 		drawPellets(g);
 		drawGhosts(g);
 		drawPacMan(g);
+		g.setColor(Color.BLACK);
+		g.setFont(new Font("pacManFont",Font.BOLD,TILESIZE));
+        g.drawString(game.getScore(),1,30);
+        g.drawString("Lives : " + String.valueOf(game.getLives()),this.getWidth()/2 - TILESIZE *2 ,TILESIZE);
 	}
 	
 	@Override
@@ -46,7 +53,6 @@ public class PacManView extends JComponent {
 		for (Pellet pellet : game.getListPellet()) {
 			g.setColor(pellet.getColor());
 			g.fillOval(pellet.getPosX() * TILESIZE, pellet.getPosY() * TILESIZE, TILESIZE, TILESIZE);
-			
 		}
 	}
 
@@ -57,7 +63,7 @@ public class PacManView extends JComponent {
 			for (int j = 0; j < bloc[i].length; j++) {
 				if (bloc[i][j] == 1) {
 					g.setColor(Color.GRAY);
-					g.fillRect(j * TILESIZE, i * TILESIZE, TILESIZE, TILESIZE);
+					g.fillRect(i * TILESIZE, j * TILESIZE, TILESIZE, TILESIZE);
 				}
 			}
 		}
@@ -87,4 +93,17 @@ public class PacManView extends JComponent {
 		g.fillOval(pacMan.getPosX(), pacMan.getPosY(), TILESIZE, TILESIZE);
 	}
 
+	public void swapMap() {
+		Map map = game.getMap();
+		if (map.getType().equals(Map.DEFAULT)) {
+			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
+		}
+		if (map.getType().equals(Map.GOOGLE)) {
+			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
+		}
+		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+		frame.pack();
+	}
+	
+	
 }

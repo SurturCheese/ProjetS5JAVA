@@ -4,6 +4,7 @@ import java.awt.Color;
 
 public class Ghost {
 
+	private PacManGame game;
 	private String state;
 	public static final String NORMAL = "NORMAL";
 	public static final String SCARED = "SCARED";
@@ -17,41 +18,44 @@ public class Ghost {
 	private int posX;
 	private int posY;
 
-	public Ghost(Color color) {
+	public Ghost(Color color, int posX, int posY, PacManGame game) {
+		this.game = game;
 		state = NORMAL;
 		this.color = color;
 		baseColor = color;
-		// this.direction = ?
+		this.posX = posX * PacManView.TILESIZE;
+		this.posY = posY * PacManView.TILESIZE;
+		this.direction = NORTH;
 	}
-	
+
 	public String getState() {
 		return state;
 	}
-	
+
 	public void setState(String state) {
 		this.state = state;
 	}
-	
+
 	public void setColor(Color color) {
 		this.color = color;
 	}
-	
+
 	public Color getColor() {
 		return color;
 	}
-	
+
 	public String getDirection() {
 		return direction;
 	}
-	
+
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
-	
+
 	public int getPosX() {
 		return posX;
 	}
-	
+
 	public void setPosX(int posX) {
 		this.posX = posX;
 	}
@@ -68,36 +72,55 @@ public class Ghost {
 		color = baseColor;
 		state = NORMAL;
 	}
-	
+
 	public void scared() {
 		color = Color.BLUE;
 		state = SCARED;
 	}
-	
-	public void moveRight() {
-		posX = posX + 10;
+
+	private void moveRight() {
+		posX = posX + PacManView.TILESIZE;
 	}
 
-	public void moveLeft() {
-		posX = posX - 10;
+	private void moveLeft() {
+		posX = posX - PacManView.TILESIZE;
 	}
 
-	public void moveDown() {
-		posY = posY + 10;
+	private void moveDown() {
+		posY = posY + PacManView.TILESIZE;
 	}
 
-	public void moveUp() {
-		posY = posY - 10;
+	private void moveUp() {
+		posY = posY - PacManView.TILESIZE;
 	}
-	
-	public void moveRandom() {
-		int direction = 1 + (int)(Math.random() * ((4 - 1) + 1));
-		switch(direction) {
-		case 1: moveUp();break;
-		case 2: moveRight();break;
-		case 3: moveDown();break;
-		case 4: moveLeft();break;
+
+	public void move() {
+		int north = game.checkerNorth(posX, posY);
+		int south = game.checkerSouth(posX, posY);
+		int east = game.checkerEast(posX, posY);
+		int west = game.checkerWest(posX, posY);
+		
+		if(north == 1 ) {
+			
 		}
 	}
-	
+
+	public void moveRandom() {
+		int direction = 1 + (int) (Math.random() * ((4 - 1) + 1));
+		switch (direction) {
+		case 1:
+			moveUp();
+			break;
+		case 2:
+			moveRight();
+			break;
+		case 3:
+			moveDown();
+			break;
+		case 4:
+			moveLeft();
+			break;
+		}
+	}
+
 }

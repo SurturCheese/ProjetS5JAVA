@@ -18,20 +18,29 @@ public class PacManKeyListener extends KeyAdapter {
 		PacMan pacman = game.getPacman();
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			pacman.moveRight();
+			game.moveGhost();
+			System.out.println(game.checkerNorth(game.getPacman().getPosX(), game.getPacman().getPosY()));
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			pacman.moveLeft();
+			game.moveGhost();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			pacman.moveDown();
+			game.moveGhost();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			pacman.moveUp();
+			game.moveGhost();
 		}
-		view.repaint();
+		else if (e.getKeyCode() == KeyEvent.VK_M) {
+			game.swapMap();
+			view.swapMap();
+		}
+			view.repaint();
 	}
 
 	@Override
