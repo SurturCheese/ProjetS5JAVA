@@ -20,29 +20,28 @@ public class PacManKeyListener extends KeyAdapter {
 			pacman.moveRight();
 			game.moveGhost();
 			game.checkCase(pacman.getPosX(), pacman.getPosY());
+			game.checkBonusLive();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			pacman.moveLeft();
 			game.moveGhost();
 			game.checkCase(pacman.getPosX(), pacman.getPosY());
+			game.checkBonusLive();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			pacman.moveDown();
 			game.moveGhost();
 			game.checkCase(pacman.getPosX(), pacman.getPosY());
+			game.checkBonusLive();
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			pacman.moveUp();
 			game.moveGhost();
 			game.checkCase(pacman.getPosX(), pacman.getPosY());
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_M) {
-			game.swapMap();
-			view.swapMap();
-			game.checkCase(pacman.getPosX(), pacman.getPosY());
+			game.checkBonusLive();
 		}
 			view.repaint();
 	}

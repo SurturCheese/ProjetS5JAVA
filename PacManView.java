@@ -28,6 +28,7 @@ public class PacManView extends JComponent {
 		addKeyListener(new PacManKeyListener(game, this));
 		setFocusable(true);
 		requestFocusInWindow();
+		game.setView(this);
 	}
 
 	
