@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.awt.Color;
 
 public class PacManGame {
+	
 	private PacMan pacman;
 	private Ghost ghost1;
 	private Ghost ghost2;
@@ -17,13 +18,13 @@ public class PacManGame {
 	public PacManGame() {
 		bonusLifeGiven = false;
 		score = 0;
-		pacman = new PacMan();
 		ghost1 = new Ghost(Color.RED);
 		ghost2 = new Ghost(Color.WHITE);
 		ghost3 = new Ghost(Color.ORANGE);
 		ghost4 = new Ghost(Color.BLUE);
 		listPellet = new ArrayList<>();
-		map = new Map(Map.GOOGLE);
+		map = new Map(Map.DEFAULT);
+		pacman = new PacMan(map.getSpawnPacmanX(),map.getSpawnPacmanY());
 		int[][] temp = map.getMap();
 		for (int i = 0; i < temp.length; i++) {
 			for (int j = 0; j < temp[i].length; j++) {
@@ -32,7 +33,6 @@ public class PacManGame {
 				case 2:
 					listPellet.add(new Pellet(Color.BLUE,j,i) );
 					break;
-
 				case 3:
 					listPellet.add(new Pellet(Color.MAGENTA,j,i) );
 					break;

@@ -3,22 +3,25 @@ package projetS5;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class PacManView extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 	private final PacManGame game;
-	private int WIDTH;
-	private int HEIGHT;
-	private int TILESIZE;
+	public final static int TILESIZE = 30;
+	private Dimension boxSize;
 
 	public PacManView(PacManGame game) {
 		super();
 		this.game = game;
 		Map map = game.getMap();
-		TILESIZE = 10;
-		WIDTH = TILESIZE * map.getLongueur()*2;
-		HEIGHT = TILESIZE * map.getHauteur()*2;
+		if (map.getType().equals(Map.DEFAULT))
+			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
+
+		if (map.getType().equals(Map.GOOGLE))
+			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
+
 		addKeyListener(new PacManKeyListener(game, this));
 		setFocusable(true);
 		requestFocusInWindow();
@@ -32,7 +35,11 @@ public class PacManView extends JComponent {
 		drawGhosts(g);
 		drawPacMan(g);
 		drawPellets(g);
+	}
 
+	@Override
+	public Dimension getPreferredSize() {
+		return boxSize;
 	}
 
 	public void drawPellets(Graphics g) {
