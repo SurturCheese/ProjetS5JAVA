@@ -2,16 +2,18 @@ package projetS5;
 
 public class Map {
 
-	// case vide (0), mur (1), pellet (2), super pellet violet (3), super pellet
-	// orange (4), super pellet vert (5), spawn (6), centre (7), wrap around (8)
+	// case vide (0), mur (1), pellet (2), pellet violet (3), pellet orange (4),
+	// pellet vert (5), spawnPacman (6), spawnGhost (7), wrap around (8)
 	private int hauteur;
 	private int longueur;
 	private String type;
 	public static final String DEFAULT = "DEFAULT";
 	public static final String GOOGLE = "GOOGLE";
-	private int spawnX;
-	private int spawnY;
-	private final int[][] googleMAp = {
+	private int spawnPacmanX;
+	private int spawnPacmanY;
+	private int spawnGhostX;
+	private int spawnGhostY;
+	private final int[][] googleMap = {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 					1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -22,18 +24,18 @@ public class Map {
 					1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 4, 1 },
 			{ 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0,
 					7, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 },
-			{ 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1,
-					1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 },
-			{ 0, 0, 0, 0, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0,
-					0, 0, 0, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0,
-					0, 0, 0, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 },
-			{ 8, 0, 0, 0, 0, 2, 1, 1, 1, 2, 2, 5, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0,
-					0, 0, 0, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, 0, 8 },
+			{ 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
+					1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
+					1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 },
+			{ 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
+					1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 },
+			{ 8, 0, 0, 0, 0, 2, 1, 1, 1, 2, 2, 5, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
+					1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, 0, 8 },
 			{ 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
 					1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
-					0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0, 0, 0, 0 },
+					0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 },
 			{ 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
 					1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 },
 			{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1,
@@ -50,7 +52,7 @@ public class Map {
 			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 },
 			{ 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1 },
-			{ 1, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 4, 1 },
+			{ 1, 5, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 4, 1 },
 			{ 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1 },
 			{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 },
 			{ 1, 2, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1 },
@@ -70,7 +72,7 @@ public class Map {
 			{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1 },
 			{ 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1 },
 			{ 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1 },
-			{ 1, 5, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 6, 0, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 3, 1 },
+			{ 1, 3, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 6, 0, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 3, 1 },
 			{ 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1 },
 			{ 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1 },
 			{ 1, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1 },
@@ -85,10 +87,11 @@ public class Map {
 			this.hauteur = 31;
 			this.longueur = 28;
 		}
-		if (type.equals("google")) {
+		if (type.equals(GOOGLE)) {
 			this.hauteur = 17;
 			this.longueur = 58;
 		}
+		setSpawnPacman();
 	}
 
 	public int getHauteur() {
@@ -98,31 +101,57 @@ public class Map {
 	public int getLongueur() {
 		return longueur;
 	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public int getSpawnPacmanX() {
+		return spawnPacmanX;
+	}
+
+	public int getSpawnPacmanY() {
+		return spawnPacmanY;
+	}
+
+	public int getSpawnGhostX() {
+		return spawnGhostX;
+	}
+
+	public int getSpawnGhostY() {
+		return spawnGhostY;
+	}
 
 	public int[][] getMap() {
 		if (type.equals(DEFAULT))
 			return defaultMap;
 		return googleMap;
 	}
-
-	public String getType() {
-		return type;
+	
+	public void setCase(int x, int y, int i) {
+		if (type.equals(DEFAULT)) defaultMap[x][y] = i;
+		if (type.equals(GOOGLE)) googleMap[x][y] = i;
 	}
 
-	public void setCase(int x, int y, int newCase) {
-		map[x][y] = newCase;
-	}
-
-	public void setSpawn() {
-		for (int i = 0; i < longueur; i++) {
-			for (int u = 0; u < hauteur; u++) {
-				if (type.equals(DEFAULT) && defaultMap[i][u] == 6) {
-					spawnX = i;
-					spawnY = u;
+	public void setSpawnPacman() {
+		int[][] tempMap = getMap();
+		for (int i = 0; i < tempMap.length; i++) {
+			for (int u = 0; u < tempMap[i].length; u++) {
+				if(tempMap[i][u] == 6) {
+					spawnPacmanX = i;
+					spawnPacmanY = u;
 				}
-				if (type.equals(GOOGLE) && googleMap[i][u] == 6) {
-					spawnX = i;
-					spawnY = u;
+			}
+		}
+	}
+
+	public void setSpawnGhost() {
+		int[][] tempMap = getMap();
+		for (int i = 0; i < tempMap.length; i++) {
+			for (int u = 0; u < tempMap[i].length; u++) {
+				if(tempMap[i][u] == 7) {
+					spawnGhostX = i;
+					spawnGhostY = u;
 				}
 			}
 		}
@@ -133,15 +162,15 @@ public class Map {
 			hauteur = 31;
 			longueur = 28;
 			type = DEFAULT;
-			setSpawn();
-			// setup le nouveau centre
+			setSpawnPacman();
+			setSpawnGhost();
 		}
 		if (type.equals(DEFAULT)) {
 			hauteur = 17;
 			longueur = 58;
 			type = GOOGLE;
-			setSpawn();
-			// setup le nouveau centre
+			setSpawnPacman();
+			setSpawnGhost();
 		}
 	}
 
