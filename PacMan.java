@@ -4,21 +4,29 @@ import java.awt.Color;
 
 public class PacMan {
 
+	private PacManGame game;
 	private String state;
 	public static final String NORMAL = "NORMAL";
 	public static final String INVISIBLE = "INVISIBLE";
 	public static final String SUPERPACMAN = "SUPERPACMAN";
+	public static final String NORTH = "NORD";
+	public static final String EAST = "EAST";
+	public static final String SOUTH = "SOUTH";
+	public static final String WEST = "WEST";
+	private String direction;
 	private Color color;
-	private int lifes;
 	private int posX;
 	private int posY;
+	private boolean isAlive;
 
-	public PacMan(int posX, int posY) {
+	public PacMan(int posX, int posY, PacManGame game) {
+		this.game = game;
 		state = NORMAL;
 		color = Color.YELLOW;
-		lifes = 3;
-		this.posX = posY * PacManView.TILESIZE;
-		this.posY = posX * PacManView.TILESIZE;
+		this.posX = posX * PacManView.TILESIZE;
+		this.posY = posY * PacManView.TILESIZE;
+		this.isAlive = true;
+		this.direction = "NORD";
 	}
 
 	public String getState() {
@@ -37,18 +45,6 @@ public class PacMan {
 		this.color = color;
 	}
 
-	public int getLifes() {
-		return lifes;
-	}
-
-	public void lifeUp() {
-		lifes = getLifes() + 1;
-	}
-
-	public void lifeDown() {
-		lifes = getLifes() - 1;
-	}
-
 	public int getPosX() {
 		return posX;
 	}
@@ -63,6 +59,14 @@ public class PacMan {
 
 	public void setPosY(int posY) {
 		this.posY = posY;
+	}
+
+	public void setDead() {
+		this.isAlive = false;
+	}
+
+	public boolean isAlive() {
+		return this.isAlive;
 	}
 
 	public void normal() {
@@ -80,20 +84,27 @@ public class PacMan {
 		color = Color.ORANGE;
 	}
 
-	public void moveRight() {
-		posX = posX + PacManView.TILESIZE;
+	public void setDirection(String direction) {
+		this.direction = direction;
 	}
 
-	public void moveLeft() {
-		posX = posX - PacManView.TILESIZE;
+	public void move() {
+		if (direction == NORTH)
+			if (game.checkerNorth(posX, posY) != 1)
+				posY = posY - PacManView.TILESIZE;
+		if (direction == SOUTH)
+			if (game.checkerSouth(posX, posY) != 1)
+				posY = posY + PacManView.TILESIZE;
+		if (direction == EAST)
+			if (game.checkerEast(posX, posY) != 1)
+				posX = posX + PacManView.TILESIZE;
+		if (direction == WEST)
+			if (game.checkerWest(posX, posY) != 1)
+				posX = posX - PacManView.TILESIZE;
 	}
 
-	public void moveDown() {
-		posY = posY + PacManView.TILESIZE;
+	public void tp(int x, int y) {
+		posX = x * PacManView.TILESIZE;
+		posY = y * PacManView.TILESIZE;
 	}
-
-	public void moveUp() {
-		posY = posY - PacManView.TILESIZE;
-	}
-
 }
