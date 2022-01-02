@@ -14,11 +14,11 @@ public class Pellet {
 		this.color = color;
 		if (color == Color.BLUE)
 			points = 100;
-		if (color == Color.MAGENTA)
+		else if (color == Color.MAGENTA)
 			points = 300;
-		if (color == Color.ORANGE)
+		else if (color == Color.ORANGE)
 			points = 500;
-		if (color == Color.GREEN)
+		else if (color == Color.GREEN)
 			points = 1000;
 	}
 

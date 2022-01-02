@@ -3,7 +3,6 @@ package projetS5;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import javax.swing.JOptionPane;
 
 public class PacManGame {
@@ -22,14 +21,18 @@ public class PacManGame {
 		lives = 3;
 		bonusLifeGiven = false;
 		score = 0;
-		listPellet = new ArrayList<>();
-		listGhost = new Ghost[4];
 		map = new Map(Map.DEFAULT);
+		setGame();
+	}
+
+	private void setGame() {
 		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(), this);
+		listGhost = new Ghost[4];
 		listGhost[0] = new Ghost(Color.RED, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		listGhost[1] = new Ghost(Color.ORANGE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		listGhost[2] = new Ghost(Color.MAGENTA, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		listGhost[3] = new Ghost(Color.CYAN, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
+		listPellet = new ArrayList<>();
 		int[][] temp = map.getMap();
 		for (int i = 0; i < temp.length; i++) {
 			for (int j = 0; j < temp[i].length; j++) {
@@ -50,9 +53,8 @@ public class PacManGame {
 				}
 			}
 		}
-
 	}
-
+	
 	public PacMan getPacman() {
 		return pacman;
 	}
@@ -86,7 +88,7 @@ public class PacManGame {
 	}
 
 	public void lifeDown() {
-		lives = lives - 1;
+		lives = lives--;
 	}
 
 	public int getLives() {
@@ -116,33 +118,8 @@ public class PacManGame {
 
 	public void swapMap() {
 		map.swapMap();
-		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(), this);
-		listGhost[0] = new Ghost(Color.RED, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
-		listGhost[1] = new Ghost(Color.WHITE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
-		listGhost[2] = new Ghost(Color.ORANGE, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
-		listGhost[3] = new Ghost(Color.CYAN, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
-		listPellet = new ArrayList<>();
-		int[][] temp = map.getMap();
-		for (int i = 0; i < temp.length; i++) {
-			for (int j = 0; j < temp[i].length; j++) {
-				int valCase = temp[i][j];
-				switch (valCase) {
-				case 2:
-					listPellet.add(new Pellet(Color.BLUE, i, j));
-					break;
-				case 3:
-					listPellet.add(new Pellet(Color.MAGENTA, i, j));
-					break;
-				case 4:
-					listPellet.add(new Pellet(Color.ORANGE, i, j));
-					break;
-				case 5:
-					listPellet.add(new Pellet(Color.GREEN, i, j));
-					break;
-				}
-			}
+		setGame();
 		}
-	}
 
 	public int checkerNorth(int posX, int posY) {
 		return map.getMap()[posX / PacManView.TILESIZE][posY / PacManView.TILESIZE - 1];

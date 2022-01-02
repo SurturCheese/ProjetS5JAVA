@@ -21,6 +21,8 @@ public class PacManView extends JComponent {
 		this.game = game;
 		Map map = game.getMap();
 		boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
+		setFocusable(true);
+		requestFocusInWindow();
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -40,8 +42,6 @@ public class PacManView extends JComponent {
 				}
 			}
 		});
-		setFocusable(true);
-		requestFocusInWindow();
 		game.setView(this);
 	}
 
