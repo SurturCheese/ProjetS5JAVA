@@ -9,10 +9,10 @@ public class PacMan {
 	public static final String NORMAL = "NORMAL";
 	public static final String INVISIBLE = "INVISIBLE";
 	public static final String SUPERPACMAN = "SUPERPACMAN";
-	public static final String NORTH = "NORD";
-	public static final String EAST = "EAST";
-	public static final String SOUTH = "SOUTH";
-	public static final String WEST = "WEST";
+	public static final String UP = "NORD";
+	public static final String RIGHT = "EAST";
+	public static final String DOWN = "SOUTH";
+	public static final String LEFT = "WEST";
 	private String direction;
 	private Color color;
 	private int posX;
@@ -89,16 +89,16 @@ public class PacMan {
 	}
 
 	public void move() {
-		if (direction == NORTH)
+		if (direction == UP)
 			if (game.checkerNorth(posX, posY) != 1)
 				posY = posY - PacManView.TILESIZE;
-		if (direction == SOUTH)
+		if (direction == DOWN)
 			if (game.checkerSouth(posX, posY) != 1)
 				posY = posY + PacManView.TILESIZE;
-		if (direction == EAST)
+		if (direction == RIGHT)
 			if (game.checkerEast(posX, posY) != 1)
 				posX = posX + PacManView.TILESIZE;
-		if (direction == WEST)
+		if (direction == LEFT)
 			if (game.checkerWest(posX, posY) != 1)
 				posX = posX - PacManView.TILESIZE;
 	}

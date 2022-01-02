@@ -7,7 +7,7 @@ public class App {
 
 	private static final int FRAME_LOCATION_X = 100;
 	private static final int FRAME_LOCATION_Y = 100;
-	static final int FRAMES_PER_SECOND = 3;
+	private static final int FRAMES_PER_SECOND = 3;
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Pacman");
