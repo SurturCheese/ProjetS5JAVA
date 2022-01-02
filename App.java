@@ -5,8 +5,6 @@ import javax.swing.JFrame;
 
 public class App {
 
-	private static final int FRAME_LOCATION_X = 100;
-	private static final int FRAME_LOCATION_Y = 100;
 	private static final int FRAMES_PER_SECOND = 3;
 	
 	public static void main(String[] args) {
@@ -14,7 +12,7 @@ public class App {
 		PacManGame game = new PacManGame(); 
 		PacManView view = new PacManView(game);
 		frame.add(view);
-		frame.setLocation(FRAME_LOCATION_X, FRAME_LOCATION_Y);
+		frame.setLocation(100, 100);
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();

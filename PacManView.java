@@ -1,8 +1,9 @@
 package projetS5;
 
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,13 +20,26 @@ public class PacManView extends JComponent {
 		super();
 		this.game = game;
 		Map map = game.getMap();
-		if (map.getType().equals(Map.DEFAULT)) {
-			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
-		}
-		if (map.getType().equals(Map.GOOGLE)) {
-			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
-		}
-		addKeyListener(new KeyListener(game));
+		boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_RIGHT:
+					game.getPacman().setDirection(PacMan.RIGHT);
+					break;
+				case KeyEvent.VK_LEFT:
+					game.getPacman().setDirection(PacMan.LEFT);
+					break;
+				case KeyEvent.VK_DOWN:
+					game.getPacman().setDirection(PacMan.DOWN);
+					break;
+				case KeyEvent.VK_UP:
+					game.getPacman().setDirection(PacMan.UP);
+					break;
+				}
+			}
+		});
 		setFocusable(true);
 		requestFocusInWindow();
 		game.setView(this);
@@ -49,7 +63,7 @@ public class PacManView extends JComponent {
 		return boxSize;
 	}
 
-	public void drawPellets(Graphics g) {
+	private void drawPellets(Graphics g) {
 		for (Pellet pellet : game.getListPellet()) {
 			g.setColor(pellet.getColor());
 			g.fillOval((pellet.getPosX() * TILESIZE) + (TILESIZE / 3), (pellet.getPosY() * TILESIZE) + (TILESIZE / 3),
@@ -57,12 +71,11 @@ public class PacManView extends JComponent {
 		}
 	}
 
-	public void drawMap(Graphics g) {
-		Map map = game.getMap();
-		int[][] bloc = map.getMap();
-		for (int i = 0; i < bloc.length; i++) {
-			for (int j = 0; j < bloc[i].length; j++) {
-				if (bloc[i][j] == 1) {
+	private void drawMap(Graphics g) {
+		int[][] map = game.getMap().getMap();
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length; j++) {
+				if (map[i][j] == 1) {
 					g.setColor(Color.GRAY);
 					g.fillRect(i * TILESIZE, j * TILESIZE, TILESIZE, TILESIZE);
 				}
@@ -70,25 +83,14 @@ public class PacManView extends JComponent {
 		}
 	}
 
-	public void drawGhosts(Graphics g) {
-		Ghost temp = game.getGhost1();
-		g.setColor(temp.getColor());
-		g.fillOval(temp.getPosX(), temp.getPosY(), TILESIZE, TILESIZE);
-
-		temp = game.getGhost2();
-		g.setColor(temp.getColor());
-		g.fillOval(temp.getPosX(), temp.getPosY(), TILESIZE, TILESIZE);
-
-		temp = game.getGhost3();
-		g.setColor(temp.getColor());
-		g.fillOval(temp.getPosX(), temp.getPosY(), TILESIZE, TILESIZE);
-
-		temp = game.getGhost4();
-		g.setColor(temp.getColor());
-		g.fillOval(temp.getPosX(), temp.getPosY(), TILESIZE, TILESIZE);
+	private void drawGhosts(Graphics g) {
+		for (Ghost ghost : game.getGhost()) {
+			g.setColor(ghost.getColor());
+			g.fillOval(ghost.getPosX(), ghost.getPosY(), TILESIZE, TILESIZE);
+		}
 	}
 
-	public void drawPacMan(Graphics g) {
+	private void drawPacMan(Graphics g) {
 		PacMan pacMan = game.getPacman();
 		g.setColor(pacMan.getColor());
 		g.fillOval(pacMan.getPosX(), pacMan.getPosY(), TILESIZE, TILESIZE);
@@ -96,14 +98,8 @@ public class PacManView extends JComponent {
 
 	public void swapMap() {
 		Map map = game.getMap();
-		if (map.getType().equals(Map.DEFAULT)) {
-			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
-		}
-		if (map.getType().equals(Map.GOOGLE)) {
-			boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
-		}
-		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-		frame.pack();
+		boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
+		SwingUtilities.getWindowAncestor(this).pack();
 	}
 
 }

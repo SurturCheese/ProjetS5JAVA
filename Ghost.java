@@ -2,7 +2,7 @@ package projetS5;
 
 import java.awt.Color;
 
-public class Ghost {
+public class Ghost implements NPC{
 
 	private PacManGame game;
 	private String state;
@@ -11,22 +11,22 @@ public class Ghost {
 	private Color color;
 	private Color baseColor;
 	private String direction;
-	public static final String NORTH = "NORD";
-	public static final String EAST = "EAST";
-	public static final String SOUTH = "SOUTH";
-	public static final String WEST = "WEST";
+	private final String UP = "UP";
+	private final String RIGHT = "RIGHT";
+	private final String DOWN = "DOWN";
+	private final String LEFT = "LEFT";
 	private int posX;
 	private int posY;
 	private int skip;
 
 	public Ghost(Color color, int posX, int posY, PacManGame game) {
 		this.game = game;
-		state = NORMAL;
+		this.state = NORMAL;
 		this.color = color;
-		baseColor = color;
+		this.baseColor = color;
 		this.posX = posX * PacManView.TILESIZE;
 		this.posY = posY * PacManView.TILESIZE;
-		this.direction = NORTH;
+		this.direction = UP;
 	}
 
 	public String getState() {
@@ -45,14 +45,6 @@ public class Ghost {
 		return color;
 	}
 
-	public String getDirection() {
-		return direction;
-	}
-
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
-
 	public int getPosX() {
 		return posX;
 	}
@@ -69,12 +61,12 @@ public class Ghost {
 		this.posY = posY;
 	}
 
-	public void normal() {
+	public void setStateNormal() {
 		color = baseColor;
 		state = NORMAL;
 	}
 
-	public void scared() {
+	public void setStateScared() {
 		color = Color.BLUE;
 		state = SCARED;
 	}
@@ -102,9 +94,7 @@ public class Ghost {
 		}
 		skip++;
 		if (play) {
-
 			boolean tp = false;
-
 			int[][] temp = game.getMap().getMap();
 			int tile = temp[posX / PacManView.TILESIZE][posY / PacManView.TILESIZE];
 			if (tile == 8) {
@@ -134,12 +124,12 @@ public class Ghost {
 				int east = game.checkerEast(posX, posY);
 				int west = game.checkerWest(posX, posY);
 				if (north != 1 && south != 1 && east == 1 && west == 1) {
-					if (direction.equals(NORTH))
+					if (direction.equals(UP))
 						moveNorth();
 					else
 						moveSouth();
 				} else if (north == 1 && south == 1 && east != 1 && west != 1) {
-					if (direction.equals(EAST))
+					if (direction.equals(RIGHT))
 						moveEast();
 					else
 						moveWest();
@@ -148,19 +138,19 @@ public class Ghost {
 					switch (sens) {
 					case 1:
 						moveNorth();
-						direction = NORTH;
+						direction = UP;
 						break;
 					case 2:
 						moveEast();
-						direction = EAST;
+						direction = RIGHT;
 						break;
 					case 3:
 						moveSouth();
-						direction = SOUTH;
+						direction = DOWN;
 						break;
 					case 4:
 						moveWest();
-						direction = WEST;
+						direction = LEFT;
 						break;
 					}
 				} else if (north == 1 && south != 1 && east != 1 && west != 1) {
@@ -168,69 +158,63 @@ public class Ghost {
 					switch (sens) {
 					case 1:
 						moveWest();
-						direction = WEST;
+						direction = LEFT;
 						break;
 					case 2:
 						moveEast();
-						direction = EAST;
+						direction = RIGHT;
 						break;
 					case 3:
 						moveSouth();
-						direction = SOUTH;
+						direction = DOWN;
 						break;
 					}
-				}
-
-				else if (north != 1 && south == 1 && east != 1 && west != 1) {
+				} else if (north != 1 && south == 1 && east != 1 && west != 1) {
 					int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 					switch (sens) {
 					case 1:
 						moveWest();
-						direction = WEST;
+						direction = LEFT;
 						break;
 					case 2:
 						moveEast();
-						direction = EAST;
+						direction = RIGHT;
 						break;
 					case 3:
 						moveNorth();
-						direction = NORTH;
+						direction = UP;
 						break;
 					}
-				}
-
-				else if (north != 1 && south != 1 && east == 1 && west != 1) {
+				} else if (north != 1 && south != 1 && east == 1 && west != 1) {
 					int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 					switch (sens) {
 					case 1:
 						moveWest();
-						direction = WEST;
+						direction = LEFT;
 						break;
 					case 2:
 						moveNorth();
-						direction = NORTH;
+						direction = UP;
 						break;
 					case 3:
 						moveSouth();
-						direction = SOUTH;
+						direction = DOWN;
 						break;
 					}
-				}
-
-				else if (north != 1 && south != 1 && east != 1 && west == 1) {
+				} else if (north != 1 && south != 1 && east != 1 && west == 1) {
 					int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 					switch (sens) {
 					case 1:
 						moveNorth();
-						direction = NORTH;
+						direction = UP;
 						break;
 					case 2:
 						moveEast();
-						direction = EAST;
+						direction = RIGHT;
 						break;
 					case 3:
 						moveSouth();
-						direction = SOUTH;
+						direction = DOWN;
 						break;
 					}
 				} else if (north == 1 && south != 1 && east != 1 && west == 1) {
@@ -238,11 +222,11 @@ public class Ghost {
 					switch (sens) {
 					case 1:
 						moveSouth();
-						direction = SOUTH;
+						direction = DOWN;
 						break;
 					case 2:
 						moveEast();
-						direction = EAST;
+						direction = RIGHT;
 						break;
 					}
 				} else if (north == 1 && south != 1 && east == 1 && west != 1) {
@@ -250,11 +234,11 @@ public class Ghost {
 					switch (sens) {
 					case 1:
 						moveSouth();
-						direction = SOUTH;
+						direction = DOWN;
 						break;
 					case 2:
 						moveWest();
-						direction = WEST;
+						direction = LEFT;
 						break;
 					}
 				} else if (north != 1 && south == 1 && east == 1 && west != 1) {
@@ -262,11 +246,11 @@ public class Ghost {
 					switch (sens) {
 					case 1:
 						moveNorth();
-						direction = NORTH;
+						direction = UP;
 						break;
 					case 2:
 						moveWest();
-						direction = WEST;
+						direction = LEFT;
 						break;
 					}
 				} else if (north != 1 && south == 1 && east != 1 && west == 1) {
@@ -274,22 +258,20 @@ public class Ghost {
 					switch (sens) {
 					case 1:
 						moveNorth();
-						direction = NORTH;
+						direction = UP;
 						break;
 					case 2:
 						moveEast();
-						direction = EAST;
+						direction = RIGHT;
 						break;
 					}
 
 				} else if (north == 1 && south == 1 && east == 1 && west != 1) {
 					moveWest();
-					direction = WEST;
-				}
-
-				else if (north == 1 && south == 1 && east != 1 && west == 1) {
+					direction = LEFT;
+				} else if (north == 1 && south == 1 && east != 1 && west == 1) {
 					moveEast();
-					direction = EAST;
+					direction = RIGHT;
 				}
 
 			}

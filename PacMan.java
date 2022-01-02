@@ -9,10 +9,10 @@ public class PacMan {
 	public static final String NORMAL = "NORMAL";
 	public static final String INVISIBLE = "INVISIBLE";
 	public static final String SUPERPACMAN = "SUPERPACMAN";
-	public static final String UP = "NORD";
-	public static final String RIGHT = "EAST";
-	public static final String DOWN = "SOUTH";
-	public static final String LEFT = "WEST";
+	public static final String UP = "UP";
+	public static final String RIGHT = "RIGHT";
+	public static final String DOWN = "DOWN";
+	public static final String LEFT = "LEFT";
 	private String direction;
 	private Color color;
 	private int posX;
@@ -69,17 +69,17 @@ public class PacMan {
 		return this.isAlive;
 	}
 
-	public void normal() {
+	public void setStateNormal() {
 		state = NORMAL;
 		color = Color.YELLOW;
 	}
 
-	public void invisible() {
+	public void setStateInvisible() {
 		state = INVISIBLE;
 		color = Color.WHITE;
 	}
 
-	public void superpacman() {
+	public void setStateSuperpacman() {
 		state = SUPERPACMAN;
 		color = Color.ORANGE;
 	}
@@ -103,7 +103,7 @@ public class PacMan {
 				posX = posX - PacManView.TILESIZE;
 	}
 
-	public void tp(int x, int y) {
+	public void teleport(int x, int y) {
 		posX = x * PacManView.TILESIZE;
 		posY = y * PacManView.TILESIZE;
 	}
