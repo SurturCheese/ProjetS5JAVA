@@ -84,10 +84,6 @@ public class PacManGame {
 		}
 	}
 
-	public void lifeDown() {
-		lives = lives--;
-	}
-
 	public int getLives() {
 		return lives;
 	}
@@ -98,19 +94,19 @@ public class PacManGame {
 			ghost.move();
 		checkCase(pacman.getPosX(), pacman.getPosY());
 		checkBonusLive();
-		if (getPowerTime() > 0)
-			downPowerTime();
-		if (getPowerTime() == 0) {
+		if (powerTime > 0)
+			powerTime--;
+		if (powerTime == 0) {
 			pacman.setStateNormal();
 			for (Ghost ghost : listGhost)
 				ghost.setStateNormal();
 		}
-		if (getLives() == 0)
+		if (lives == 0)
 			lose();
 		checkGhostContact();
 	}
 
-	public void swapMap() {
+	private void swapMap() {
 		map.swapMap();
 		setGame();
 		}
@@ -209,7 +205,7 @@ public class PacManGame {
 					damage = true;
 				}
 				if (damage) {
-				lifeDown();
+				lives = lives--;
 				pacman.setPosX(map.getSpawnPacmanX() * TILESIZE);
 				pacman.setPosY(map.getSpawnPacmanY() * TILESIZE);
 				}
@@ -231,14 +227,6 @@ public class PacManGame {
 				return true;
 		}
 		return false;
-	}
-
-	public int getPowerTime() {
-		return powerTime;
-	}
-
-	public void downPowerTime() {
-		powerTime--;
 	}
 
 	private void lose() {
