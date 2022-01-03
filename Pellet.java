@@ -2,7 +2,7 @@ package projetS5;
 
 import java.awt.Color;
 
-public class Pellet {
+public class Pellet implements Element {
 	private Color color;
 	private int points;
 	private int posX;

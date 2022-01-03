@@ -14,8 +14,8 @@ public class PacManGame {
 	private int score;
 	private int lives;
 	private boolean bonusLifeGiven;
-	private PacManView view;
 	private int powerTime;
+	public static final int TILESIZE = 30;
 
 	public PacManGame() {
 		lives = 3;
@@ -24,6 +24,7 @@ public class PacManGame {
 		map = new Map(Map.DEFAULT);
 		setGame();
 	}
+
 
 	private void setGame() {
 		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(), this);
@@ -34,6 +35,7 @@ public class PacManGame {
 		listGhost[3] = new Ghost(Color.CYAN, map.getSpawnGhostX(), map.getSpawnGhostY(), this);
 		listPellet = new ArrayList<>();
 		int[][] temp = map.getMap();
+
 		for (int i = 0; i < temp.length; i++) {
 			for (int j = 0; j < temp[i].length; j++) {
 				int valCase = temp[i][j];
@@ -63,11 +65,6 @@ public class PacManGame {
 		return listGhost;
 	}
 
-	public void moveGhost() {
-		for (Ghost ghost : listGhost)
-			ghost.move();
-	}
-
 	public ArrayList<Pellet> getListPellet() {
 		return listPellet;
 	}
@@ -80,112 +77,104 @@ public class PacManGame {
 		return String.valueOf(score);
 	}
 
-	public void checkBonusLive() {
+	private void checkBonusLive() {
 		if (score >= 5000 && !bonusLifeGiven) {
 			lives++;
 			bonusLifeGiven = true;
 		}
 	}
 
-	public void lifeDown() {
-		lives = lives--;
-	}
-
 	public int getLives() {
 		return lives;
 	}
 
-	public void setView(PacManView view) {
-		this.view = view;
-	}
-
 	public void step() {
 		pacman.move();
-		moveGhost();
+		for (Ghost ghost : listGhost)
+			ghost.move();
 		checkCase(pacman.getPosX(), pacman.getPosY());
 		checkBonusLive();
-		if (getPowerTime() > 0)
-			downPowerTime();
-		if (getPowerTime() == 0) {
+		if (powerTime > 0)
+			powerTime--;
+		if (powerTime == 0) {
 			pacman.setStateNormal();
 			for (Ghost ghost : listGhost)
 				ghost.setStateNormal();
 		}
-		if (getLives() == 0)
+		if (lives == 0)
 			lose();
 		checkGhostContact();
 	}
 
-	public void swapMap() {
+	private void swapMap() {
 		map.swapMap();
 		setGame();
 		}
 
 	public int checkerNorth(int posX, int posY) {
-		return map.getMap()[posX / PacManView.TILESIZE][posY / PacManView.TILESIZE - 1];
+		return map.getMap()[posX / TILESIZE][posY / TILESIZE - 1];
 	}
 
 	public int checkerSouth(int posX, int posY) {
-		return map.getMap()[posX / PacManView.TILESIZE][posY / PacManView.TILESIZE + 1];
+		return map.getMap()[posX / TILESIZE][posY / TILESIZE + 1];
 	}
 
 	public int checkerEast(int posX, int posY) {
-		return map.getMap()[posX / PacManView.TILESIZE + 1][posY / PacManView.TILESIZE];
+		return map.getMap()[posX / TILESIZE + 1][posY / TILESIZE];
 	}
 
 	public int checkerWest(int posX, int posY) {
-		return map.getMap()[posX / PacManView.TILESIZE - 1][posY / PacManView.TILESIZE];
+		return map.getMap()[posX / TILESIZE - 1][posY / TILESIZE];
 	}
 
 	public void checkCase(int posX, int posY) {
 		int[][] temp = map.getMap();
-		switch (temp[posX / PacManView.TILESIZE][posY / PacManView.TILESIZE]) {
+		switch (temp[posX / TILESIZE][posY / TILESIZE]) {
 		case 2:
 			/* blue pellet */
-			if (existPellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE)) {
+			if (existPellet(posX / TILESIZE, posY / TILESIZE)) {
 				score += 100;
-				deletePellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE);
+				deletePellet(posX / TILESIZE, posY / TILESIZE);
 			}
 
 			break;
 		case 3:
 			/* magenta pellet */
-			if (existPellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE)) {
+			if (existPellet(posX / TILESIZE, posY / TILESIZE)) {
 				score += 300;
 				pacman.setStateInvisible();
 				powerTime = 20;
-				deletePellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE);
+				deletePellet(posX / TILESIZE, posY / TILESIZE);
 			}
 			break;
 		case 4:
 			/* orange pellet */
-			if (existPellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE)) {
+			if (existPellet(posX / TILESIZE, posY / TILESIZE)) {
 				score += 500;
 				pacman.setStateSuperpacman();
 				for (Ghost ghost : listGhost)
 					ghost.setStateScared();
 				powerTime = 15;
-				deletePellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE);
+				deletePellet(posX / TILESIZE, posY / TILESIZE);
 			}
 			break;
 		case 5:
 			/* green pellet */
 			score += 1000;
-			deletePellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE);
-			swapMap();
-			view.swapMap();
+			deletePellet(posX / TILESIZE, posY / TILESIZE);
+			swapMap();''
 			break;
 		case 8:
 			/* wrap around */
 			if (map.getType().equals(Map.DEFAULT)) {
-				if (pacman.getPosX() * PacManView.TILESIZE == 0) {
+				if (pacman.getPosX() * TILESIZE == 0) {
 					pacman.teleport(26, 14);
 				} else {
 					pacman.teleport(1, 14);
 				}
 			}
 			if (map.getType().equals(Map.GOOGLE)) {
-				if ((pacman.getPosX() * PacManView.TILESIZE) == 0) {
+				if ((pacman.getPosX() * TILESIZE) == 0) {
 					pacman.teleport(56, 8);
 				} else {
 					pacman.teleport(1, 8);
@@ -198,62 +187,28 @@ public class PacManGame {
 
 	public void checkGhostContact() {
 		if (!(pacman.getState().equals(PacMan.INVISIBLE))) {
-			int ghost1PosX = listGhost[0].getPosX() / PacManView.TILESIZE;
-			int ghost1PosY = listGhost[0].getPosY() / PacManView.TILESIZE;
-			int ghost2PosX = listGhost[1].getPosX() / PacManView.TILESIZE;
-			int ghost2PosY = listGhost[1].getPosY() / PacManView.TILESIZE;
-			int ghost3PosX = listGhost[2].getPosX() / PacManView.TILESIZE;
-			int ghost3PosY = listGhost[2].getPosY() / PacManView.TILESIZE;
-			int ghost4PosX = listGhost[3].getPosX() / PacManView.TILESIZE;
-			int ghost4PosY = listGhost[3].getPosY() / PacManView.TILESIZE;
-			int pacmanPosX = pacman.getPosX() / PacManView.TILESIZE;
-			int pacmanPosY = pacman.getPosY() / PacManView.TILESIZE;
+			int pacmanPosX = pacman.getPosX() / TILESIZE;
+			int pacmanPosY = pacman.getPosY() / TILESIZE;
 			boolean damage = false;
-			if ((pacmanPosX == ghost1PosX && pacmanPosY == ghost1PosY)
-					|| (pacmanPosX == ghost1PosX && pacmanPosY - 1 == ghost1PosY)
-					|| (pacmanPosX == ghost1PosX && pacmanPosY + 1 == ghost1PosY)
-					|| (pacmanPosX - 1 == ghost1PosX && pacmanPosY == ghost1PosY)
-					|| (pacmanPosX + 1 == ghost1PosX && pacmanPosY == ghost1PosY)) {
+			for(Ghost ghost : listGhost) {
+				int ghostposX = ghost.getPosX / TILESIZE;
+				int ghostposY = ghost.getPosY / TILESIZE;
+				if ((pacmanPosX == ghostposX && pacmanPosY == ghostposY)
+					|| (pacmanPosX == ghostposX && pacmanPosY - 1 == ghostposY)
+					|| (pacmanPosX == ghostposX && pacmanPosY + 1 == ghostposY)
+					|| (pacmanPosX - 1 == ghostposX && pacmanPosY == ghostposY)
+					|| (pacmanPosX + 1 == ghostposX && pacmanPosY == ghostposY)) {
 				if (pacman.getState().equals(PacMan.SUPERPACMAN)) {
-					listGhost[0].setPosX(map.getSpawnGhostX() * PacManView.TILESIZE);
-					listGhost[0].setPosY(map.getSpawnGhostY() * PacManView.TILESIZE);
+					ghost.setPosX(map.getSpawnGhostX() * TILESIZE);
+					ghost.setPosY(map.getSpawnGhostY() * TILESIZE);
 				} else
 					damage = true;
-			} else if ((pacmanPosX == ghost2PosX && pacmanPosY == ghost2PosY)
-					|| (pacmanPosX == ghost2PosX && pacmanPosY - 1 == ghost2PosY)
-					|| (pacmanPosX == ghost2PosX && pacmanPosY + 1 == ghost2PosY)
-					|| (pacmanPosX - 1 == ghost2PosX && pacmanPosY == ghost2PosY)
-					|| (pacmanPosX + 1 == ghost2PosX && pacmanPosY == ghost2PosY)) {
-				if (pacman.getState().equals(PacMan.SUPERPACMAN)) {
-					listGhost[1].setPosX(map.getSpawnGhostX() * PacManView.TILESIZE);
-					listGhost[1].setPosY(map.getSpawnGhostY() * PacManView.TILESIZE);
-				} else
-					damage = true;
-			} else if ((pacmanPosX == ghost3PosX && pacmanPosY == ghost3PosY)
-					|| (pacmanPosX == ghost3PosX && pacmanPosY - 1 == ghost3PosY)
-					|| (pacmanPosX == ghost3PosX && pacmanPosY + 1 == ghost3PosY)
-					|| (pacmanPosX - 1 == ghost3PosX && pacmanPosY == ghost3PosY)
-					|| (pacmanPosX + 1 == ghost3PosX && pacmanPosY == ghost3PosY)) {
-				if (pacman.getState().equals(PacMan.SUPERPACMAN)) {
-					listGhost[2].setPosX(map.getSpawnGhostX() * PacManView.TILESIZE);
-					listGhost[2].setPosY(map.getSpawnGhostY() * PacManView.TILESIZE);
-				} else
-					damage = true;
-			} else if ((pacmanPosX == ghost4PosX && pacmanPosY == ghost4PosY)
-					|| (pacmanPosX == ghost4PosX && pacmanPosY - 1 == ghost4PosY)
-					|| (pacmanPosX == ghost4PosX && pacmanPosY + 1 == ghost4PosY)
-					|| (pacmanPosX - 1 == ghost4PosX && pacmanPosY == ghost4PosY)
-					|| (pacmanPosX + 1 == ghost4PosX && pacmanPosY == ghost4PosY)) {
-				if (pacman.getState().equals(PacMan.SUPERPACMAN)) {
-					listGhost[3].setPosX(map.getSpawnGhostX() * PacManView.TILESIZE);
-					listGhost[3].setPosY(map.getSpawnGhostY() * PacManView.TILESIZE);
-				} else
-					damage = true;
-			}
-			if (damage) {
-				lifeDown();
-				pacman.setPosX(map.getSpawnPacmanX() * PacManView.TILESIZE);
-				pacman.setPosY(map.getSpawnPacmanY() * PacManView.TILESIZE);
+				}
+				if (damage) {
+				lives = lives--;
+				pacman.setPosX(map.getSpawnPacmanX() * TILESIZE);
+				pacman.setPosY(map.getSpawnPacmanY() * TILESIZE);
+				}
 			}
 		}
 	}
@@ -274,15 +229,7 @@ public class PacManGame {
 		return false;
 	}
 
-	public int getPowerTime() {
-		return powerTime;
-	}
-
-	public void downPowerTime() {
-		powerTime--;
-	}
-
-	public void lose() {
+	private void lose() {
 		pacman.setDead();
 		JOptionPane.showMessageDialog(null, "Perdu! (>_<) Score : " + getScore());
 		System.exit(0);

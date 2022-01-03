@@ -17,7 +17,25 @@ public class App {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
-		
+		frame.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_RIGHT:
+					game.getPacman().setDirection(PacMan.RIGHT);
+					break;
+				case KeyEvent.VK_LEFT:
+					game.getPacman().setDirection(PacMan.LEFT);
+					break;
+				case KeyEvent.VK_DOWN:
+					game.getPacman().setDirection(PacMan.DOWN);
+					break;
+				case KeyEvent.VK_UP:
+					game.getPacman().setDirection(PacMan.UP);
+					break;
+				}
+			}
+		});
 		while(game.getPacman().isAlive()) {
 			game.step();
 			view.repaint();

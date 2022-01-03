@@ -33,10 +33,6 @@ public class PacMan {
 		return state;
 	}
 
-	public void setState(String state) {
-		this.state = state;
-	}
-
 	public Color getColor() {
 		return color;
 	}

@@ -19,30 +19,10 @@ public class PacManView extends JComponent {
 	public PacManView(PacManGame game) {
 		super();
 		this.game = game;
-		Map map = game.getMap();
-		boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
+		boxSize = new Dimension(TILESIZE * game.getMap().getLongueur(), TILESIZE * game.getMap().getHauteur());
 		setFocusable(true);
 		requestFocusInWindow();
-		addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				switch (e.getKeyCode()) {
-				case KeyEvent.VK_RIGHT:
-					game.getPacman().setDirection(PacMan.RIGHT);
-					break;
-				case KeyEvent.VK_LEFT:
-					game.getPacman().setDirection(PacMan.LEFT);
-					break;
-				case KeyEvent.VK_DOWN:
-					game.getPacman().setDirection(PacMan.DOWN);
-					break;
-				case KeyEvent.VK_UP:
-					game.getPacman().setDirection(PacMan.UP);
-					break;
-				}
-			}
-		});
-		game.setView(this);
+		
 	}
 
 	@Override
@@ -73,6 +53,7 @@ public class PacManView extends JComponent {
 
 	private void drawMap(Graphics g) {
 		int[][] map = game.getMap().getMap();
+		boxSize = new Dimension(TILESIZE * game.getMap().getLongueur(), TILESIZE * game.getMap().getHauteur());
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
 				if (map[i][j] == 1) {
@@ -81,6 +62,7 @@ public class PacManView extends JComponent {
 				}
 			}
 		}
+		SwingUtilities.getWindowAncestor(this).pack();
 	}
 
 	private void drawGhosts(Graphics g) {
@@ -95,11 +77,4 @@ public class PacManView extends JComponent {
 		g.setColor(pacMan.getColor());
 		g.fillOval(pacMan.getPosX(), pacMan.getPosY(), TILESIZE, TILESIZE);
 	}
-
-	public void swapMap() {
-		Map map = game.getMap();
-		boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
-		SwingUtilities.getWindowAncestor(this).pack();
-	}
-
 }

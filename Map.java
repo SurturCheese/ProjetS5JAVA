@@ -149,13 +149,6 @@ public class Map {
 		return googleMap;
 	}
 
-	public void setCase(int x, int y, int i) {
-		if (type.equals(DEFAULT))
-			defaultMap[x][y] = i;
-		if (type.equals(GOOGLE))
-			googleMap[x][y] = i;
-	}
-
 	public void setSpawnPacman() {
 		int[][] tempMap = getMap();
 		for (int i = 0; i < tempMap.length; i++) {
