@@ -72,7 +72,9 @@ public class PacManView extends JComponent {
 	}
 
 	private void drawMap(Graphics g) {
+
 		int[][] map = game.getMap().getMap();
+		boxSize = new Dimension(TILESIZE * game.getMap().getLongueur(), TILESIZE * game.getMap().getHauteur());
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
 				if (map[i][j] == 1) {
@@ -81,6 +83,7 @@ public class PacManView extends JComponent {
 				}
 			}
 		}
+		SwingUtilities.getWindowAncestor(this).pack();
 	}
 
 	private void drawGhosts(Graphics g) {
@@ -96,10 +99,7 @@ public class PacManView extends JComponent {
 		g.fillOval(pacMan.getPosX(), pacMan.getPosY(), TILESIZE, TILESIZE);
 	}
 
-	public void swapMap() {
-		Map map = game.getMap();
-		boxSize = new Dimension(TILESIZE * map.getLongueur(), TILESIZE * map.getHauteur());
-		SwingUtilities.getWindowAncestor(this).pack();
+	public void swapMap() {	
 	}
 
 }

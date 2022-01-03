@@ -65,11 +65,6 @@ public class PacManGame {
 		return listGhost;
 	}
 
-	public void moveGhost() {
-		for (Ghost ghost : listGhost)
-			ghost.move();
-	}
-
 	public ArrayList<Pellet> getListPellet() {
 		return listPellet;
 	}
@@ -82,7 +77,7 @@ public class PacManGame {
 		return String.valueOf(score);
 	}
 
-	public void checkBonusLive() {
+	private void checkBonusLive() {
 		if (score >= 5000 && !bonusLifeGiven) {
 			lives++;
 			bonusLifeGiven = true;
@@ -103,7 +98,8 @@ public class PacManGame {
 
 	public void step() {
 		pacman.move();
-		moveGhost();
+		for (Ghost ghost : listGhost)
+			ghost.move();
 		checkCase(pacman.getPosX(), pacman.getPosY());
 		checkBonusLive();
 		if (getPowerTime() > 0)
@@ -203,17 +199,17 @@ public class PacManGame {
 			int pacmanPosX = pacman.getPosX() / PacManView.TILESIZE;
 			int pacmanPosY = pacman.getPosY() / PacManView.TILESIZE;
 			boolean damage = false;
-			for (int i = 0; i < list.Ghost.lenght() ; i ++) {
-				int ghostposX = listGhost[i].getPosX / PacManView.TILESIZE;
-				int ghostposY = listGhost[i].getPosY / PacManView.TILESIZE;
+			for(Ghost ghost : listGhost) {
+				int ghostposX = ghost.getPosX / PacManView.TILESIZE;
+				int ghostposY = ghost.getPosY / PacManView.TILESIZE;
 				if ((pacmanPosX == ghostposX && pacmanPosY == ghostposY)
 					|| (pacmanPosX == ghostposX && pacmanPosY - 1 == ghostposY)
 					|| (pacmanPosX == ghostposX && pacmanPosY + 1 == ghostposY)
 					|| (pacmanPosX - 1 == ghostposX && pacmanPosY == ghostposY)
 					|| (pacmanPosX + 1 == ghostposX && pacmanPosY == ghostposY)) {
 				if (pacman.getState().equals(PacMan.SUPERPACMAN)) {
-					listGhost[i].setPosX(map.getSpawnGhostX() * PacManView.TILESIZE);
-					listGhost[i].setPosY(map.getSpawnGhostY() * PacManView.TILESIZE);
+					ghost.setPosX(map.getSpawnGhostX() * PacManView.TILESIZE);
+					ghost.setPosY(map.getSpawnGhostY() * PacManView.TILESIZE);
 				} else
 					damage = true;
 				}
@@ -222,7 +218,7 @@ public class PacManGame {
 				pacman.setPosX(map.getSpawnPacmanX() * PacManView.TILESIZE);
 				pacman.setPosY(map.getSpawnPacmanY() * PacManView.TILESIZE);
 				}
-			} 
+			}
 		}
 	}
 
@@ -250,7 +246,7 @@ public class PacManGame {
 		powerTime--;
 	}
 
-	public void lose() {
+	private void lose() {
 		pacman.setDead();
 		JOptionPane.showMessageDialog(null, "Perdu! (>_<) Score : " + getScore());
 		System.exit(0);
