@@ -72,7 +72,6 @@ public class PacManView extends JComponent {
 	}
 
 	private void drawMap(Graphics g) {
-
 		int[][] map = game.getMap().getMap();
 		boxSize = new Dimension(TILESIZE * game.getMap().getLongueur(), TILESIZE * game.getMap().getHauteur());
 		for (int i = 0; i < map.length; i++) {
@@ -98,8 +97,4 @@ public class PacManView extends JComponent {
 		g.setColor(pacMan.getColor());
 		g.fillOval(pacMan.getPosX(), pacMan.getPosY(), TILESIZE, TILESIZE);
 	}
-
-	public void swapMap() {	
-	}
-
 }

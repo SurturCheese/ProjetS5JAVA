@@ -170,8 +170,7 @@ public class PacManGame {
 			/* green pellet */
 			score += 1000;
 			deletePellet(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE);
-			swapMap();
-			view.swapMap();
+			swapMap();''
 			break;
 		case 8:
 			/* wrap around */
