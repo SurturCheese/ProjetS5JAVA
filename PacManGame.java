@@ -127,6 +127,8 @@ public class PacManGame {
 		return map.getMap()[posX / TILESIZE - 1][posY / TILESIZE];
 	}
 
+
+//Fonction à refaire
 	public void checkCase(int posX, int posY) {
 		int[][] temp = map.getMap();
 		switch (temp[posX / TILESIZE][posY / TILESIZE]) {
