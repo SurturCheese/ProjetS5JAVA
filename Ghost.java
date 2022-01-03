@@ -29,18 +29,6 @@ public class Ghost implements NPC{
 		this.direction = UP;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
-	}
-
 	public Color getColor() {
 		return color;
 	}
