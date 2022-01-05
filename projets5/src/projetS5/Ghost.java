@@ -175,60 +175,36 @@ public class Ghost extends Character {
 					break;
 			}
 		} else if (north == 1 && south != 1 && east != 1 && west == 1) {
-			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
-			switch (sens) {
-				case 1:
-					moveDown();
-					direction = DOWN;
-					break;
-				case 2:
-					moveRight();
-					direction = RIGHT;
-					break;
-				default:
-					break;
+			if (Objects.equals(direction, UP)) {
+				moveRight();
+				direction = RIGHT;
+			} else {
+				moveDown();
+				direction = DOWN;
 			}
 		} else if (north == 1 && south != 1 && east == 1 && west != 1) {
-			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
-			switch (sens) {
-				case 1:
-					moveDown();
-					direction = DOWN;
-					break;
-				case 2:
-					moveLeft();
-					direction = LEFT;
-					break;
-				default:
-					break;
+			if (Objects.equals(direction, RIGHT)) {
+				moveDown();
+				direction = DOWN;
+			} else {
+				moveLeft();
+				direction = LEFT;
 			}
 		} else if (north != 1 && south == 1 && east == 1 && west != 1) {
-			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
-			switch (sens) {
-				case 1:
-					moveUp();
-					direction = UP;
-					break;
-				case 2:
-					moveLeft();
-					direction = LEFT;
-					break;
-				default:
-					break;
+			if (Objects.equals(direction, DOWN)) {
+				moveLeft();
+				direction = LEFT;
+			} else {
+				moveUp();
+				direction = UP;
 			}
 		} else if (north != 1 && south == 1 && east != 1 && west == 1) {
-			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
-			switch (sens) {
-				case 1:
-					moveUp();
-					direction = UP;
-					break;
-				case 2:
-					moveRight();
-					direction = RIGHT;
-					break;
-				default:
-					break;
+			if (Objects.equals(direction, DOWN)) {
+				moveRight();
+				direction = RIGHT;
+			} else {
+				moveUp();
+				direction = UP;
 			}
 		} else if (north == 1 && south == 1 && east == 1 && west != 1) {
 			moveLeft();
