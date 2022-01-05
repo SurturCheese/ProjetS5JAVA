@@ -140,10 +140,10 @@ public class PacManGame {
         score += pellet.getPoints();
         if (pellet instanceof MagentaPellet) {
           pacman.setStateInvisible();
-          powerTime = 20;
+          powerTime = 40;
         } else if (pellet instanceof OrangePellet) {
           pacman.setStateSuperpacman();
-          powerTime = 15;
+          powerTime = 20;
           for (Ghost ghost : listGhost) ghost.setStateScared();
         } else if (pellet instanceof GreenPellet) {
           map.swapMap();

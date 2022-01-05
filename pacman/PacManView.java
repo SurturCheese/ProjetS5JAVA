@@ -42,16 +42,16 @@ public class PacManView extends JComponent {
   }
 
   private void drawPellets(Graphics g) {
-    for (Pellet pellet : game.getListPellet()) {
-      g.setColor(pellet.getColor());
-      g.fillOval(
-        (pellet.getPosX() * TILESIZE) + (TILESIZE / 3),
-        (pellet.getPosY() * TILESIZE) + (TILESIZE / 3),
-        TILESIZE / 3,
-        TILESIZE / 3
-      );
-    }
-  }
+		for (Pellet pellet : game.getListPellet()) {
+			g.setColor(pellet.getColor());
+			if(pellet.getColor() == Color.GREEN || pellet.getColor() == Color.ORANGE || pellet.getColor() == Color.MAGENTA){
+				g.fillOval((pellet.getPosX() * TILESIZE) + (TILESIZE / 4), (pellet.getPosY() * TILESIZE) + (TILESIZE / 4),
+					TILESIZE / 2, TILESIZE / 2);
+			}
+			g.fillOval((pellet.getPosX() * TILESIZE) + (TILESIZE / 3), (pellet.getPosY() * TILESIZE) + (TILESIZE / 3),
+					TILESIZE / 3, TILESIZE / 3);
+		}
+	}
 
   private void drawMap(Graphics g) {
     int[][] map = game.getMap().getMap();
