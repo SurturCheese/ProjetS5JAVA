@@ -10,7 +10,7 @@ import java.awt.Font;
 public class PacManView extends JComponent {
 
 	private static final long serialVersionUID = 1L;
-	private  PacManGame game;
+	private PacManGame game;
 	public static final int TILESIZE = 30;
 
 	public PacManView(PacManGame game) {
@@ -35,6 +35,12 @@ public class PacManView extends JComponent {
 	private void drawPellets(Graphics g) {
 		for (Pellet pellet : game.getListPellet()) {
 			g.setColor(pellet.getColor());
+			if (pellet.getColor() == Color.GREEN || pellet.getColor() == Color.ORANGE
+					|| pellet.getColor() == Color.MAGENTA) {
+				g.fillOval((pellet.getPosX() * TILESIZE) + (TILESIZE / 4),
+						(pellet.getPosY() * TILESIZE) + (TILESIZE / 4),
+						TILESIZE / 2, TILESIZE / 2);
+			}
 			g.fillOval((pellet.getPosX() * TILESIZE) + (TILESIZE / 3), (pellet.getPosY() * TILESIZE) + (TILESIZE / 3),
 					TILESIZE / 3, TILESIZE / 3);
 		}
