@@ -3,21 +3,12 @@ package projetS5;
 import java.awt.Color;
 import java.util.Objects;
 
-public class Ghost implements NPC {
+public class Ghost extends Character {
 
 	private PacManGame game;
-	private String state;
 	public static final String NORMAL = "NORMAL";
 	public static final String SCARED = "SCARED";
-	private static final String UP = "UP";
-	private static final String RIGHT = "RIGHT";
-	private static final String DOWN = "DOWN";
-	private static final String LEFT = "LEFT";
-	private Color color;
 	private Color baseColor;
-	private String direction;
-	private int posX;
-	private int posY;
 	private boolean skipTurn;
 
 	public Ghost(Color color, int posX, int posY, PacManGame game) {
@@ -31,18 +22,6 @@ public class Ghost implements NPC {
 		skipTurn = false;
 	}
 
-	public Color getColor() {
-		return color;
-	}
-
-	public int getPosX() {
-		return posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
 	public void setStateNormal() {
 		color = baseColor;
 		state = NORMAL;
@@ -51,11 +30,6 @@ public class Ghost implements NPC {
 	public void setStateScared() {
 		color = Color.BLUE;
 		state = SCARED;
-	}
-
-	public void teleport(int x, int y) {
-		posX = x;
-		posY = y;
 	}
 
 	private void moveRight() {
