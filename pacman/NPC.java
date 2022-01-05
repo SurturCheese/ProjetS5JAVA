@@ -1,5 +1,3 @@
 package projetS5;
 
-public interface NPC {
-
-}
+public interface NPC {}
