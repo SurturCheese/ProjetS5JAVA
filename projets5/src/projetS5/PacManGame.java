@@ -147,22 +147,21 @@ public class PacManGame {
 				it.remove();
 			}
 		}
-		for (Iterator<Element> it = listElement.iterator(); it.hasNext();) {
-			Element element = it.next();
+		for (Element element : listElement) {
 			if (pacman.getPosX() / TILESIZE == element.getPosX() && pacman.getPosY() / TILESIZE == element.getPosY()) {
 				if (element instanceof TeleportPoint) {
-					int[] pos = map.getTeleportPoint(pacman.getPosX()/ TILESIZE , pacman.getPosY() / TILESIZE);
+					int[] pos = map.getTeleportPoint(pacman.getPosX() / TILESIZE, pacman.getPosY() / TILESIZE);
 					pacman.teleport(pos[0] * TILESIZE, pos[1] * TILESIZE);
 					pacman.move();
 				}
 			}
 			for (Ghost ghost : listGhost) {
-				if (ghost.getPosX() / TILESIZE == element.getPosX() && ghost.getPosY() / TILESIZE == element.getPosY()) {
+				if (ghost.getPosX() / TILESIZE == element.getPosX()
+						&& ghost.getPosY() / TILESIZE == element.getPosY()) {
 					if (element instanceof TeleportPoint) {
-						int[] pos = map.getTeleportPoint(ghost.getPosX()/ TILESIZE , ghost.getPosY() / TILESIZE);
+						int[] pos = map.getTeleportPoint(ghost.getPosX() / TILESIZE, ghost.getPosY() / TILESIZE);
 						ghost.teleport(pos[0] * TILESIZE, pos[1] * TILESIZE);
 						ghost.move();
-						System.out.println("warp");
 					}
 				}
 			}
@@ -182,16 +181,19 @@ public class PacManGame {
 						|| (pacmanPosX == ghostposX && pacmanPosY + 1 == ghostposY)
 						|| (pacmanPosX - 1 == ghostposX && pacmanPosY == ghostposY)
 						|| (pacmanPosX + 1 == ghostposX && pacmanPosY == ghostposY)) {
-					if (pacman.getState().equals(PacMan.SUPERPACMAN)) {
+					if (pacman.getState().equals(PacMan.SUPERPACMAN))
 						ghost.teleport(map.getSpawnGhostX() * TILESIZE, map.getSpawnGhostY() * TILESIZE);
-					} else
+					else
 						damage = true;
 				}
+				if (damage) {
+					lives--;
+					pacman.teleport(map.getSpawnPacmanX() * TILESIZE, map.getSpawnPacmanY() * TILESIZE);
+					ghost.teleport(map.getSpawnGhostX() * TILESIZE, map.getSpawnGhostY() * TILESIZE);
+					break;
+				}
 			}
-			if (damage) {
-				lives--;
-				pacman.teleport(map.getSpawnPacmanX() * TILESIZE, map.getSpawnPacmanY() * TILESIZE);
-			}
+
 		}
 	}
 

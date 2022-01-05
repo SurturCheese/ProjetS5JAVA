@@ -26,16 +26,16 @@ public class App {
 			public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_RIGHT:
-						game.getPacman().setDirection(PacMan.RIGHT);
+						game.getPacman().setDirection(Character.RIGHT);
 						break;
 					case KeyEvent.VK_LEFT:
-						game.getPacman().setDirection(PacMan.LEFT);
+						game.getPacman().setDirection(Character.LEFT);
 						break;
 					case KeyEvent.VK_DOWN:
-						game.getPacman().setDirection(PacMan.DOWN);
+						game.getPacman().setDirection(Character.DOWN);
 						break;
 					case KeyEvent.VK_UP:
-						game.getPacman().setDirection(PacMan.UP);
+						game.getPacman().setDirection(Character.UP);
 						break;
 					default:
 						break;
