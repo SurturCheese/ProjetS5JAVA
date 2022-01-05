@@ -186,14 +186,14 @@ public class PacManGame {
 					else
 						damage = true;
 				}
-				if (damage) {
-					lives--;
-					pacman.teleport(map.getSpawnPacmanX() * TILESIZE, map.getSpawnPacmanY() * TILESIZE);
+			}
+			if (damage) {
+				lives--;
+				pacman.teleport(map.getSpawnPacmanX() * TILESIZE, map.getSpawnPacmanY() * TILESIZE);
+				for (Ghost ghost : listGhost) {
 					ghost.teleport(map.getSpawnGhostX() * TILESIZE, map.getSpawnGhostY() * TILESIZE);
-					break;
 				}
 			}
-
 		}
 	}
 
