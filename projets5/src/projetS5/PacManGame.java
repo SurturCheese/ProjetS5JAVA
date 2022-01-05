@@ -148,17 +148,16 @@ public class PacManGame {
 			}
 		}
 		for (Element element : listElement) {
-			if (pacman.getPosX() / TILESIZE == element.getPosX() && pacman.getPosY() / TILESIZE == element.getPosY()) {
-				if (element instanceof TeleportPoint) {
+			if (element instanceof TeleportPoint) {
+				if (pacman.getPosX() / TILESIZE == element.getPosX()
+						&& pacman.getPosY() / TILESIZE == element.getPosY()) {
 					int[] pos = map.getTeleportPoint(pacman.getPosX() / TILESIZE, pacman.getPosY() / TILESIZE);
 					pacman.teleport(pos[0] * TILESIZE, pos[1] * TILESIZE);
 					pacman.move();
 				}
-			}
-			for (Ghost ghost : listGhost) {
-				if (ghost.getPosX() / TILESIZE == element.getPosX()
-						&& ghost.getPosY() / TILESIZE == element.getPosY()) {
-					if (element instanceof TeleportPoint) {
+				for (Ghost ghost : listGhost) {
+					if (ghost.getPosX() / TILESIZE == element.getPosX()
+							&& ghost.getPosY() / TILESIZE == element.getPosY()) {
 						int[] pos = map.getTeleportPoint(ghost.getPosX() / TILESIZE, ghost.getPosY() / TILESIZE);
 						ghost.teleport(pos[0] * TILESIZE, pos[1] * TILESIZE);
 						ghost.move();
