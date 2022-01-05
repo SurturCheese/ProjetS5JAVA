@@ -156,6 +156,16 @@ public class PacManGame {
 					pacman.move();
 				}
 			}
+			for (Ghost ghost : listGhost) {
+				if (ghost.getPosX() / TILESIZE == element.getPosX() && ghost.getPosY() / TILESIZE == element.getPosY()) {
+					if (element instanceof TeleportPoint) {
+						int[] pos = map.getTeleportPoint(ghost.getPosX()/ TILESIZE , ghost.getPosY() / TILESIZE);
+						ghost.teleport(pos[0] * TILESIZE, pos[1] * TILESIZE);
+						ghost.move();
+						System.out.println("warp");
+					}
+				}
+			}
 		}
 	}
 

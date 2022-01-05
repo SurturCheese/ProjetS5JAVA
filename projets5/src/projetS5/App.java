@@ -20,7 +20,6 @@ public class App {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
-		frame.setFocusable(true);
 		frame.requestFocusInWindow();
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
