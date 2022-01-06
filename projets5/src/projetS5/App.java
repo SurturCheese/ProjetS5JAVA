@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 public class App {
 
-	private static final int FRAMES_PER_SECOND = 4;
+	private static final int GAME_SPEED = 4;
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Pacman");
@@ -15,12 +15,9 @@ public class App {
 		PacManView view = new PacManView(game);
 		game.setView(view);
 		frame.add(view);
-		frame.setLocation(100, 100);
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
-		frame.setVisible(true);
-		frame.requestFocusInWindow();
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -37,16 +34,15 @@ public class App {
 					case KeyEvent.VK_UP:
 						game.getPacman().setDirection(Character.UP);
 						break;
-					default:
-						break;
 				}
 			}
 		});
+		frame.setVisible(true);
 		while (game.getPacman().isAlive()) {
 			game.step();
 			view.repaint();
 			try {
-				Thread.sleep(1000 / FRAMES_PER_SECOND);
+				Thread.sleep(1000 / GAME_SPEED);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
