@@ -27,7 +27,7 @@ public class PacMan extends Character {
 
 	public void setStateInvisible() {
 		state = INVISIBLE;
-		color = new Color(255,255,0,160);
+		color = new Color(255,255,210,255);
 	}
 
 	public void setStateSuperpacman() {
