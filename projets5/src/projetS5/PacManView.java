@@ -28,8 +28,8 @@ public class PacManView extends JComponent {
 		drawPacMan(g);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("pacManFont", Font.BOLD, TILESIZE));
-		g.drawString(game.getScore(), 1, 30);
-		g.drawString("Lives : " + game.getLives(), this.getWidth() / 2 - TILESIZE * 2, TILESIZE);
+		g.drawString("Score : " +  game.getScore(), 1, TILESIZE - 1);
+		g.drawString("Lives : " + game.getLives(), this.getWidth() / 2 - TILESIZE * 2, TILESIZE - 1);
 	}
 
 	private void drawPellets(Graphics g) {
