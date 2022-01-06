@@ -1,8 +1,8 @@
-package projetS5;
+package projet.blocs;
 
 import java.awt.Color;
 
-abstract class Element {
+public abstract class Element {
     protected int posX;
     protected int posY;
 	protected Color color;

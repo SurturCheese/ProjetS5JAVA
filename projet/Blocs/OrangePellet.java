@@ -1,4 +1,4 @@
-package projetS5;
+package projet.blocs;
 
 import java.awt.Color;
 

@@ -1,6 +1,6 @@
-package projetS5;
+package projet.blocs;
 
-abstract class Pellet extends Element {
+public abstract class Pellet extends Element {
     protected int points;
 
     protected Pellet(int posX, int posY) {

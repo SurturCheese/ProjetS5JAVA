@@ -1,4 +1,11 @@
-package projetS5;
+package projet;
+
+import projet.blocs.Pellet;
+import projet.blocs.VioletPellet;
+import projet.blocs.GreenPellet;
+import projet.blocs.OrangePellet;
+import projet.entities.Ghost;
+import projet.entities.PacMan;
 
 import java.awt.Graphics;
 import javax.swing.JComponent;

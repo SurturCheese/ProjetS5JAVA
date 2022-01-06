@@ -1,4 +1,8 @@
-package projetS5;
+package projet;
+
+import projet.entities.*;
+import projet.entities.Character;
+import projet.blocs.*;
 
 import java.awt.Color;
 import java.util.ArrayList;

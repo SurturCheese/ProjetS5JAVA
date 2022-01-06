@@ -1,4 +1,6 @@
-package projetS5;
+package projet;
+
+import projet.entities.Character;
 
 import java.awt.Color;
 import javax.swing.JFrame;

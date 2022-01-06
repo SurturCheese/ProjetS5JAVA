@@ -1,4 +1,4 @@
-package projetS5;
+package projet.blocs;
 
 public class TeleportPoint extends Element {
 

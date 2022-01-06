@@ -1,4 +1,4 @@
-package projetS5;
+package projet.entities;
 
 import java.awt.Color;
 
