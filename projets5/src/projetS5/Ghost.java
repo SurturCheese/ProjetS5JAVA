@@ -28,7 +28,7 @@ public class Ghost extends Character {
 	}
 
 	public void setStateScared() {
-		color = Color.BLUE;
+		color = new Color(25, 25, 166);
 		state = SCARED;
 	}
 

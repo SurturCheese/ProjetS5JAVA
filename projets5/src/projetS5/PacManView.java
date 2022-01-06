@@ -28,21 +28,21 @@ public class PacManView extends JComponent {
 		drawPacMan(g);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("pacManFont", Font.BOLD, TILESIZE));
-		g.drawString("Score : " +  game.getScore(), 1, TILESIZE - 1);
+		g.drawString("Score : " + game.getScore(), 1, TILESIZE - 1);
 		g.drawString("Lives : " + game.getLives(), this.getWidth() / 2 - TILESIZE * 2, TILESIZE - 1);
 	}
 
 	private void drawPellets(Graphics g) {
 		for (Pellet pellet : game.getListPellet()) {
 			g.setColor(pellet.getColor());
-			if (pellet.getColor() == Color.GREEN || pellet.getColor() == Color.ORANGE
-					|| pellet.getColor() == Color.MAGENTA) {
+			if (pellet instanceof VioletPellet || pellet instanceof GreenPellet || pellet instanceof OrangePellet) {
 				g.fillOval((pellet.getPosX() * TILESIZE) + (TILESIZE / 4),
 						(pellet.getPosY() * TILESIZE) + (TILESIZE / 4),
 						TILESIZE / 2, TILESIZE / 2);
-			}
-			g.fillOval((pellet.getPosX() * TILESIZE) + (TILESIZE / 3), (pellet.getPosY() * TILESIZE) + (TILESIZE / 3),
-					TILESIZE / 3, TILESIZE / 3);
+			} else
+				g.fillOval((pellet.getPosX() * TILESIZE) + (TILESIZE / 3),
+						(pellet.getPosY() * TILESIZE) + (TILESIZE / 3),
+						TILESIZE / 3, TILESIZE / 3);
 		}
 	}
 
@@ -61,14 +61,14 @@ public class PacManView extends JComponent {
 	private void drawGhosts(Graphics g) {
 		for (Ghost ghost : game.getGhost()) {
 			g.setColor(ghost.getColor());
-			g.fillOval(ghost.getPosX() * TILESIZE , ghost.getPosY() * TILESIZE, TILESIZE, TILESIZE);
+			g.fillOval(ghost.getPosX() * TILESIZE, ghost.getPosY() * TILESIZE, TILESIZE, TILESIZE);
 		}
 	}
 
 	private void drawPacMan(Graphics g) {
 		PacMan pacMan = game.getPacman();
 		g.setColor(pacMan.getColor());
-		g.fillOval(pacMan.getPosX() * TILESIZE , pacMan.getPosY() * TILESIZE, TILESIZE, TILESIZE);
+		g.fillOval(pacMan.getPosX() * TILESIZE, pacMan.getPosY() * TILESIZE, TILESIZE, TILESIZE);
 	}
 
 	public void swapMap() {

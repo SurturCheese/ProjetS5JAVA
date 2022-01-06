@@ -31,10 +31,10 @@ public class PacManGame {
 	private void setGame() {
 		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(), this);
 		listGhost = new ArrayList<>();
-		listGhost.add(new Ghost(Color.RED, map.getSpawnGhostX(), map.getSpawnGhostY(), this));
-		listGhost.add(new Ghost(Color.ORANGE, map.getSpawnGhostX(), map.getSpawnGhostY(), this));
-		listGhost.add(new Ghost(Color.MAGENTA, map.getSpawnGhostX(), map.getSpawnGhostY(), this));
-		listGhost.add(new Ghost(Color.CYAN, map.getSpawnGhostX(), map.getSpawnGhostY(), this));
+		listGhost.add(new Ghost(new Color(252, 37, 2), map.getSpawnGhostX(), map.getSpawnGhostY(), this));
+		listGhost.add(new Ghost(new Color(249, 163, 0), map.getSpawnGhostX(), map.getSpawnGhostY(), this));
+		listGhost.add(new Ghost(new Color(254, 179, 177), map.getSpawnGhostX(), map.getSpawnGhostY(), this));
+		listGhost.add(new Ghost(new Color(1, 221, 225), map.getSpawnGhostX(), map.getSpawnGhostY(), this));
 		listPellet = new ArrayList<>();
 		listElement = new ArrayList<>();
 		int[][] temp = map.getMap();
@@ -46,7 +46,7 @@ public class PacManGame {
 						listPellet.add(new BluePellet(i, j));
 						break;
 					case 3:
-						listPellet.add(new MagentaPellet(i, j));
+						listPellet.add(new VioletPellet(i, j));
 						break;
 					case 4:
 						listPellet.add(new OrangePellet(i, j));
@@ -130,7 +130,7 @@ public class PacManGame {
 			Pellet pellet = it.next();
 			if (pacman.getPosX()== pellet.getPosX() && pacman.getPosY() == pellet.getPosY()) {
 				score += pellet.getPoints();
-				if (pellet instanceof MagentaPellet) {
+				if (pellet instanceof VioletPellet) {
 					pacman.setStateInvisible();
 					powerTime = 40;
 				} else if (pellet instanceof OrangePellet) {
