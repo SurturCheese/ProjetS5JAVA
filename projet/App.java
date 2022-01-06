@@ -1,6 +1,7 @@
 package projet;
 
-import projet.entities.Character;
+import projet.Entities.*;
+
 
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -25,16 +26,16 @@ public class App {
 			public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_RIGHT:
-						game.getPacman().setDirection(Character.RIGHT);
+						game.getPacman().setDirection(projet.Entities.Character.RIGHT);
 						break;
 					case KeyEvent.VK_LEFT:
-						game.getPacman().setDirection(Character.LEFT);
+						game.getPacman().setDirection(projet.Entities.Character.LEFT);
 						break;
 					case KeyEvent.VK_DOWN:
-						game.getPacman().setDirection(Character.DOWN);
+						game.getPacman().setDirection(projet.Entities.Character.DOWN);
 						break;
 					case KeyEvent.VK_UP:
-						game.getPacman().setDirection(Character.UP);
+						game.getPacman().setDirection(projet.Entities.Character.UP);
 						break;
 				}
 			}

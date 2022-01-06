@@ -1,4 +1,4 @@
-package projet.blocs;
+package projet.Blocs;
 
 public abstract class Pellet extends Element {
     protected int points;

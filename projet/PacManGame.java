@@ -1,8 +1,7 @@
 package projet;
 
-import projet.entities.*;
-import projet.entities.Character;
-import projet.blocs.*;
+import projet.Entities.*;
+import projet.Blocs.*;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -205,10 +204,10 @@ public class PacManGame {
 	}
 
 	private boolean isOpposed(Ghost ghost) {
-		return (Objects.equals(pacman.getDirection(), Character.UP) && Objects.equals(ghost.getDirection(), Character.DOWN)) ||
-				(Objects.equals(pacman.getDirection(), Character.DOWN) && Objects.equals(ghost.getDirection(), Character.UP)) ||
-				(Objects.equals(pacman.getDirection(), Character.RIGHT) && Objects.equals(ghost.getDirection(), Character.LEFT)) ||
-				(Objects.equals(pacman.getDirection(), Character.LEFT) && Objects.equals(ghost.getDirection(), Character.RIGHT));
+		return (Objects.equals(pacman.getDirection(), projet.Entities.Character.UP) && Objects.equals(ghost.getDirection(), projet.Entities.Character.DOWN)) ||
+				(Objects.equals(pacman.getDirection(), projet.Entities.Character.DOWN) && Objects.equals(ghost.getDirection(), projet.Entities.Character.UP)) ||
+				(Objects.equals(pacman.getDirection(), projet.Entities.Character.RIGHT) && Objects.equals(ghost.getDirection(), projet.Entities.Character.LEFT)) ||
+				(Objects.equals(pacman.getDirection(), projet.Entities.Character.LEFT) && Objects.equals(ghost.getDirection(), projet.Entities.Character.RIGHT));
 	}
 
 	private void lose() {

@@ -1,11 +1,11 @@
 package projet;
 
-import projet.blocs.Pellet;
-import projet.blocs.VioletPellet;
-import projet.blocs.GreenPellet;
-import projet.blocs.OrangePellet;
-import projet.entities.Ghost;
-import projet.entities.PacMan;
+import projet.Blocs.Pellet;
+import projet.Blocs.VioletPellet;
+import projet.Blocs.GreenPellet;
+import projet.Blocs.OrangePellet;
+import projet.Entities.Ghost;
+import projet.Entities.PacMan;
 
 import java.awt.Graphics;
 import javax.swing.JComponent;

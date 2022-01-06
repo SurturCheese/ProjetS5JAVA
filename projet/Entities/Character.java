@@ -1,4 +1,4 @@
-package projet.entities;
+package projet.Entities;
 
 import java.awt.Color;
 

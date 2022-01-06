@@ -1,4 +1,4 @@
-package projet.blocs;
+package projet.Blocs;
 
 import java.awt.Color;
 
