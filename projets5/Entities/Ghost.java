@@ -1,4 +1,6 @@
-package projetS5;
+package projet.entities;
+
+import projet.PacManGame;
 
 import java.awt.Color;
 import java.util.Objects;
