@@ -15,8 +15,8 @@ public class PacMan extends Character {
 		this.game = game;
 		state = NORMAL;
 		color = Color.YELLOW;
-		this.posX = posX * PacManView.TILESIZE;
-		this.posY = posY * PacManView.TILESIZE;
+		this.posX = posX;
+		this.posY = posY;
 		this.isAlive = true;
 		this.direction = "NORD";
 	}
@@ -46,12 +46,12 @@ public class PacMan extends Character {
 
 	public void move() {
 		if (Objects.equals(direction, UP) && game.checkerNorth(posX, posY) != 1)
-			posY = posY - PacManView.TILESIZE;
+			posY = posY - 1;
 		else if (Objects.equals(direction, DOWN) && game.checkerSouth(posX, posY) != 1)
-			posY = posY + PacManView.TILESIZE;
+			posY = posY + 1;
 		else if (Objects.equals(direction, RIGHT) && game.checkerEast(posX, posY) != 1)
-			posX = posX + PacManView.TILESIZE;
+			posX = posX + 1;
 		else if (Objects.equals(direction, LEFT) && game.checkerWest(posX, posY) != 1)
-			posX = posX - PacManView.TILESIZE;
+			posX = posX - 1;
 	}
 }

@@ -18,7 +18,6 @@ public class PacManGame {
 	private int lives = 3;
 	private boolean bonusLifeGiven = false;
 	private int powerTime;
-	public static final int TILESIZE = 30;
 
 	public PacManGame() {
 		map = new Map(Map.DEFAULT);
@@ -111,25 +110,25 @@ public class PacManGame {
 	}
 
 	public int checkerNorth(int posX, int posY) {
-		return map.getMap()[posX / TILESIZE][posY / TILESIZE - 1];
+		return map.getMap()[posX ][posY  - 1];
 	}
 
 	public int checkerSouth(int posX, int posY) {
-		return map.getMap()[posX / TILESIZE][posY / TILESIZE + 1];
+		return map.getMap()[posX ][posY  + 1];
 	}
 
 	public int checkerEast(int posX, int posY) {
-		return map.getMap()[posX / TILESIZE + 1][posY / TILESIZE];
+		return map.getMap()[posX+ 1][posY ];
 	}
 
 	public int checkerWest(int posX, int posY) {
-		return map.getMap()[posX / TILESIZE - 1][posY / TILESIZE];
+		return map.getMap()[posX- 1][posY];
 	}
 
 	private void checkCase() {
 		for (Iterator<Pellet> it = listPellet.iterator(); it.hasNext();) {
 			Pellet pellet = it.next();
-			if (pacman.getPosX() / TILESIZE == pellet.getPosX() && pacman.getPosY() / TILESIZE == pellet.getPosY()) {
+			if (pacman.getPosX()== pellet.getPosX() && pacman.getPosY() == pellet.getPosY()) {
 				score += pellet.getPoints();
 				if (pellet instanceof MagentaPellet) {
 					pacman.setStateInvisible();
@@ -149,17 +148,17 @@ public class PacManGame {
 		}
 		for (Element element : listElement) {
 			if (element instanceof TeleportPoint) {
-				if (pacman.getPosX() / TILESIZE == element.getPosX()
-						&& pacman.getPosY() / TILESIZE == element.getPosY()) {
-					int[] pos = map.getTeleportPoint(pacman.getPosX() / TILESIZE, pacman.getPosY() / TILESIZE);
-					pacman.teleport(pos[0] * TILESIZE, pos[1] * TILESIZE);
+				if (pacman.getPosX() == element.getPosX()
+						&& pacman.getPosY()== element.getPosY()) {
+					int[] pos = map.getTeleportPoint(pacman.getPosX(), pacman.getPosY());
+					pacman.teleport(pos[0] , pos[1] );
 					pacman.move();
 				}
 				for (Ghost ghost : listGhost) {
-					if (ghost.getPosX() / TILESIZE == element.getPosX()
-							&& ghost.getPosY() / TILESIZE == element.getPosY()) {
-						int[] pos = map.getTeleportPoint(ghost.getPosX() / TILESIZE, ghost.getPosY() / TILESIZE);
-						ghost.teleport(pos[0] * TILESIZE, pos[1] * TILESIZE);
+					if (ghost.getPosX() == element.getPosX()
+							&& ghost.getPosY() == element.getPosY()) {
+						int[] pos = map.getTeleportPoint(ghost.getPosX(), ghost.getPosY() );
+						ghost.teleport(pos[0], pos[1]);
 						ghost.move();
 					}
 				}
@@ -169,28 +168,28 @@ public class PacManGame {
 
 	private void checkGhostContact() {
 		if (!(pacman.getState().equals(PacMan.INVISIBLE))) {
-			int pacmanPosX = pacman.getPosX() / TILESIZE;
-			int pacmanPosY = pacman.getPosY() / TILESIZE;
+			int pacmanPosX = pacman.getPosX();
+			int pacmanPosY = pacman.getPosY();
 			boolean damage = false;
 			for (Ghost ghost : listGhost) {
-				int ghostposX = ghost.getPosX() / TILESIZE;
-				int ghostposY = ghost.getPosY() / TILESIZE;
+				int ghostposX = ghost.getPosX();
+				int ghostposY = ghost.getPosY();
 				if ((pacmanPosX == ghostposX && pacmanPosY == ghostposY)
 						|| (pacmanPosX == ghostposX && pacmanPosY - 1 == ghostposY)
 						|| (pacmanPosX == ghostposX && pacmanPosY + 1 == ghostposY)
 						|| (pacmanPosX - 1 == ghostposX && pacmanPosY == ghostposY)
 						|| (pacmanPosX + 1 == ghostposX && pacmanPosY == ghostposY)) {
 					if (pacman.getState().equals(PacMan.SUPERPACMAN))
-						ghost.teleport(map.getSpawnGhostX() * TILESIZE, map.getSpawnGhostY() * TILESIZE);
+						ghost.teleport(map.getSpawnGhostX(), map.getSpawnGhostY());
 					else
 						damage = true;
 				}
 			}
 			if (damage) {
 				lives--;
-				pacman.teleport(map.getSpawnPacmanX() * TILESIZE, map.getSpawnPacmanY() * TILESIZE);
+				pacman.teleport(map.getSpawnPacmanX(), map.getSpawnPacmanY() );
 				for (Ghost ghost : listGhost) {
-					ghost.teleport(map.getSpawnGhostX() * TILESIZE, map.getSpawnGhostY() * TILESIZE);
+					ghost.teleport(map.getSpawnGhostX() , map.getSpawnGhostY());
 				}
 			}
 		}

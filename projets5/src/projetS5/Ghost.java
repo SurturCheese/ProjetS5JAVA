@@ -13,8 +13,8 @@ public class Ghost extends Character {
 
 	public Ghost(Color color, int posX, int posY, PacManGame game) {
 		this.game = game;
-		this.posX = posX * PacManView.TILESIZE;
-		this.posY = posY * PacManView.TILESIZE;
+		this.posX = posX;
+		this.posY = posY;
 		this.color = color;
 		state = NORMAL;
 		baseColor = color;
@@ -35,16 +35,16 @@ public class Ghost extends Character {
 	private void moving() {
 		switch (direction) {
 			case UP:
-				posY = posY - PacManView.TILESIZE;
+				posY = posY - 1;
 				break;
 			case DOWN:
-				posY = posY + PacManView.TILESIZE;
+				posY = posY + 1;
 				break;
 			case RIGHT:
-				posX = posX + PacManView.TILESIZE;
+				posX = posX + 1;
 				break;
 			case LEFT:
-				posX = posX - PacManView.TILESIZE;
+				posX = posX - 1;
 				break;
 			default:
 				break;
@@ -53,15 +53,15 @@ public class Ghost extends Character {
 
 	public void move() {
 		if (!(Objects.equals(state, SCARED) && skipTurn) || Objects.equals(state, NORMAL)) {
-			if (game.getMap().isTeleportPoint(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE)) {
+			if (game.getMap().isTeleportPoint(posX, posY)) {
 				if (Objects.equals(direction, UP) && game.checkerNorth(posX, posY) != 1)
-					posY = posY - PacManView.TILESIZE;
+					posY = posY - 1;
 				else if (Objects.equals(direction, DOWN) && game.checkerSouth(posX, posY) != 1)
-					posY = posY + PacManView.TILESIZE;
+					posY = posY + 1;
 				else if (Objects.equals(direction, RIGHT) && game.checkerEast(posX, posY) != 1)
-					posX = posX + PacManView.TILESIZE;
+					posX = posX + 1;
 				else if (Objects.equals(direction, LEFT) && game.checkerWest(posX, posY) != 1)
-					posX = posX - PacManView.TILESIZE;
+					posX = posX - 1;
 			} else {
 				if (!changeDirectionStraight()) {
 					changeDirectionAngle();

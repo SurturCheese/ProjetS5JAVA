@@ -11,7 +11,7 @@ public class PacManView extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 	private PacManGame game;
-	public static final int TILESIZE = 30;
+	private int TILESIZE = 30;
 
 	public PacManView(PacManGame game) {
 		super();
@@ -61,14 +61,14 @@ public class PacManView extends JComponent {
 	private void drawGhosts(Graphics g) {
 		for (Ghost ghost : game.getGhost()) {
 			g.setColor(ghost.getColor());
-			g.fillOval(ghost.getPosX(), ghost.getPosY(), TILESIZE, TILESIZE);
+			g.fillOval(ghost.getPosX() * TILESIZE , ghost.getPosY() * TILESIZE, TILESIZE, TILESIZE);
 		}
 	}
 
 	private void drawPacMan(Graphics g) {
 		PacMan pacMan = game.getPacman();
 		g.setColor(pacMan.getColor());
-		g.fillOval(pacMan.getPosX(), pacMan.getPosY(), TILESIZE, TILESIZE);
+		g.fillOval(pacMan.getPosX() * TILESIZE , pacMan.getPosY() * TILESIZE, TILESIZE, TILESIZE);
 	}
 
 	public void swapMap() {
