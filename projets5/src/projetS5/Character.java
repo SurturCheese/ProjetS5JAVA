@@ -42,4 +42,8 @@ public abstract class Character {
 		this.direction = direction;
 	}
 
+	public String getDirection() {
+		return direction;
+	}
+
 }
