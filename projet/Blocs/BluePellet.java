@@ -2,11 +2,18 @@ package projet.Blocs;
 
 import java.awt.Color;
 
+import projet.PacManGame;
+
 public class BluePellet extends Pellet {
 
-    public BluePellet(int posX, int posY) {
-        super(posX, posY);
+    public BluePellet(int posX, int posY, PacManGame game) {
+        super(posX, posY,game);
         this.color = Color.BLUE;
-        points = 100;
+    }
+
+    @Override 
+    public void action() {
+        game.addPoints(100);
+        
     }
 }

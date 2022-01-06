@@ -2,12 +2,16 @@ package projet.Blocs;
 
 import java.awt.Color;
 
-public abstract class Element {
-    protected int posX;
-    protected int posY;
-	protected Color color;
+import projet.PacManGame;
 
-    protected Element(int posX, int posY) {
+public abstract class Element {
+	protected int posX;
+	protected int posY;
+	protected Color color;
+	protected PacManGame game;
+
+	protected Element(int posX, int posY, PacManGame game) {
+		this.game = game;
 		this.posX = posX;
 		this.posY = posY;
 	}
@@ -20,8 +24,12 @@ public abstract class Element {
 		return posY;
 	}
 
-    public Color getColor() {
+	public Color getColor() {
 		return color;
+	}
+
+	public void action() {
+
 	}
 
 }
