@@ -41,7 +41,7 @@ public class PacManGame {
 		this.view = view;
 	}
 
-	private void setGame() {
+	public void setGame() {
 		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(), this);
 		listGhost = new ArrayList<>();
 		listGhost.add(new Ghost(new Color(252, 37, 2), map.getSpawnGhostX(), map.getSpawnGhostY(), this));
@@ -56,19 +56,19 @@ public class PacManGame {
 				int valCase = temp[i][j];
 				switch (valCase) {
 					case 2:
-						listPellet.add(new BluePellet(i, j));
+						listPellet.add(new BluePellet(i, j, this));
 						break;
 					case 3:
-						listPellet.add(new VioletPellet(i, j));
+						listPellet.add(new VioletPellet(i, j, this));
 						break;
 					case 4:
-						listPellet.add(new OrangePellet(i, j));
+						listPellet.add(new OrangePellet(i, j, this));
 						break;
 					case 5:
-						listPellet.add(new GreenPellet(i, j));
+						listPellet.add(new GreenPellet(i, j, this));
 						break;
 					case 8:
-						listElement.add(new TeleportPoint(i, j));
+						listElement.add(new TeleportPoint(i, j, this));
 						break;
 					default:
 						break;
@@ -106,6 +106,9 @@ public class PacManGame {
 		checkCase();
 		for (Ghost ghost : listGhost)
 			ghost.move();
+		for (Element element : listElement) {
+			element.action();
+		}
 		if (score >= 5000 && !bonusLifeGiven) {
 			lives++;
 			bonusLifeGiven = true;
@@ -120,23 +123,23 @@ public class PacManGame {
 		if (lives == 0)
 			lose();
 		checkGhostContact();
-		if(listPellet.isEmpty()) 
+		if (listPellet.isEmpty())
 			win();
 	}
 
-	public int checkerNorth(int posX, int posY) {
+	public int checkerUp(int posX, int posY) {
 		return map.getMap()[posX][posY - 1];
 	}
 
-	public int checkerSouth(int posX, int posY) {
+	public int checkerDown(int posX, int posY) {
 		return map.getMap()[posX][posY + 1];
 	}
 
-	public int checkerEast(int posX, int posY) {
+	public int checkerRight(int posX, int posY) {
 		return map.getMap()[posX + 1][posY];
 	}
 
-	public int checkerWest(int posX, int posY) {
+	public int checkerLeft(int posX, int posY) {
 		return map.getMap()[posX - 1][posY];
 	}
 
@@ -144,40 +147,8 @@ public class PacManGame {
 		for (Iterator<Pellet> it = listPellet.iterator(); it.hasNext();) {
 			Pellet pellet = it.next();
 			if (pacman.getPosX() == pellet.getPosX() && pacman.getPosY() == pellet.getPosY()) {
-				score += pellet.getPoints();
-				if (pellet instanceof VioletPellet) {
-					pacman.setStateInvisible();
-					powerTime = 40;
-				} else if (pellet instanceof OrangePellet) {
-					pacman.setStateSuperpacman();
-					powerTime = 20;
-					for (Ghost ghost : listGhost)
-						ghost.setStateScared();
-				} else if (pellet instanceof GreenPellet) {
-					if(!mapChanged) {
-						map.swapMap();
-						view.swapMap();
-						setGame();
-						mapChanged = true;
-					}
-				}
+				pellet.action();
 				it.remove();
-			}
-		}
-		for (Element element : listElement) {
-			if (element instanceof TeleportPoint) {
-				if (pacman.getPosX() == element.getPosX() && pacman.getPosY() == element.getPosY()) {
-					int[] pos = map.getTeleportPoint(pacman.getPosX(), pacman.getPosY());
-					pacman.teleport(pos[0], pos[1]);
-					pacman.move();
-				}
-				for (Ghost ghost : listGhost) {
-					if (ghost.getPosX() == element.getPosX() && ghost.getPosY() == element.getPosY()) {
-						int[] pos = map.getTeleportPoint(ghost.getPosX(), ghost.getPosY());
-						ghost.teleport(pos[0], pos[1]);
-						ghost.move();
-					}
-				}
 			}
 		}
 	}
@@ -212,10 +183,16 @@ public class PacManGame {
 	}
 
 	private boolean isOpposed(Ghost ghost) {
-		return (Objects.equals(pacman.getDirection(), projet.Entities.Character.UP) && Objects.equals(ghost.getDirection(), projet.Entities.Character.DOWN)) ||
-				(Objects.equals(pacman.getDirection(), projet.Entities.Character.DOWN) && Objects.equals(ghost.getDirection(), projet.Entities.Character.UP)) ||
-				(Objects.equals(pacman.getDirection(), projet.Entities.Character.RIGHT) && Objects.equals(ghost.getDirection(), projet.Entities.Character.LEFT)) ||
-				(Objects.equals(pacman.getDirection(), projet.Entities.Character.LEFT) && Objects.equals(ghost.getDirection(), projet.Entities.Character.RIGHT));
+		return (Objects.equals(pacman.getDirection(), projet.Entities.Character.UP)
+				&& Objects.equals(ghost.getDirection(), projet.Entities.Character.DOWN)) ||
+				(Objects.equals(pacman.getDirection(), projet.Entities.Character.DOWN)
+						&& Objects.equals(ghost.getDirection(), projet.Entities.Character.UP))
+				||
+				(Objects.equals(pacman.getDirection(), projet.Entities.Character.RIGHT)
+						&& Objects.equals(ghost.getDirection(), projet.Entities.Character.LEFT))
+				||
+				(Objects.equals(pacman.getDirection(), projet.Entities.Character.LEFT)
+						&& Objects.equals(ghost.getDirection(), projet.Entities.Character.RIGHT));
 	}
 
 	private void lose() {
@@ -227,6 +204,26 @@ public class PacManGame {
 	private void win() {
 		JOptionPane.showMessageDialog(null, "Gagné! (^-^) Score : " + getScore());
 		System.exit(0);
+	}
+
+	public void addPoints(int nb) {
+		score += nb;
+	}
+
+	public boolean getMapChanged() {
+		return mapChanged;
+	}
+
+	public void setMapChanged() {
+		mapChanged = true;
+	}
+
+	public PacManView getView() {
+		return view;
+	}
+
+	public void setPowerTime(int nb) {
+		powerTime = nb;
 	}
 
 }

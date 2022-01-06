@@ -46,13 +46,13 @@ public class PacMan extends Character {
 	}
 
 	public void move() {
-		if (Objects.equals(direction, UP) && game.checkerNorth(posX, posY) != 1)
+		if (Objects.equals(direction, UP) && game.checkerUp(posX, posY) != 1)
 			posY--;
-		else if (Objects.equals(direction, DOWN) && game.checkerSouth(posX, posY) != 1)
+		else if (Objects.equals(direction, DOWN) && game.checkerDown(posX, posY) != 1)
 			posY++;
-		else if (Objects.equals(direction, RIGHT) && game.checkerEast(posX, posY) != 1)
+		else if (Objects.equals(direction, RIGHT) && game.checkerRight(posX, posY) != 1)
 			posX++;
-		else if (Objects.equals(direction, LEFT) && game.checkerWest(posX, posY) != 1)
+		else if (Objects.equals(direction, LEFT) && game.checkerLeft(posX, posY) != 1)
 			posX--;
 	}
 }

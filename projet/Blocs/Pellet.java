@@ -1,14 +1,12 @@
 package projet.Blocs;
 
+import projet.PacManGame;
+
 public abstract class Pellet extends Element {
-    protected int points;
 
-    protected Pellet(int posX, int posY) {
-        super(posX, posY);
+    protected Pellet(int posX, int posY, PacManGame game) {
+        super(posX, posY, game);
 
     }
 
-    public int getPoints() {
-        return points;
-    }
 }
