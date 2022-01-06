@@ -1,7 +1,15 @@
 package projet;
 
-import projet.Entities.*;
-import projet.Blocs.*;
+import projet.Entities.Ghost;
+import projet.Entities.PacMan;
+import projet.Blocs.Element;
+import projet.Blocs.Pellet;
+import projet.Blocs.Map;
+import projet.Blocs.BluePellet;
+import projet.Blocs.VioletPellet;
+import projet.Blocs.OrangePellet;
+import projet.Blocs.GreenPellet;
+import projet.Blocs.TeleportPoint;
 
 import java.awt.Color;
 import java.util.ArrayList;
