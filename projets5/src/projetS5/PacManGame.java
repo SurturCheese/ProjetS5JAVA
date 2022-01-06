@@ -110,25 +110,25 @@ public class PacManGame {
 	}
 
 	public int checkerNorth(int posX, int posY) {
-		return map.getMap()[posX ][posY  - 1];
+		return map.getMap()[posX][posY - 1];
 	}
 
 	public int checkerSouth(int posX, int posY) {
-		return map.getMap()[posX ][posY  + 1];
+		return map.getMap()[posX][posY + 1];
 	}
 
 	public int checkerEast(int posX, int posY) {
-		return map.getMap()[posX+ 1][posY ];
+		return map.getMap()[posX + 1][posY];
 	}
 
 	public int checkerWest(int posX, int posY) {
-		return map.getMap()[posX- 1][posY];
+		return map.getMap()[posX - 1][posY];
 	}
 
 	private void checkCase() {
 		for (Iterator<Pellet> it = listPellet.iterator(); it.hasNext();) {
 			Pellet pellet = it.next();
-			if (pacman.getPosX()== pellet.getPosX() && pacman.getPosY() == pellet.getPosY()) {
+			if (pacman.getPosX() == pellet.getPosX() && pacman.getPosY() == pellet.getPosY()) {
 				score += pellet.getPoints();
 				if (pellet instanceof VioletPellet) {
 					pacman.setStateInvisible();
@@ -148,16 +148,14 @@ public class PacManGame {
 		}
 		for (Element element : listElement) {
 			if (element instanceof TeleportPoint) {
-				if (pacman.getPosX() == element.getPosX()
-						&& pacman.getPosY()== element.getPosY()) {
+				if (pacman.getPosX() == element.getPosX() && pacman.getPosY() == element.getPosY()) {
 					int[] pos = map.getTeleportPoint(pacman.getPosX(), pacman.getPosY());
-					pacman.teleport(pos[0] , pos[1] );
+					pacman.teleport(pos[0], pos[1]);
 					pacman.move();
 				}
 				for (Ghost ghost : listGhost) {
-					if (ghost.getPosX() == element.getPosX()
-							&& ghost.getPosY() == element.getPosY()) {
-						int[] pos = map.getTeleportPoint(ghost.getPosX(), ghost.getPosY() );
+					if (ghost.getPosX() == element.getPosX() && ghost.getPosY() == element.getPosY()) {
+						int[] pos = map.getTeleportPoint(ghost.getPosX(), ghost.getPosY());
 						ghost.teleport(pos[0], pos[1]);
 						ghost.move();
 					}
@@ -187,9 +185,9 @@ public class PacManGame {
 			}
 			if (damage) {
 				lives--;
-				pacman.teleport(map.getSpawnPacmanX(), map.getSpawnPacmanY() );
+				pacman.teleport(map.getSpawnPacmanX(), map.getSpawnPacmanY());
 				for (Ghost ghost : listGhost) {
-					ghost.teleport(map.getSpawnGhostX() , map.getSpawnGhostY());
+					ghost.teleport(map.getSpawnGhostX(), map.getSpawnGhostY());
 				}
 			}
 		}

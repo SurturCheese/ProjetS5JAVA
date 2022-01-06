@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class Ghost extends Character {
 
-	private PacManGame game;
 	public static final String NORMAL = "NORMAL";
 	public static final String SCARED = "SCARED";
+	private PacManGame game;
 	private Color baseColor;
 	private boolean skipTurn;
 
@@ -35,16 +35,16 @@ public class Ghost extends Character {
 	private void moving() {
 		switch (direction) {
 			case UP:
-				posY = posY - 1;
+				posY--;
 				break;
 			case DOWN:
-				posY = posY + 1;
+				posY++;
 				break;
 			case RIGHT:
-				posX = posX + 1;
+				posX++;
 				break;
 			case LEFT:
-				posX = posX - 1;
+				posX--;
 				break;
 			default:
 				break;
@@ -55,13 +55,13 @@ public class Ghost extends Character {
 		if (!(Objects.equals(state, SCARED) && skipTurn) || Objects.equals(state, NORMAL)) {
 			if (game.getMap().isTeleportPoint(posX, posY)) {
 				if (Objects.equals(direction, UP) && game.checkerNorth(posX, posY) != 1)
-					posY = posY - 1;
+					posY--;
 				else if (Objects.equals(direction, DOWN) && game.checkerSouth(posX, posY) != 1)
-					posY = posY + 1;
+					posY++;
 				else if (Objects.equals(direction, RIGHT) && game.checkerEast(posX, posY) != 1)
-					posX = posX + 1;
+					posX++;
 				else if (Objects.equals(direction, LEFT) && game.checkerWest(posX, posY) != 1)
-					posX = posX - 1;
+					posX--;
 			} else {
 				if (!changeDirectionStraight()) {
 					changeDirectionAngle();
