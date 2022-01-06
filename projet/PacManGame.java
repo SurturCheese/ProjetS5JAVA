@@ -127,19 +127,19 @@ public class PacManGame {
 			win();
 	}
 
-	public int checkerNorth(int posX, int posY) {
+	public int checkerUp(int posX, int posY) {
 		return map.getMap()[posX][posY - 1];
 	}
 
-	public int checkerSouth(int posX, int posY) {
+	public int checkerDown(int posX, int posY) {
 		return map.getMap()[posX][posY + 1];
 	}
 
-	public int checkerEast(int posX, int posY) {
+	public int checkerRight(int posX, int posY) {
 		return map.getMap()[posX + 1][posY];
 	}
 
-	public int checkerWest(int posX, int posY) {
+	public int checkerLeft(int posX, int posY) {
 		return map.getMap()[posX - 1][posY];
 	}
 
