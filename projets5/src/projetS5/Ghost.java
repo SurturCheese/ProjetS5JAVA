@@ -32,90 +32,134 @@ public class Ghost extends Character {
 		state = SCARED;
 	}
 
-	private void moveRight() {
-		posX = posX + PacManView.TILESIZE;
-	}
-
-	private void moveLeft() {
-		posX = posX - PacManView.TILESIZE;
-	}
-
-	private void moveDown() {
-		posY = posY + PacManView.TILESIZE;
-	}
-
-	private void moveUp() {
-		posY = posY - PacManView.TILESIZE;
+	private void moving() {
+		switch (direction) {
+			case UP:
+				posY = posY - PacManView.TILESIZE;
+				break;
+			case DOWN:
+				posY = posY + PacManView.TILESIZE;
+				break;
+			case RIGHT:
+				posX = posX + PacManView.TILESIZE;
+				break;
+			case LEFT:
+				posX = posX - PacManView.TILESIZE;
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void move() {
 		if (!(Objects.equals(state, SCARED) && skipTurn) || Objects.equals(state, NORMAL)) {
-			if (Objects.equals(direction, UP) && game.checkerNorth(posX, posY) != 1)
-				posY = posY - PacManView.TILESIZE;
-			else if (Objects.equals(direction, DOWN) && game.checkerSouth(posX, posY) != 1)
-				posY = posY + PacManView.TILESIZE;
-			else if (Objects.equals(direction, RIGHT) && game.checkerEast(posX, posY) != 1)
-				posX = posX + PacManView.TILESIZE;
-			else if (Objects.equals(direction, LEFT) && game.checkerWest(posX, posY) != 1)
-				posX = posX - PacManView.TILESIZE;
-			else {
-				changeDirection();
+			if (game.getMap().isTeleportPoint(posX / PacManView.TILESIZE, posY / PacManView.TILESIZE)) {
+				if (Objects.equals(direction, UP) && game.checkerNorth(posX, posY) != 1)
+					posY = posY - PacManView.TILESIZE;
+				else if (Objects.equals(direction, DOWN) && game.checkerSouth(posX, posY) != 1)
+					posY = posY + PacManView.TILESIZE;
+				else if (Objects.equals(direction, RIGHT) && game.checkerEast(posX, posY) != 1)
+					posX = posX + PacManView.TILESIZE;
+				else if (Objects.equals(direction, LEFT) && game.checkerWest(posX, posY) != 1)
+					posX = posX - PacManView.TILESIZE;
+			} else {
+				if (!changeDirectionStraight()) {
+					changeDirectionAngle();
+					changeDirectionCross();
+					changeDirectionDeadend();
+					changeDirectionTjunction();
+				}
 			}
+			skipTurn = !skipTurn;
 		}
-		skipTurn = !skipTurn;
 	}
 
-	private void changeDirection() {
+	private boolean changeDirectionStraight() {
 		int north = game.checkerNorth(posX, posY);
 		int south = game.checkerSouth(posX, posY);
 		int east = game.checkerEast(posX, posY);
 		int west = game.checkerWest(posX, posY);
 		if (north != 1 && south != 1 && east == 1 && west == 1) {
-			if (direction.equals(UP))
-				moveUp();
-			else
-				moveDown();
-		} else if (north == 1 && south == 1 && east != 1 && west != 1) {
-			if (direction.equals(RIGHT))
-				moveRight();
-			else
-				moveLeft();
-		} else if (north != 1 && south != 1 && east != 1 && west != 1) {
-			int sens = 1 + (int) (Math.random() * ((4 - 1) + 1));
-			switch (sens) {
-				case 1:
-					moveUp();
-					direction = UP;
-					break;
-				case 2:
-					moveRight();
-					direction = RIGHT;
-					break;
-				case 3:
-					moveDown();
-					direction = DOWN;
-					break;
-				case 4:
-					moveLeft();
-					direction = LEFT;
-					break;
-				default:
-					break;
+			if (direction.equals(UP)) {
+				moving();
+				return true;
+			} else {
+				direction = DOWN;
+				moving();
+				return true;
 			}
-		} else if (north == 1 && south != 1 && east != 1 && west != 1) {
+		} else if (north == 1 && south == 1 && east != 1 && west != 1) {
+			if (direction.equals(RIGHT)) {
+				moving();
+				return true;
+			} else {
+				direction = LEFT;
+				moving();
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void changeDirectionAngle() {
+		int north = game.checkerNorth(posX, posY);
+		int south = game.checkerSouth(posX, posY);
+		int east = game.checkerEast(posX, posY);
+		int west = game.checkerWest(posX, posY);
+		if (north == 1 && south != 1 && east != 1 && west == 1) {
+			if (Objects.equals(direction, UP)) {
+				direction = RIGHT;
+				moving();
+			} else {
+				direction = DOWN;
+				moving();
+			}
+		} else if (north == 1 && south != 1 && east == 1 && west != 1) {
+			if (Objects.equals(direction, RIGHT)) {
+				direction = DOWN;
+				moving();
+			} else {
+				direction = LEFT;
+				moving();
+			}
+		} else if (north != 1 && south == 1 && east == 1 && west != 1) {
+			if (Objects.equals(direction, DOWN)) {
+				direction = LEFT;
+				moving();
+			} else {
+				direction = UP;
+				moving();
+			}
+		} else if (north != 1 && south == 1 && east != 1 && west == 1) {
+			if (Objects.equals(direction, DOWN)) {
+				direction = RIGHT;
+				moving();
+			} else {
+				direction = UP;
+				moving();
+			}
+		}
+	}
+
+	private void changeDirectionTjunction() {
+		int north = game.checkerNorth(posX, posY);
+		int south = game.checkerSouth(posX, posY);
+		int east = game.checkerEast(posX, posY);
+		int west = game.checkerWest(posX, posY);
+		if (north == 1 && south != 1 && east != 1 && west != 1) {
 			int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 			switch (sens) {
 				case 1:
-					moveLeft();
 					direction = LEFT;
+					moving();
 					break;
 				case 2:
-					moveRight();
 					direction = RIGHT;
+					moving();
 					break;
 				case 3:
-					moveDown();
 					direction = DOWN;
+					moving();
 					break;
 				default:
 					break;
@@ -124,16 +168,16 @@ public class Ghost extends Character {
 			int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 			switch (sens) {
 				case 1:
-					moveLeft();
 					direction = LEFT;
+					moving();
 					break;
 				case 2:
-					moveRight();
 					direction = RIGHT;
+					moving();
 					break;
 				case 3:
-					moveUp();
 					direction = UP;
+					moving();
 					break;
 				default:
 					break;
@@ -142,16 +186,16 @@ public class Ghost extends Character {
 			int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 			switch (sens) {
 				case 1:
-					moveLeft();
 					direction = LEFT;
+					moving();
 					break;
 				case 2:
-					moveUp();
 					direction = UP;
+					moving();
 					break;
 				case 3:
-					moveDown();
 					direction = DOWN;
+					moving();
 					break;
 				default:
 					break;
@@ -160,58 +204,70 @@ public class Ghost extends Character {
 			int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 			switch (sens) {
 				case 1:
-					moveUp();
 					direction = UP;
+					moving();
 					break;
 				case 2:
-					moveRight();
 					direction = RIGHT;
+					moving();
 					break;
 				case 3:
-					moveDown();
 					direction = DOWN;
+					moving();
 					break;
 				default:
 					break;
 			}
-		} else if (north == 1 && south != 1 && east != 1 && west == 1) {
-			if (Objects.equals(direction, UP)) {
-				moveRight();
-				direction = RIGHT;
-			} else {
-				moveDown();
-				direction = DOWN;
-			}
-		} else if (north == 1 && south != 1 && east == 1 && west != 1) {
-			if (Objects.equals(direction, RIGHT)) {
-				moveDown();
-				direction = DOWN;
-			} else {
-				moveLeft();
-				direction = LEFT;
-			}
-		} else if (north != 1 && south == 1 && east == 1 && west != 1) {
-			if (Objects.equals(direction, DOWN)) {
-				moveLeft();
-				direction = LEFT;
-			} else {
-				moveUp();
-				direction = UP;
-			}
-		} else if (north != 1 && south == 1 && east != 1 && west == 1) {
-			if (Objects.equals(direction, DOWN)) {
-				moveRight();
-				direction = RIGHT;
-			} else {
-				moveUp();
-				direction = UP;
-			}
-		} else if (north == 1 && south == 1 && east == 1 && west != 1) {
-			moveLeft();
+		}
+	}
+
+	private void changeDirectionDeadend() {
+		int north = game.checkerNorth(posX, posY);
+		int south = game.checkerSouth(posX, posY);
+		int east = game.checkerEast(posX, posY);
+		int west = game.checkerWest(posX, posY);
+		if (north == 1 && south == 1 && east == 1 && west != 1) {
 			direction = LEFT;
+			moving();
 		} else if (north == 1 && south == 1 && east != 1 && west == 1) {
-			moveRight();
 			direction = RIGHT;
+			moving();
+		} else if (north != 1 && south == 1 && east == 1 && west == 1) {
+			direction = UP;
+			moving();
+		} else if (north == 1 && south != 1 && east == 1 && west == 1) {
+			direction = DOWN;
+			moving();
+		}
+	}
+
+	private void changeDirectionCross() {
+		int north = game.checkerNorth(posX, posY);
+		int south = game.checkerSouth(posX, posY);
+		int east = game.checkerEast(posX, posY);
+		int west = game.checkerWest(posX, posY);
+		if (north != 1 && south != 1 && east != 1 && west != 1) {
+			int sens = 1 + (int) (Math.random() * ((4 - 1) + 1));
+			switch (sens) {
+				case 1:
+					direction = UP;
+					moving();
+					break;
+				case 2:
+					direction = RIGHT;
+					moving();
+					break;
+				case 3:
+					direction = DOWN;
+					moving();
+					break;
+				case 4:
+					direction = LEFT;
+					moving();
+					break;
+				default:
+					break;
+			}
 		}
 	}
 }

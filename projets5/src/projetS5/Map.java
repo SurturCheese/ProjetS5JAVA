@@ -120,6 +120,10 @@ public class Map {
 		setMapInfo();
 	}
 
+	public boolean isTeleportPoint(int x, int y) {
+		return getMap()[x][y] == 8;
+	}
+
 	public int getHauteur() {
 		return hauteur;
 	}
