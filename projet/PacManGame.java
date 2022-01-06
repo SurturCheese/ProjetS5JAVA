@@ -123,8 +123,10 @@ public class PacManGame {
 		if (lives == 0)
 			lose();
 		checkGhostContact();
-		if (listPellet.isEmpty())
+		if (listPellet.isEmpty()){
+			view.repaint();
 			win();
+		}
 	}
 
 	public int checkerUp(int posX, int posY) {
