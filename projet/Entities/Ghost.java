@@ -3,6 +3,7 @@ package projet.Entities;
 import projet.PacManGame;
 import java.awt.Color;
 import java.util.Objects;
+import java.util.Random;
 
 public class Ghost extends Character {
 
@@ -11,6 +12,7 @@ public class Ghost extends Character {
 	private PacManGame game;
 	private Color baseColor;
 	private boolean skipTurn;
+	private Random random;
 
 	public Ghost(Color color, int posX, int posY, PacManGame game) {
 		this.game = game;
@@ -21,6 +23,7 @@ public class Ghost extends Character {
 		baseColor = color;
 		direction = UP;
 		skipTurn = false;
+		random = new Random();
 	}
 
 	public void setStateNormal() {
@@ -47,8 +50,6 @@ public class Ghost extends Character {
 			case LEFT:
 				posX--;
 				break;
-			default:
-				break;
 		}
 	}
 
@@ -66,9 +67,9 @@ public class Ghost extends Character {
 			} else {
 				if (!changeDirectionStraight()) {
 					changeDirectionAngle();
-					changeDirectionCross();
 					changeDirectionDeadend();
 					changeDirectionTjunction();
+					changeDirectionCross();
 				}
 			}
 		}
@@ -107,55 +108,51 @@ public class Ghost extends Character {
 		int down = game.checkerDown(posX, posY);
 		int east = game.checkerRight(posX, posY);
 		int left = game.checkerLeft(posX, posY);
+		int sens = random.nextInt(2);
 		if (up == 1 && down != 1 && east != 1 && left == 1) {
-			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
 			switch (sens) {
-				case 1:
+				case 0:
 					direction = DOWN;
 					moving();
 					break;
-				case 2:
+				case 1:
 					direction = RIGHT;
 					moving();
 					break;
 			}
 		} else if (up == 1 && down != 1 && east == 1 && left != 1) {
-			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
 			switch (sens) {
-				case 1:
+				case 0:
 					direction = DOWN;
 					moving();
 					break;
-				case 2:
+				case 1:
 					direction = LEFT;
 					moving();
 					break;
 			}
 		} else if (up != 1 && down == 1 && east == 1 && left != 1) {
-			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
 			switch (sens) {
-				case 1:
+				case 0:
 					direction = UP;
 					moving();
 					break;
-				case 2:
+				case 1:
 					direction = LEFT;
 					moving();
 					break;
 			}
 		} else if (up != 1 && down == 1 && east != 1 && left == 1) {
-			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
 			switch (sens) {
-				case 1:
+				case 0:
 					direction = UP;
 					moving();
 					break;
-				case 2:
+				case 1:
 					direction = RIGHT;
 					moving();
 					break;
 			}
-
 		}
 	}
 
@@ -164,25 +161,24 @@ public class Ghost extends Character {
 		int down = game.checkerDown(posX, posY);
 		int right = game.checkerRight(posX, posY);
 		int left = game.checkerLeft(posX, posY);
+		int sens = random.nextInt(3);
 		if (up == 1 && down != 1 && right != 1 && left != 1) {
 			if (Objects.equals(direction, RIGHT) || Objects.equals(direction, LEFT)) {
 				moving();
 			} else {
-				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
+				
 				switch (sens) {
-					case 1:
+					case 0:
 						direction = LEFT;
 						moving();
 						break;
-					case 2:
+					case 1:
 						direction = RIGHT;
 						moving();
 						break;
-					case 3:
+					case 2:
 						direction = DOWN;
 						moving();
-						break;
-					default:
 						break;
 				}
 			}
@@ -190,21 +186,18 @@ public class Ghost extends Character {
 			if (Objects.equals(direction, RIGHT) || Objects.equals(direction, LEFT)) {
 				moving();
 			} else {
-				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 				switch (sens) {
-					case 1:
+					case 0:
 						direction = LEFT;
 						moving();
 						break;
-					case 2:
+					case 1:
 						direction = RIGHT;
 						moving();
 						break;
-					case 3:
+					case 2:
 						direction = UP;
 						moving();
-						break;
-					default:
 						break;
 				}
 			}
@@ -212,21 +205,18 @@ public class Ghost extends Character {
 			if (Objects.equals(direction, UP) || Objects.equals(direction, DOWN)) {
 				moving();
 			} else {
-				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 				switch (sens) {
-					case 1:
+					case 0:
 						direction = LEFT;
 						moving();
 						break;
-					case 2:
+					case 1:
 						direction = UP;
 						moving();
 						break;
-					case 3:
+					case 2:
 						direction = DOWN;
 						moving();
-						break;
-					default:
 						break;
 				}
 			}
@@ -234,21 +224,18 @@ public class Ghost extends Character {
 			if (Objects.equals(direction, UP) || Objects.equals(direction, DOWN)) {
 				moving();
 			} else {
-				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
 				switch (sens) {
-					case 1:
+					case 0:
 						direction = UP;
 						moving();
 						break;
-					case 2:
+					case 1:
 						direction = RIGHT;
 						moving();
 						break;
-					case 3:
+					case 2:
 						direction = DOWN;
 						moving();
-						break;
-					default:
 						break;
 				}
 			}
