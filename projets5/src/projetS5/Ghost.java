@@ -70,8 +70,8 @@ public class Ghost extends Character {
 					changeDirectionTjunction();
 				}
 			}
-			skipTurn = !skipTurn;
 		}
+		skipTurn = !skipTurn;
 	}
 
 	private boolean changeDirectionStraight() {
