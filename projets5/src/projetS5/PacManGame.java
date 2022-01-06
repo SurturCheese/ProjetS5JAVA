@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.text.html.HTMLDocument.RunElement;
 
 public class PacManGame {
 
@@ -173,10 +174,10 @@ public class PacManGame {
 				int ghostposX = ghost.getPosX();
 				int ghostposY = ghost.getPosY();
 				if ((pacmanPosX == ghostposX && pacmanPosY == ghostposY)
-						|| (pacmanPosX == ghostposX && pacmanPosY - 1 == ghostposY)
-						|| (pacmanPosX == ghostposX && pacmanPosY + 1 == ghostposY)
-						|| (pacmanPosX - 1 == ghostposX && pacmanPosY == ghostposY)
-						|| (pacmanPosX + 1 == ghostposX && pacmanPosY == ghostposY)) {
+						|| (pacmanPosX == ghostposX && pacmanPosY - 1 == ghostposY && isOpposed(ghost))
+						|| (pacmanPosX == ghostposX && pacmanPosY + 1 == ghostposY && isOpposed(ghost))
+						|| (pacmanPosX - 1 == ghostposX && pacmanPosY == ghostposY && isOpposed(ghost))
+						|| (pacmanPosX + 1 == ghostposX && pacmanPosY == ghostposY && isOpposed(ghost))) {
 					if (pacman.getState().equals(PacMan.SUPERPACMAN))
 						ghost.teleport(map.getSpawnGhostX(), map.getSpawnGhostY());
 					else
@@ -191,6 +192,13 @@ public class PacManGame {
 				}
 			}
 		}
+	}
+
+	private boolean isOpposed(Ghost ghost) {
+		return (pacman.getDirection() == Character.UP && ghost.getDirection() == Character.DOWN) ||
+				(pacman.getDirection() == Character.DOWN && ghost.getDirection() == Character.UP) ||
+				(pacman.getDirection() == Character.RIGHT && ghost.getDirection() == Character.LEFT) ||
+				(pacman.getDirection() == Character.LEFT && ghost.getDirection() == Character.RIGHT);
 	}
 
 	private void lose() {
