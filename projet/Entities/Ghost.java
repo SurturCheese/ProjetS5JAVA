@@ -1,7 +1,6 @@
 package projet.Entities;
 
 import projet.PacManGame;
-
 import java.awt.Color;
 import java.util.Objects;
 
@@ -109,37 +108,54 @@ public class Ghost extends Character {
 		int east = game.checkerEast(posX, posY);
 		int west = game.checkerWest(posX, posY);
 		if (north == 1 && south != 1 && east != 1 && west == 1) {
-			if (Objects.equals(direction, UP)) {
-				direction = RIGHT;
-				moving();
-			} else {
-				direction = DOWN;
-				moving();
+			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
+			switch (sens) {
+				case 1:
+					direction = DOWN;
+					moving();
+					break;
+				case 2:
+					direction = RIGHT;
+					moving();
+					break;
 			}
 		} else if (north == 1 && south != 1 && east == 1 && west != 1) {
-			if (Objects.equals(direction, RIGHT)) {
-				direction = DOWN;
-				moving();
-			} else {
-				direction = LEFT;
-				moving();
+			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
+			switch (sens) {
+				case 1:
+					direction = DOWN;
+					moving();
+					break;
+				case 2:
+					direction = LEFT;
+					moving();
+					break;
 			}
 		} else if (north != 1 && south == 1 && east == 1 && west != 1) {
-			if (Objects.equals(direction, DOWN)) {
-				direction = LEFT;
-				moving();
-			} else {
-				direction = UP;
-				moving();
+			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
+			switch (sens) {
+				case 1:
+					direction = UP;
+					moving();
+					break;
+				case 2:
+					direction = LEFT;
+					moving();
+					break;
 			}
 		} else if (north != 1 && south == 1 && east != 1 && west == 1) {
-			if (Objects.equals(direction, DOWN)) {
-				direction = RIGHT;
-				moving();
-			} else {
-				direction = UP;
-				moving();
+			int sens = 1 + (int) (Math.random() * ((2 - 1) + 1));
+			switch (sens) {
+				case 1:
+					direction = UP;
+					moving();
+					break;
+				case 2:
+					direction = RIGHT;
+					moving();
+					break;
 			}
+
 		}
 	}
 
@@ -149,76 +165,92 @@ public class Ghost extends Character {
 		int east = game.checkerEast(posX, posY);
 		int west = game.checkerWest(posX, posY);
 		if (north == 1 && south != 1 && east != 1 && west != 1) {
-			int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
-			switch (sens) {
-				case 1:
-					direction = LEFT;
-					moving();
-					break;
-				case 2:
-					direction = RIGHT;
-					moving();
-					break;
-				case 3:
-					direction = DOWN;
-					moving();
-					break;
-				default:
-					break;
+			if (Objects.equals(direction, RIGHT) || Objects.equals(direction, LEFT)) {
+				moving();
+			} else {
+				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
+				switch (sens) {
+					case 1:
+						direction = LEFT;
+						moving();
+						break;
+					case 2:
+						direction = RIGHT;
+						moving();
+						break;
+					case 3:
+						direction = DOWN;
+						moving();
+						break;
+					default:
+						break;
+				}
 			}
 		} else if (north != 1 && south == 1 && east != 1 && west != 1) {
-			int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
-			switch (sens) {
-				case 1:
-					direction = LEFT;
-					moving();
-					break;
-				case 2:
-					direction = RIGHT;
-					moving();
-					break;
-				case 3:
-					direction = UP;
-					moving();
-					break;
-				default:
-					break;
+			if (Objects.equals(direction, RIGHT) || Objects.equals(direction, LEFT)) {
+				moving();
+			} else {
+				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
+				switch (sens) {
+					case 1:
+						direction = LEFT;
+						moving();
+						break;
+					case 2:
+						direction = RIGHT;
+						moving();
+						break;
+					case 3:
+						direction = UP;
+						moving();
+						break;
+					default:
+						break;
+				}
 			}
 		} else if (north != 1 && south != 1 && east == 1 && west != 1) {
-			int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
-			switch (sens) {
-				case 1:
-					direction = LEFT;
-					moving();
-					break;
-				case 2:
-					direction = UP;
-					moving();
-					break;
-				case 3:
-					direction = DOWN;
-					moving();
-					break;
-				default:
-					break;
+			if (Objects.equals(direction, UP) || Objects.equals(direction, DOWN)) {
+				moving();
+			} else {
+				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
+				switch (sens) {
+					case 1:
+						direction = LEFT;
+						moving();
+						break;
+					case 2:
+						direction = UP;
+						moving();
+						break;
+					case 3:
+						direction = DOWN;
+						moving();
+						break;
+					default:
+						break;
+				}
 			}
 		} else if (north != 1 && south != 1 && east != 1 && west == 1) {
-			int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
-			switch (sens) {
-				case 1:
-					direction = UP;
-					moving();
-					break;
-				case 2:
-					direction = RIGHT;
-					moving();
-					break;
-				case 3:
-					direction = DOWN;
-					moving();
-					break;
-				default:
-					break;
+			if (Objects.equals(direction, UP) || Objects.equals(direction, DOWN)) {
+				moving();
+			} else {
+				int sens = 1 + (int) (Math.random() * ((3 - 1) + 1));
+				switch (sens) {
+					case 1:
+						direction = UP;
+						moving();
+						break;
+					case 2:
+						direction = RIGHT;
+						moving();
+						break;
+					case 3:
+						direction = DOWN;
+						moving();
+						break;
+					default:
+						break;
+				}
 			}
 		}
 	}
@@ -249,27 +281,7 @@ public class Ghost extends Character {
 		int east = game.checkerEast(posX, posY);
 		int west = game.checkerWest(posX, posY);
 		if (north != 1 && south != 1 && east != 1 && west != 1) {
-			int sens = 1 + (int) (Math.random() * ((4 - 1) + 1));
-			switch (sens) {
-				case 1:
-					direction = UP;
-					moving();
-					break;
-				case 2:
-					direction = RIGHT;
-					moving();
-					break;
-				case 3:
-					direction = DOWN;
-					moving();
-					break;
-				case 4:
-					direction = LEFT;
-					moving();
-					break;
-				default:
-					break;
-			}
+			moving();
 		}
 	}
 }
