@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 
 public class PacManGame {
@@ -17,6 +18,7 @@ public class PacManGame {
 	private int score = 0;
 	private int lives = 3;
 	private boolean bonusLifeGiven = false;
+	private boolean mapChanged = false;
 	private int powerTime;
 
 	public PacManGame() {
@@ -107,6 +109,8 @@ public class PacManGame {
 		if (lives == 0)
 			lose();
 		checkGhostContact();
+		if(listPellet.isEmpty()) 
+			win();
 	}
 
 	public int checkerNorth(int posX, int posY) {
@@ -139,9 +143,12 @@ public class PacManGame {
 					for (Ghost ghost : listGhost)
 						ghost.setStateScared();
 				} else if (pellet instanceof GreenPellet) {
-					map.swapMap();
-					view.swapMap();
-					setGame();
+					if(!mapChanged) {
+						map.swapMap();
+						view.swapMap();
+						setGame();
+						mapChanged = true;
+					}
 				}
 				it.remove();
 			}
@@ -194,10 +201,10 @@ public class PacManGame {
 	}
 
 	private boolean isOpposed(Ghost ghost) {
-		return (pacman.getDirection() == Character.UP && ghost.getDirection() == Character.DOWN) ||
-				(pacman.getDirection() == Character.DOWN && ghost.getDirection() == Character.UP) ||
-				(pacman.getDirection() == Character.RIGHT && ghost.getDirection() == Character.LEFT) ||
-				(pacman.getDirection() == Character.LEFT && ghost.getDirection() == Character.RIGHT);
+		return (Objects.equals(pacman.getDirection(), Character.UP) && Objects.equals(ghost.getDirection(), Character.DOWN)) ||
+				(Objects.equals(pacman.getDirection(), Character.DOWN) && Objects.equals(ghost.getDirection(), Character.UP)) ||
+				(Objects.equals(pacman.getDirection(), Character.RIGHT) && Objects.equals(ghost.getDirection(), Character.LEFT)) ||
+				(Objects.equals(pacman.getDirection(), Character.LEFT) && Objects.equals(ghost.getDirection(), Character.RIGHT));
 	}
 
 	private void lose() {
@@ -205,4 +212,10 @@ public class PacManGame {
 		JOptionPane.showMessageDialog(null, "Perdu! (>_<) Score : " + getScore());
 		System.exit(0);
 	}
+
+	private void win() {
+		JOptionPane.showMessageDialog(null, "Gagné! (^-^) Score : " + getScore());
+		System.exit(0);
+	}
+
 }
