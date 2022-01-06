@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 public class App {
 
-	private static final int FRAMES_PER_SECOND = 3;
+	private static final int FRAMES_PER_SECOND = 4;
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Pacman");
