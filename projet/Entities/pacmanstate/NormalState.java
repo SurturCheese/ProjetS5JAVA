@@ -19,6 +19,9 @@ public class NormalState extends PacmanState {
         checkGhostContact();
     }
 
+    /**
+	 * Regarde si pacman a un contact avec un fantome et reagit en fonction
+	 */
     private void checkGhostContact() {
         int pacmanPosX = pacman.getPosX();
         int pacmanPosY = pacman.getPosY();

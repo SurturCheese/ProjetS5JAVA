@@ -34,6 +34,11 @@ public abstract class PacmanState {
             pacman.setPosX(pacman.getPosX() - 1);
     }
 
+    /**
+	 * Regarde si la direction de pacman et d'un fantome soient opposee
+     * @param ghost le fantome avec lequelle comparer
+     * @return true s'il sont oppose false sinon
+	 */
     protected boolean isOpposed(Ghost ghost) {
         return (Objects.equals(pacman.getDirection(), projet.Entities.Character.UP)
                 && Objects.equals(ghost.getDirection(), projet.Entities.Character.DOWN)) ||

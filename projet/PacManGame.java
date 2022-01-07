@@ -40,6 +40,9 @@ public class PacManGame {
 		this.view = view;
 	}
 
+	/**
+	 * Met en place les parametres du jeu
+	 */
 	public void setGame() {
 		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY());
 		pacman.setState(new projet.Entities.pacmanstate.NormalState(this, pacman));
@@ -79,30 +82,11 @@ public class PacManGame {
 		}
 	}
 
-	public PacMan getPacman() {
-		return pacman;
-	}
-
-	public List<Ghost> getGhost() {
-		return listGhost;
-	}
-
-	public List<Pellet> getListPellet() {
-		return listPellet;
-	}
-
-	public Map getMap() {
-		return map;
-	}
-
-	public String getScore() {
-		return String.valueOf(score);
-	}
-
-	public int getLives() {
-		return lives;
-	}
-
+	/**
+	 * Correspond à un "tour" de jeu.
+	 * C'est ici que se trouve le fonctionnemment du jeu et que toutes les actions
+	 * des entitées sont déclenchées
+	 */
 	public void step() {
 		pacman.action();
 		for (Iterator<Pellet> it = listPellet.iterator(); it.hasNext();) {
@@ -127,38 +111,59 @@ public class PacManGame {
 			for (Ghost ghost : listGhost)
 				ghost.setState(new projet.Entities.ghoststate.NormalState(this, ghost));
 		}
-		if (lives == 0)
-			lose();
-		else if (listPellet.isEmpty()) {
+		if (lives == 0) {
+			JOptionPane.showMessageDialog(null, "Perdu! (>_<) Score : " + getScore());
+			System.exit(0);
+		} else if (listPellet.isEmpty()) {
 			view.repaint();
-			win();
+			JOptionPane.showMessageDialog(null, "Gagné! (^-^) Score : " + getScore());
+			System.exit(0);
 		}
 	}
 
+	/**
+	 * Verifie ce qu'il y a sur la map sur la case au dessus
+	 * 
+	 * @param posX position sur l'axe x
+	 * @param posY position sur l'axe y
+	 * @return l'information stockee sur la map pour la position donnee
+	 */
 	public int checkerUp(int posX, int posY) {
 		return map.getMap()[posX][posY - 1];
 	}
 
+	/**
+	 * Verifie ce qu'il y a sur la map sur la case en dessous
+	 * 
+	 * @param posX position sur l'axe x
+	 * @param posY position sur l'axe y
+	 * @return l'information stockee sur la map pour la position donnee
+	 */
 	public int checkerDown(int posX, int posY) {
 		return map.getMap()[posX][posY + 1];
 	}
 
+	/**
+	 * Verifie ce qu'il y a sur la map sur la case a droite
+	 * 
+	 * @param posX position sur l'axe x
+	 * @param posY position sur l'axe y
+	 * @return l'information stockee sur la map pour la position donnee
+	 */
 	public int checkerRight(int posX, int posY) {
 		return map.getMap()[posX + 1][posY];
 	}
 
+	/**
+	 * Verifie ce qu'il y a sur la map sur la case a gauche
+	 * 
+	 * @param posX position sur l'axe x
+	 * @param posY position sur l'axe y
+	 * @return l'information stocke sur la map pour la position donnee
+	 */
+
 	public int checkerLeft(int posX, int posY) {
 		return map.getMap()[posX - 1][posY];
-	}
-
-	private void lose() {
-		JOptionPane.showMessageDialog(null, "Perdu! (>_<) Score : " + getScore());
-		System.exit(0);
-	}
-
-	private void win() {
-		JOptionPane.showMessageDialog(null, "Gagné! (^-^) Score : " + getScore());
-		System.exit(0);
 	}
 
 	public void addPoints(int nb) {
@@ -183,6 +188,30 @@ public class PacManGame {
 
 	public void subLives() {
 		lives--;
+	}
+
+	public PacMan getPacman() {
+		return pacman;
+	}
+
+	public List<Ghost> getGhost() {
+		return listGhost;
+	}
+
+	public List<Pellet> getListPellet() {
+		return listPellet;
+	}
+
+	public Map getMap() {
+		return map;
+	}
+
+	public String getScore() {
+		return String.valueOf(score);
+	}
+
+	public int getLives() {
+		return lives;
 	}
 
 }
