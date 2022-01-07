@@ -4,7 +4,7 @@ import projet.PacManGame;
 import projet.entities.Ghost;
 
 /**
- * Representation de l'etat "normal" des fantomes dans le patron State 
+ * Representation de l'etat "normal" des fantomes dans le patron State
  */
 
 public class NormalState extends GhostState {
@@ -21,12 +21,12 @@ public class NormalState extends GhostState {
     public void action() {
         if (context.getMap().isTeleportPoint(ghost.getPosX(), ghost.getPosY()))
             move();
-        else if (!directionStraight()) {
-            changeDirectionAngle();
-            changeDirectionDeadend();
-            changeDirectionTjunction();
-            changeDirectionCross();
-        }
+        else if (!directionStraight())
+            if (!changeDirectionAngle())
+                if (!changeDirectionDeadend())
+                    if (!changeDirectionTjunction())
+                        changeDirectionCross();
+
     }
 
 }
