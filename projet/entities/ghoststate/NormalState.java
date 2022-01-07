@@ -5,8 +5,8 @@ import projet.entities.Ghost;
 
 public class NormalState extends GhostState {
 
-    public NormalState(PacManGame game, Ghost ghost) {
-        super(game, ghost);
+    public NormalState(PacManGame context, Ghost ghost) {
+        super(context, ghost);
         ghost.setColor(ghost.getBaseColor());
     }
 

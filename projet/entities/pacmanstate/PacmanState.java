@@ -12,8 +12,8 @@ public abstract class PacmanState {
     protected PacMan pacman;
     protected PacManGame context;
 
-    protected PacmanState(PacManGame game, PacMan pacman) {
-        context = game;
+    protected PacmanState(PacManGame context, PacMan pacman) {
+        this.context = context;
         this.pacman = pacman;
     }
 
@@ -41,7 +41,7 @@ public abstract class PacmanState {
     }
 
     /**
-     * Regarde si la direction de pacman et d'un fantome soient opposee
+     * Regarde si la direction de pacman et d'un fantome sont opposee
      * 
      * @param ghost le fantome avec lequelle comparer
      * @return true s'il sont oppose false sinon

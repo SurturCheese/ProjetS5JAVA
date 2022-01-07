@@ -8,8 +8,8 @@ import projet.entities.PacMan;
 
 public class SuperPacmanState extends PacmanState {
 
-    public SuperPacmanState(PacManGame game, PacMan pacman) {
-        super(game, pacman);
+    public SuperPacmanState(PacManGame context, PacMan pacman) {
+        super(context, pacman);
         pacman.setColor(Color.ORANGE);
     }
 

@@ -8,8 +8,8 @@ import projet.entities.PacMan;
 
 public class NormalState extends PacmanState {
 
-    public NormalState(PacManGame game, PacMan pacman) {
-        super(game, pacman);
+    public NormalState(PacManGame context, PacMan pacman) {
+        super(context, pacman);
         pacman.setColor(Color.YELLOW);
     }
 

@@ -8,8 +8,8 @@ import projet.entities.Ghost;
 public class ScaredState extends GhostState {
     private boolean skipTurn;
 
-    public ScaredState(PacManGame game, Ghost ghost) {
-        super(game, ghost);
+    public ScaredState(PacManGame context, Ghost ghost) {
+        super(context, ghost);
         skipTurn = false;
         ghost.setColor(new Color(25, 25, 166));
     }

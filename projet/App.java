@@ -10,7 +10,7 @@ public class App {
 	private static final int GAME_SPEED = 4;
 
 	/**
-	 * Lance le jeu
+	 * Main du programme
 	 * @param args
 	 */
 	public static void main(String[] args) {

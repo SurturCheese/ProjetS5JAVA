@@ -8,8 +8,8 @@ import projet.entities.PacMan;
 
 public class InvisibleState extends PacmanState {
 
-    public InvisibleState(PacManGame game, PacMan pacman) {
-        super(game, pacman);
+    public InvisibleState(PacManGame context, PacMan pacman) {
+        super(context, pacman);
         pacman.setColor(new Color(255,255,210,255));
     }
 
