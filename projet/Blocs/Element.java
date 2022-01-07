@@ -1,4 +1,4 @@
-package projet.Blocs;
+package projet.blocs;
 
 import java.awt.Color;
 
@@ -28,8 +28,9 @@ public abstract class Element {
 		return color;
 	}
 
-	public void action() {
-
-	}
+	/**
+	 * Methode appelee quand le sujet performe une action
+	 */
+	public abstract void action();
 
 }
