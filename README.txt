@@ -4,7 +4,7 @@ La méthode main permettant l'exécution de l'application se trouve dans la clas
 
 #Dans le terminal en étant placé dans le dossier parent  du  dossier "projet" :
 javac projet/*
-java projet.app
+java projet.App
 
 Règle de notre jeu : 
   Victoire / perte :
