@@ -9,6 +9,10 @@ public class App {
 
 	private static final int GAME_SPEED = 4;
 
+	/**
+	 * Lance le jeu
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Pacman");
 		PacManGame game = new PacManGame();

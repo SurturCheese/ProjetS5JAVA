@@ -26,6 +26,10 @@ public class PacManView extends JComponent {
 		setPreferredSize(new Dimension(TILESIZE * game.getMap().getLength(), TILESIZE * game.getMap().getHeight()));
 	}
 
+	/**
+	 * Affiche la carte et le score
+	 * @param g
+	 */
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -39,6 +43,10 @@ public class PacManView extends JComponent {
 		g.drawString("Lives : " + game.getLives(), this.getWidth() / 2 - TILESIZE * 2, TILESIZE - 1);
 	}
 
+	/**
+	 * Affiche les pacgommes
+	 * @param g
+	 */
 	private void drawPellets(Graphics g) {
 		for (Pellet pellet : game.getListPellet()) {
 			g.setColor(pellet.getColor());
@@ -53,6 +61,10 @@ public class PacManView extends JComponent {
 		}
 	}
 
+	/**
+	 * Affiche la carte
+	 * @param g
+	 */
 	private void drawMap(Graphics g) {
 		int[][] map = game.getMap().getMap();
 		for (int i = 0; i < map.length; i++) {
@@ -65,6 +77,10 @@ public class PacManView extends JComponent {
 		}
 	}
 
+	/**
+	 * Affiche les fantomes
+	 * @param g
+	 */
 	private void drawGhosts(Graphics g) {
 		for (Ghost ghost : game.getGhost()) {
 			g.setColor(ghost.getColor());
@@ -72,6 +88,10 @@ public class PacManView extends JComponent {
 		}
 	}
 
+	/**
+	 * Affiche le pacman
+	 * @param g
+	 */
 	private void drawPacMan(Graphics g) {
 		PacMan pacMan = game.getPacman();
 		g.setColor(pacMan.getColor());
