@@ -3,8 +3,12 @@
 La méthode main permettant l'exécution de l'application se trouve dans la classe App (fichier App.java)
 
 #Dans le terminal en étant placé dans le dossier parent  du  dossier "projet" :
-javac projet/*
+javac projet/*.java
 java projet.App
+
+Problème de compilation / éxécution ? 
+    -> Etre sûr d'avoir au moins java 8 
+    -> La fenêtre doit être en focus
 
 Règle de notre jeu : 
   Victoire / perte :
