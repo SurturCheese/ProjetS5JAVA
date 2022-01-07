@@ -159,6 +159,9 @@ public class Map {
 			return googleMap;
 	}
 
+	/**
+	 * Met en place la carte
+	 */
 	public void setMapInfo() {
 		int[][] tempMap = getMap();
 		boolean greenPelletUsed = true;
@@ -191,6 +194,9 @@ public class Map {
 			return teleportA;
 	}
 
+	/**
+	 * Echange les cartes (GreenPellet)
+	 */
 	public void swapMap() {
 		if (type.equals(GOOGLE)) {
 			height = defaultMap[0].length;
