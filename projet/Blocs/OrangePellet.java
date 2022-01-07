@@ -8,7 +8,7 @@ import projet.Entities.Ghost;
 public class OrangePellet extends Pellet {
 
     public OrangePellet(int posX, int posY, PacManGame game) {
-        super(posX, posY,game);
+        super(posX, posY, game);
         this.color = Color.ORANGE;
     }
 
