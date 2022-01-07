@@ -12,6 +12,9 @@ public class OrangePellet extends Pellet {
         this.color = Color.ORANGE;
     }
 
+    /**
+	 * Methode appelee quand le sujet performe une action
+	 */
     @Override
     public void action() {
         game.addPoints(500);

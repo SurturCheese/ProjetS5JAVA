@@ -12,7 +12,10 @@ public class InvisibleState extends PacmanState {
         super(context, pacman);
         pacman.setColor(new Color(255,255,210,255));
     }
-
+    
+    /**
+	 * Methode appelee quand le sujet performe une action
+	 */
     @Override
     public void action() {
         move();

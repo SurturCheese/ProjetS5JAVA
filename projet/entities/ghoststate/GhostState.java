@@ -24,6 +24,9 @@ public abstract class GhostState {
      */
     public abstract void action();
 
+    /**
+	 * Fait bouger le fantome dans la direction definie
+	 */
     protected void move() {
         switch (ghost.getDirection()) {
             case Character.UP:

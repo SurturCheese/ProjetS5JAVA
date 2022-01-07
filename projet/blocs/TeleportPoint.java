@@ -9,7 +9,9 @@ public class TeleportPoint extends Element {
         super(posX, posY, game);
     }
     
-
+    /**
+	 * Methode appelee quand le sujet performe une action
+	 */
     @Override
     public void action() {
         if (game.getPacman().getPosX() == posX && game.getPacman().getPosY() == posY) {

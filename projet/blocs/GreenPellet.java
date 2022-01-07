@@ -10,6 +10,10 @@ public class GreenPellet extends Pellet {
         super(posX, posY,game);
         this.color = Color.GREEN;
     }
+
+    /**
+	 * Methode appelee quand le sujet performe une action
+	 */
     @Override 
     public void action() {
         game.addPoints(1000);
