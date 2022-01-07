@@ -23,16 +23,16 @@ public class App {
 			public void keyPressed(KeyEvent e) {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_RIGHT:
-						game.getPacman().setDirection(projet.Entities.Character.RIGHT);
+						game.getPacman().setDirection(projet.entities.Character.RIGHT);
 						break;
 					case KeyEvent.VK_LEFT:
-						game.getPacman().setDirection(projet.Entities.Character.LEFT);
+						game.getPacman().setDirection(projet.entities.Character.LEFT);
 						break;
 					case KeyEvent.VK_DOWN:
-						game.getPacman().setDirection(projet.Entities.Character.DOWN);
+						game.getPacman().setDirection(projet.entities.Character.DOWN);
 						break;
 					case KeyEvent.VK_UP:
-						game.getPacman().setDirection(projet.Entities.Character.UP);
+						game.getPacman().setDirection(projet.entities.Character.UP);
 						break;
 				}
 			}

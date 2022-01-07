@@ -1,9 +1,9 @@
-package projet.Entities.ghoststate;
+package projet.entities.ghoststate;
 
 import java.awt.Color;
 
 import projet.PacManGame;
-import projet.Entities.Ghost;
+import projet.entities.Ghost;
 
 public class ScaredState extends GhostState {
     private boolean skipTurn;
@@ -19,7 +19,7 @@ public class ScaredState extends GhostState {
         if (skipTurn) {
             if (context.getMap().isTeleportPoint(ghost.getPosX(), ghost.getPosY()))
                 move();
-            else if (!changeDirectionStraight()) {
+            else if (!directionStraight()) {
                 changeDirectionAngle();
                 changeDirectionDeadend();
                 changeDirectionTjunction();

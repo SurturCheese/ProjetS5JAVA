@@ -1,9 +1,9 @@
-package projet.Entities.pacmanstate;
+package projet.entities.pacmanstate;
 
 import java.awt.Color;
 
 import projet.PacManGame;
-import projet.Entities.PacMan;
+import projet.entities.PacMan;
 
 
 public class InvisibleState extends PacmanState {

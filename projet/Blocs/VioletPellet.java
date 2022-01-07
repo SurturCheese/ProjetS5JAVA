@@ -1,4 +1,4 @@
-package projet.Blocs;
+package projet.blocs;
 
 import java.awt.Color;
 
@@ -14,7 +14,7 @@ public class VioletPellet extends Pellet {
     @Override
     public void action() {
         game.addPoints(300);
-        game.getPacman().setState(new projet.Entities.pacmanstate.InvisibleState(game, game.getPacman()));
+        game.getPacman().setState(new projet.entities.pacmanstate.InvisibleState(game, game.getPacman()));
         game.setPowerTime(40);
     }
 

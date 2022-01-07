@@ -1,11 +1,11 @@
-package projet.Entities.pacmanstate;
+package projet.entities.pacmanstate;
 
 import java.util.Objects;
 
 import projet.PacManGame;
-import projet.Entities.Character;
-import projet.Entities.Ghost;
-import projet.Entities.PacMan;
+import projet.entities.Character;
+import projet.entities.Ghost;
+import projet.entities.PacMan;
 
 public abstract class PacmanState {
 
@@ -17,8 +17,14 @@ public abstract class PacmanState {
         this.pacman = pacman;
     }
 
+    /**
+     * Methode appelee quand le sujet performe une action
+     */
     public abstract void action();
 
+    /**
+     * Fait deplacer pacman si possible
+     */
     protected void move() {
         if (Objects.equals(pacman.getDirection(), Character.UP)
                 && context.checkerUp(pacman.getPosX(), pacman.getPosY()) != 1)
@@ -35,20 +41,21 @@ public abstract class PacmanState {
     }
 
     /**
-	 * Regarde si la direction de pacman et d'un fantome soient opposee
+     * Regarde si la direction de pacman et d'un fantome soient opposee
+     * 
      * @param ghost le fantome avec lequelle comparer
      * @return true s'il sont oppose false sinon
-	 */
+     */
     protected boolean isOpposed(Ghost ghost) {
-        return (Objects.equals(pacman.getDirection(), projet.Entities.Character.UP)
-                && Objects.equals(ghost.getDirection(), projet.Entities.Character.DOWN)) ||
-                (Objects.equals(pacman.getDirection(), projet.Entities.Character.DOWN)
-                        && Objects.equals(ghost.getDirection(), projet.Entities.Character.UP))
+        return (Objects.equals(pacman.getDirection(), projet.entities.Character.UP)
+                && Objects.equals(ghost.getDirection(), projet.entities.Character.DOWN)) ||
+                (Objects.equals(pacman.getDirection(), projet.entities.Character.DOWN)
+                        && Objects.equals(ghost.getDirection(), projet.entities.Character.UP))
                 ||
-                (Objects.equals(pacman.getDirection(), projet.Entities.Character.RIGHT)
-                        && Objects.equals(ghost.getDirection(), projet.Entities.Character.LEFT))
+                (Objects.equals(pacman.getDirection(), projet.entities.Character.RIGHT)
+                        && Objects.equals(ghost.getDirection(), projet.entities.Character.LEFT))
                 ||
-                (Objects.equals(pacman.getDirection(), projet.Entities.Character.LEFT)
-                        && Objects.equals(ghost.getDirection(), projet.Entities.Character.RIGHT));
+                (Objects.equals(pacman.getDirection(), projet.entities.Character.LEFT)
+                        && Objects.equals(ghost.getDirection(), projet.entities.Character.RIGHT));
     }
 }

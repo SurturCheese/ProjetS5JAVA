@@ -6,16 +6,16 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-import projet.Blocs.BluePellet;
-import projet.Blocs.Element;
-import projet.Blocs.GreenPellet;
-import projet.Blocs.Map;
-import projet.Blocs.OrangePellet;
-import projet.Blocs.Pellet;
-import projet.Blocs.TeleportPoint;
-import projet.Blocs.VioletPellet;
-import projet.Entities.Ghost;
-import projet.Entities.PacMan;
+import projet.blocs.BluePellet;
+import projet.blocs.Element;
+import projet.blocs.GreenPellet;
+import projet.blocs.Map;
+import projet.blocs.OrangePellet;
+import projet.blocs.Pellet;
+import projet.blocs.TeleportPoint;
+import projet.blocs.VioletPellet;
+import projet.entities.Ghost;
+import projet.entities.PacMan;
 
 public class PacManGame {
 
@@ -45,14 +45,14 @@ public class PacManGame {
 	 */
 	public void setGame() {
 		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY());
-		pacman.setState(new projet.Entities.pacmanstate.NormalState(this, pacman));
+		pacman.setState(new projet.entities.pacmanstate.NormalState(this, pacman));
 		listGhost = new ArrayList<>();
 		listGhost.add(new Ghost(new Color(252, 37, 2), map.getSpawnGhostX(), map.getSpawnGhostY()));
 		listGhost.add(new Ghost(new Color(249, 163, 0), map.getSpawnGhostX(), map.getSpawnGhostY()));
 		listGhost.add(new Ghost(new Color(254, 179, 177), map.getSpawnGhostX(), map.getSpawnGhostY()));
 		listGhost.add(new Ghost(new Color(1, 221, 225), map.getSpawnGhostX(), map.getSpawnGhostY()));
 		for (Ghost ghost : listGhost) {
-			ghost.setState(new projet.Entities.ghoststate.NormalState(this, ghost));
+			ghost.setState(new projet.entities.ghoststate.NormalState(this, ghost));
 		}
 		listPellet = new ArrayList<>();
 		listElement = new ArrayList<>();
@@ -107,9 +107,9 @@ public class PacManGame {
 		if (powerTime > 0)
 			powerTime--;
 		if (powerTime == 0) {
-			pacman.setState(new projet.Entities.pacmanstate.NormalState(this, pacman));
+			pacman.setState(new projet.entities.pacmanstate.NormalState(this, pacman));
 			for (Ghost ghost : listGhost)
-				ghost.setState(new projet.Entities.ghoststate.NormalState(this, ghost));
+				ghost.setState(new projet.entities.ghoststate.NormalState(this, ghost));
 		}
 		if (lives == 0) {
 			JOptionPane.showMessageDialog(null, "Perdu! (>_<) Score : " + getScore());

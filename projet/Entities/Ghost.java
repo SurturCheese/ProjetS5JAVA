@@ -1,7 +1,8 @@
-package projet.Entities;
+package projet.entities;
 
 import java.awt.Color;
-import projet.Entities.ghoststate.GhostState;
+
+import projet.entities.ghoststate.GhostState;
 
 public class Ghost extends Character {
 

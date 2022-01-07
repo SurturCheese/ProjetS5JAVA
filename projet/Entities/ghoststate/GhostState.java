@@ -1,11 +1,11 @@
-package projet.Entities.ghoststate;
+package projet.entities.ghoststate;
 
 import java.util.Objects;
 import java.util.Random;
 
 import projet.PacManGame;
-import projet.Entities.Character;
-import projet.Entities.Ghost;
+import projet.entities.Character;
+import projet.entities.Ghost;
 
 public abstract class GhostState {
     protected Ghost ghost;
@@ -18,6 +18,10 @@ public abstract class GhostState {
         random = new Random();
     }
 
+
+    /**
+     * Methode appelee quand le sujet performe une action
+     */
     public abstract void action();
 
     protected void move() {
@@ -37,7 +41,12 @@ public abstract class GhostState {
         }
     }
 
-    protected boolean changeDirectionStraight() {
+    /**
+     * Verifie si le fantome peut aller tout droit et le fait si possible.
+     * 
+     * @return True si le fantome s'est deplace, false sinon.
+     */
+    protected boolean directionStraight() {
         int up = context.checkerUp(ghost.getPosX(), ghost.getPosY());
         int down = context.checkerDown(ghost.getPosX(), ghost.getPosY());
         int right = context.checkerRight(ghost.getPosX(), ghost.getPosY());
@@ -64,6 +73,10 @@ public abstract class GhostState {
         return false;
     }
 
+    /**
+     * Verifie si le fantome est dans un angle et si oui, choisi une direction
+     * aleatoire.
+     */
     protected void changeDirectionAngle() {
         int up = context.checkerUp(ghost.getPosX(), ghost.getPosY());
         int down = context.checkerDown(ghost.getPosX(), ghost.getPosY());
@@ -105,6 +118,10 @@ public abstract class GhostState {
         }
     }
 
+    /**
+     * Verifie si le fantome est dans un croisement en T et si oui, choisi une
+     * direction aleatoire s'il ne peut pas avancer tout droit.
+     */
     protected void changeDirectionTjunction() {
         int up = context.checkerUp(ghost.getPosX(), ghost.getPosY());
         int down = context.checkerDown(ghost.getPosX(), ghost.getPosY());
@@ -195,6 +212,9 @@ public abstract class GhostState {
         }
     }
 
+    /**
+     * Verifie si le fantome est dans un cul de sac et si oui revient en arrière
+     */
     protected void changeDirectionDeadend() {
         int up = context.checkerUp(ghost.getPosX(), ghost.getPosY());
         int down = context.checkerDown(ghost.getPosX(), ghost.getPosY());
@@ -215,12 +235,16 @@ public abstract class GhostState {
         }
     }
 
+    /**
+     * Verifie si le fantome est dans un carrefour et si oui, choisi une direction
+     * aleatoire
+     */
     protected void changeDirectionCross() {
         int up = context.checkerUp(ghost.getPosX(), ghost.getPosY());
         int down = context.checkerDown(ghost.getPosX(), ghost.getPosY());
         int right = context.checkerRight(ghost.getPosX(), ghost.getPosY());
         int left = context.checkerLeft(ghost.getPosX(), ghost.getPosY());
-        if (up != 1 && down != 1 && right != 1 && left != 1) 
+        if (up != 1 && down != 1 && right != 1 && left != 1)
             move();
     }
 

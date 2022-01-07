@@ -1,7 +1,8 @@
-package projet.Entities;
+package projet.entities;
 
 import java.awt.Color;
-import projet.Entities.pacmanstate.PacmanState;
+
+import projet.entities.pacmanstate.PacmanState;
 
 public class PacMan extends Character {
 

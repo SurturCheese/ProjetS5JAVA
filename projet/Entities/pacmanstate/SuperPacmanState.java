@@ -1,10 +1,10 @@
-package projet.Entities.pacmanstate;
+package projet.entities.pacmanstate;
 
 import java.awt.Color;
 
 import projet.PacManGame;
-import projet.Entities.Ghost;
-import projet.Entities.PacMan;
+import projet.entities.Ghost;
+import projet.entities.PacMan;
 
 public class SuperPacmanState extends PacmanState {
 

@@ -1,7 +1,7 @@
-package projet.Blocs;
+package projet.blocs;
 
 import projet.PacManGame;
-import projet.Entities.Ghost;
+import projet.entities.Ghost;
 
 public class TeleportPoint extends Element {
 
@@ -9,6 +9,7 @@ public class TeleportPoint extends Element {
         super(posX, posY, game);
     }
     
+
     @Override
     public void action() {
         if (game.getPacman().getPosX() == posX && game.getPacman().getPosY() == posY) {

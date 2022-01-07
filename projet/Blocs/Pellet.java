@@ -1,4 +1,4 @@
-package projet.Blocs;
+package projet.blocs;
 
 import projet.PacManGame;
 

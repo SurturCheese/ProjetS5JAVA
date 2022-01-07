@@ -7,12 +7,12 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
-import projet.Blocs.GreenPellet;
-import projet.Blocs.OrangePellet;
-import projet.Blocs.Pellet;
-import projet.Blocs.VioletPellet;
-import projet.Entities.Ghost;
-import projet.Entities.PacMan;
+import projet.blocs.GreenPellet;
+import projet.blocs.OrangePellet;
+import projet.blocs.Pellet;
+import projet.blocs.VioletPellet;
+import projet.entities.Ghost;
+import projet.entities.PacMan;
 
 public class PacManView extends JComponent {
 
