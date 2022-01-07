@@ -13,6 +13,9 @@ public class SuperPacmanState extends PacmanState {
         pacman.setColor(Color.ORANGE);
     }
 
+    /**
+	 * Methode appelee quand le sujet performe une action
+	 */
     @Override
     public void action() {
         move();

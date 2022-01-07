@@ -13,6 +13,9 @@ public class NormalState extends PacmanState {
         pacman.setColor(Color.YELLOW);
     }
 
+    /**
+	 * Methode appelee quand le sujet performe une action
+	 */
     @Override
     public void action() {
         move();

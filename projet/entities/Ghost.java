@@ -25,6 +25,9 @@ public class Ghost extends Character {
 		return baseColor;
 	}
 
+	/**
+	 * Methode appelee quand le sujet performe une action
+	 */
 	public void action() {
 		state.action();
 	}

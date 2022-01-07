@@ -14,6 +14,9 @@ public class ScaredState extends GhostState {
         ghost.setColor(new Color(25, 25, 166));
     }
 
+    /**
+	 * Methode appelee quand le sujet performe une action
+	 */
     @Override
     public void action() {
         if (skipTurn) {

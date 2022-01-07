@@ -10,6 +10,9 @@ public class NormalState extends GhostState {
         ghost.setColor(ghost.getBaseColor());
     }
 
+    /**
+	 * Methode appelee quand le sujet performe une action
+	 */
     @Override
     public void action() {
         if (context.getMap().isTeleportPoint(ghost.getPosX(), ghost.getPosY()))

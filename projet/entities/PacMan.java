@@ -18,6 +18,9 @@ public class PacMan extends Character {
 		this.state = state;
 	}
 
+	/**
+	 * Methode appelee quand le sujet performe une action
+	 */
 	public void action() {
 		state.action();
 	}
