@@ -9,9 +9,13 @@ java projet.app
 Règle de notre jeu : 
   Victoire / perte :
     - Le joueur perd s'il n'a plus de vie
-    - Le joueur gagne s'il a rammassé tout les pacgommes après avoir changé de map de jeu 
-  Pellet :
-    - Mêmes règles que dans le sujet
+    - Le joueur gagne s'il a rammassé tout les pacgommes 
+      ( donc après avoir changé de labyrinthe une fois )
+  Pacgommes :
+    - Pacgomme bleu : 100 points
+    - Pacgomme violet : 300 points et pacman devient invisible
+    - Pacgomme orange : 500 points et pacman devient superpacman (invincible)
+    - Pacgomme vert : 100 change le labyrinthe
   Fantomes : 
     - Chaque fantôme se d´eplace dans une direction jusqu’a ce qu’il atteigne un mur, puis choisit une nouvelle
       direction aléatoirement
@@ -22,5 +26,5 @@ Règle de notre jeu :
     - Si pacman prend un dégât alors tout les fantomes sont téléporté à leur point de départ 
       Fait pour éviter de prendre des dégats au moment où l'on réapparait
 
- 
+ Lien github : https://github.com/SurturCheese/ProjetS5JAVA
       
