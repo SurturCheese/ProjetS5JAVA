@@ -1,22 +1,21 @@
 package projet;
 
-import projet.Entities.Ghost;
-import projet.Entities.PacMan;
-import projet.Blocs.Element;
-import projet.Blocs.Pellet;
-import projet.Blocs.Map;
-import projet.Blocs.BluePellet;
-import projet.Blocs.VioletPellet;
-import projet.Blocs.OrangePellet;
-import projet.Blocs.GreenPellet;
-import projet.Blocs.TeleportPoint;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import javax.swing.JOptionPane;
+
+import projet.Blocs.BluePellet;
+import projet.Blocs.Element;
+import projet.Blocs.GreenPellet;
+import projet.Blocs.Map;
+import projet.Blocs.OrangePellet;
+import projet.Blocs.Pellet;
+import projet.Blocs.TeleportPoint;
+import projet.Blocs.VioletPellet;
+import projet.Entities.Ghost;
+import projet.Entities.PacMan;
 
 public class PacManGame {
 
@@ -102,13 +101,18 @@ public class PacManGame {
 	}
 
 	public void step() {
-		pacman.move();
-		checkCase();
-		for (Ghost ghost : listGhost)
-			ghost.move();
-		for (Element element : listElement) {
-			element.action();
+		pacman.action();
+		for (Iterator<Pellet> it = listPellet.iterator(); it.hasNext();) {
+			Pellet pellet = it.next();
+			if (pacman.getPosX() == pellet.getPosX() && pacman.getPosY() == pellet.getPosY()) {
+				pellet.action();
+				it.remove();
+			}
 		}
+		for (Ghost ghost : listGhost)
+			ghost.action();
+		for (Element element : listElement)
+			element.action();
 		if (score >= 5000 && !bonusLifeGiven) {
 			lives++;
 			bonusLifeGiven = true;
@@ -118,12 +122,11 @@ public class PacManGame {
 		if (powerTime == 0) {
 			pacman.setStateNormal();
 			for (Ghost ghost : listGhost)
-				ghost.setStateNormal();
+				ghost.setState(new projet.Entities.ghoststate.NormalState(this, ghost));
 		}
 		if (lives == 0)
 			lose();
-		checkGhostContact();
-		if (listPellet.isEmpty()){
+		else if (listPellet.isEmpty()) {
 			view.repaint();
 			win();
 		}
@@ -143,58 +146,6 @@ public class PacManGame {
 
 	public int checkerLeft(int posX, int posY) {
 		return map.getMap()[posX - 1][posY];
-	}
-
-	private void checkCase() {
-		for (Iterator<Pellet> it = listPellet.iterator(); it.hasNext();) {
-			Pellet pellet = it.next();
-			if (pacman.getPosX() == pellet.getPosX() && pacman.getPosY() == pellet.getPosY()) {
-				pellet.action();
-				it.remove();
-			}
-		}
-	}
-
-	private void checkGhostContact() {
-		if (!(pacman.getState().equals(PacMan.INVISIBLE))) {
-			int pacmanPosX = pacman.getPosX();
-			int pacmanPosY = pacman.getPosY();
-			boolean damage = false;
-			for (Ghost ghost : listGhost) {
-				int ghostposX = ghost.getPosX();
-				int ghostposY = ghost.getPosY();
-				if ((pacmanPosX == ghostposX && pacmanPosY == ghostposY)
-						|| (pacmanPosX == ghostposX && pacmanPosY - 1 == ghostposY && isOpposed(ghost))
-						|| (pacmanPosX == ghostposX && pacmanPosY + 1 == ghostposY && isOpposed(ghost))
-						|| (pacmanPosX - 1 == ghostposX && pacmanPosY == ghostposY && isOpposed(ghost))
-						|| (pacmanPosX + 1 == ghostposX && pacmanPosY == ghostposY && isOpposed(ghost))) {
-					if (pacman.getState().equals(PacMan.SUPERPACMAN))
-						ghost.teleport(map.getSpawnGhostX(), map.getSpawnGhostY());
-					else
-						damage = true;
-				}
-			}
-			if (damage) {
-				lives--;
-				pacman.teleport(map.getSpawnPacmanX(), map.getSpawnPacmanY());
-				for (Ghost ghost : listGhost) {
-					ghost.teleport(map.getSpawnGhostX(), map.getSpawnGhostY());
-				}
-			}
-		}
-	}
-
-	private boolean isOpposed(Ghost ghost) {
-		return (Objects.equals(pacman.getDirection(), projet.Entities.Character.UP)
-				&& Objects.equals(ghost.getDirection(), projet.Entities.Character.DOWN)) ||
-				(Objects.equals(pacman.getDirection(), projet.Entities.Character.DOWN)
-						&& Objects.equals(ghost.getDirection(), projet.Entities.Character.UP))
-				||
-				(Objects.equals(pacman.getDirection(), projet.Entities.Character.RIGHT)
-						&& Objects.equals(ghost.getDirection(), projet.Entities.Character.LEFT))
-				||
-				(Objects.equals(pacman.getDirection(), projet.Entities.Character.LEFT)
-						&& Objects.equals(ghost.getDirection(), projet.Entities.Character.RIGHT));
 	}
 
 	private void lose() {
@@ -226,6 +177,10 @@ public class PacManGame {
 
 	public void setPowerTime(int nb) {
 		powerTime = nb;
+	}
+
+	public void subLives() {
+		lives--;
 	}
 
 }

@@ -1,40 +1,26 @@
 package projet.Entities;
 
-import projet.PacManGame;
-
 import java.awt.Color;
-import java.util.Objects;
+
+import projet.PacManGame;
+import projet.Entities.pacmanstate.InvisibleState;
+import projet.Entities.pacmanstate.NormalState;
+import projet.Entities.pacmanstate.PacmanState;
+import projet.Entities.pacmanstate.SuperPacmanState;
 
 public class PacMan extends Character {
 
-	public static final String NORMAL = "NORMAL";
-	public static final String INVISIBLE = "INVISIBLE";
-	public static final String SUPERPACMAN = "SUPERPACMAN";
 	private PacManGame game;
 	private boolean isAlive;
+	private PacmanState state;
 
 	public PacMan(int posX, int posY, PacManGame game) {
 		this.game = game;
 		this.posX = posX;
 		this.posY = posY;
-		state = NORMAL;
+		state = new NormalState(game,this);
 		color = Color.YELLOW;
 		isAlive = true;
-	}
-
-	public void setStateNormal() {
-		state = NORMAL;
-		color = Color.YELLOW;
-	}
-
-	public void setStateInvisible() {
-		state = INVISIBLE;
-		color = new Color(255, 255, 210, 255);
-	}
-
-	public void setStateSuperpacman() {
-		state = SUPERPACMAN;
-		color = Color.ORANGE;
 	}
 
 	public void setDead() {
@@ -45,14 +31,20 @@ public class PacMan extends Character {
 		return this.isAlive;
 	}
 
-	public void move() {
-		if (Objects.equals(direction, UP) && game.checkerUp(posX, posY) != 1)
-			posY--;
-		else if (Objects.equals(direction, DOWN) && game.checkerDown(posX, posY) != 1)
-			posY++;
-		else if (Objects.equals(direction, RIGHT) && game.checkerRight(posX, posY) != 1)
-			posX++;
-		else if (Objects.equals(direction, LEFT) && game.checkerLeft(posX, posY) != 1)
-			posX--;
+	public void action() {
+		state.action();
 	}
+
+    public void setStateSuperpacman() {
+		state = new SuperPacmanState(game,this);
+    }
+
+    public void setStateInvisible() {
+		state = new InvisibleState(game, this);
+    }
+
+	public void setStateNormal() {
+		state = new NormalState(game, this);
+	}
+
 }

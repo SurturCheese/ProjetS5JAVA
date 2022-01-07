@@ -1,18 +1,18 @@
 package projet;
 
-import projet.Blocs.Pellet;
-import projet.Blocs.VioletPellet;
-import projet.Blocs.GreenPellet;
-import projet.Blocs.OrangePellet;
-import projet.Entities.Ghost;
-import projet.Entities.PacMan;
-
-import java.awt.Graphics;
-import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+
+import projet.Blocs.GreenPellet;
+import projet.Blocs.OrangePellet;
+import projet.Blocs.Pellet;
+import projet.Blocs.VioletPellet;
+import projet.Entities.Ghost;
+import projet.Entities.PacMan;
 
 public class PacManView extends JComponent {
 

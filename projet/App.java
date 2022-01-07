@@ -1,9 +1,9 @@
 package projet;
 
 import java.awt.Color;
-import javax.swing.JFrame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 
 public class App {
 
