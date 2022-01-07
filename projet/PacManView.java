@@ -27,7 +27,7 @@ public class PacManView extends JComponent {
 	}
 
 	/**
-	 * Affiche la carte et le score
+	 * Affichage du jeu
 	 * @param g
 	 */
 	@Override
@@ -63,7 +63,7 @@ public class PacManView extends JComponent {
 
 	/**
 	 * Affiche la carte
-	 * @param g
+	 * @param g 
 	 */
 	private void drawMap(Graphics g) {
 		int[][] map = game.getMap().getMap();
@@ -90,7 +90,7 @@ public class PacManView extends JComponent {
 
 	/**
 	 * Affiche le pacman
-	 * @param g
+	 * @param g 
 	 */
 	private void drawPacMan(Graphics g) {
 		PacMan pacMan = game.getPacman();
