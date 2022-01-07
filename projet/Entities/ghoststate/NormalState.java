@@ -14,13 +14,11 @@ public class NormalState extends GhostState {
     public void action() {
         if (context.getMap().isTeleportPoint(ghost.getPosX(), ghost.getPosY()))
             move();
-        else {
-            if (!changeDirectionStraight()) {
-                changeDirectionAngle();
-                changeDirectionDeadend();
-                changeDirectionTjunction();
-                changeDirectionCross();
-            }
+        else if (!changeDirectionStraight()) {
+            changeDirectionAngle();
+            changeDirectionDeadend();
+            changeDirectionTjunction();
+            changeDirectionCross();
         }
     }
 

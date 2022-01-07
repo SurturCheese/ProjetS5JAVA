@@ -220,9 +220,8 @@ public abstract class GhostState {
         int down = context.checkerDown(ghost.getPosX(), ghost.getPosY());
         int right = context.checkerRight(ghost.getPosX(), ghost.getPosY());
         int left = context.checkerLeft(ghost.getPosX(), ghost.getPosY());
-        if (up != 1 && down != 1 && right != 1 && left != 1) {
+        if (up != 1 && down != 1 && right != 1 && left != 1) 
             move();
-        }
     }
 
 }

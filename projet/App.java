@@ -38,7 +38,7 @@ public class App {
 			}
 		});
 		frame.setVisible(true);
-		while (game.getPacman().isAlive()) {
+		while (frame.isActive()) {
 			game.step();
 			view.repaint();
 			try {

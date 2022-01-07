@@ -5,14 +5,13 @@ import java.awt.Color;
 public abstract class Character {
 
 	public static final String UP = "UP";
-    public static final String RIGHT = "RIGHT";
-    public static final String DOWN = "DOWN";
-    public static final String LEFT = "LEFT";
+	public static final String RIGHT = "RIGHT";
+	public static final String DOWN = "DOWN";
+	public static final String LEFT = "LEFT";
 	protected Color color;
 	protected String direction;
 	protected int posX;
 	protected int posY;
-
 
 	public void setColor(Color color) {
 		this.color = color;
@@ -30,12 +29,12 @@ public abstract class Character {
 		return posY;
 	}
 
-	public void setPosX(int nb) {
-		posX = nb;
+	public void setPosX(int x) {
+		posX = x;
 	}
 
-	public void setPosY(int nb) {
-		posY = nb;
+	public void setPosY(int y) {
+		posY = y;
 	}
 
 	public void teleport(int x, int y) {

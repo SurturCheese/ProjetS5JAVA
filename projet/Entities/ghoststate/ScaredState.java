@@ -19,13 +19,11 @@ public class ScaredState extends GhostState {
         if (skipTurn) {
             if (context.getMap().isTeleportPoint(ghost.getPosX(), ghost.getPosY()))
                 move();
-            else {
-                if (!changeDirectionStraight()) {
-                    changeDirectionAngle();
-                    changeDirectionDeadend();
-                    changeDirectionTjunction();
-                    changeDirectionCross();
-                }
+            else if (!changeDirectionStraight()) {
+                changeDirectionAngle();
+                changeDirectionDeadend();
+                changeDirectionTjunction();
+                changeDirectionCross();
             }
         }
         skipTurn = !skipTurn;

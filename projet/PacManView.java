@@ -18,7 +18,7 @@ public class PacManView extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 	private PacManGame game;
-	private int TILESIZE = 30;
+	static final int TILESIZE = 30;
 
 	public PacManView(PacManGame game) {
 		super();

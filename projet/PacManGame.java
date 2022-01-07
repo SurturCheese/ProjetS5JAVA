@@ -16,7 +16,6 @@ import projet.Blocs.TeleportPoint;
 import projet.Blocs.VioletPellet;
 import projet.Entities.Ghost;
 import projet.Entities.PacMan;
-import projet.Entities.ghoststate.NormalState;
 
 public class PacManGame {
 
@@ -50,11 +49,11 @@ public class PacManGame {
 		listGhost.add(new Ghost(new Color(254, 179, 177), map.getSpawnGhostX(), map.getSpawnGhostY()));
 		listGhost.add(new Ghost(new Color(1, 221, 225), map.getSpawnGhostX(), map.getSpawnGhostY()));
 		for (Ghost ghost : listGhost) {
-			ghost.setState(new NormalState(this , ghost));
+			ghost.setState(new projet.Entities.ghoststate.NormalState(this, ghost));
 		}
 		listPellet = new ArrayList<>();
 		listElement = new ArrayList<>();
-		
+
 		for (int i = 0; i < map.getMap().length; i++) {
 			for (int j = 0; j < map.getMap()[i].length; j++) {
 				switch (map.getMap()[i][j]) {
@@ -153,7 +152,6 @@ public class PacManGame {
 	}
 
 	private void lose() {
-		pacman.setDead();
 		JOptionPane.showMessageDialog(null, "Perdu! (>_<) Score : " + getScore());
 		System.exit(0);
 	}
