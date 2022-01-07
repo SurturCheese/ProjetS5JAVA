@@ -6,8 +6,8 @@ public class Map {
 
 	// case vide (0), mur (1), pellet (2), pellet violet (3), pellet orange (4),
 	// pellet vert (5), spawnPacman (6), spawnGhost (7), wrap around (8)
-	private int hauteur;
-	private int longueur;
+	private int height;
+	private int length;
 	private String type;
 	public static final String DEFAULT = "DEFAULT";
 	public static final String GOOGLE = "GOOGLE";
@@ -108,12 +108,12 @@ public class Map {
 	public Map(String type) {
 		this.type = type;
 		if (type.equals(DEFAULT)) {
-			this.hauteur = defaultMap[0].length;
-			this.longueur = defaultMap.length;
+			this.height = defaultMap[0].length;
+			this.length = defaultMap.length;
 		}
 		if (type.equals(GOOGLE)) {
-			this.hauteur = googleMap[0].length;
-			this.longueur = googleMap.length;
+			this.height = googleMap[0].length;
+			this.length = googleMap.length;
 		}
 		this.teleportA = new int[2];
 		this.teleportB = new int[2];
@@ -124,12 +124,12 @@ public class Map {
 		return getMap()[x][y] == 8;
 	}
 
-	public int getHauteur() {
-		return hauteur;
+	public int getheight() {
+		return height;
 	}
 
-	public int getLongueur() {
-		return longueur;
+	public int getlength() {
+		return length;
 	}
 
 	public String getType() {
@@ -161,7 +161,7 @@ public class Map {
 
 	public void setMapInfo() {
 		int[][] tempMap = getMap();
-		boolean premier = true;
+		boolean greenPelletUsed = true;
 		for (int i = 0; i < tempMap.length; i++) {
 			for (int j = 0; j < tempMap[i].length; j++) {
 				if (tempMap[i][j] == 6) {
@@ -172,11 +172,11 @@ public class Map {
 					spawnGhostX = i;
 					spawnGhostY = j;
 				}
-				if (tempMap[i][j] == 8 && premier) {
+				if (tempMap[i][j] == 8 && greenPelletUsed) {
 					this.teleportA[0] = i;
 					this.teleportA[1] = j;
-					premier = false;
-				} else if (tempMap[i][j] == 8 && !premier) {
+					greenPelletUsed = false;
+				} else if (tempMap[i][j] == 8 && !greenPelletUsed) {
 					this.teleportB[0] = i;
 					this.teleportB[1] = j;
 				}
@@ -193,12 +193,12 @@ public class Map {
 
 	public void swapMap() {
 		if (type.equals(GOOGLE)) {
-			hauteur = defaultMap[0].length;
-			longueur = defaultMap.length;
+			height = defaultMap[0].length;
+			length = defaultMap.length;
 			type = DEFAULT;
 		} else if (type.equals(DEFAULT)) {
-			hauteur = googleMap[0].length;
-			longueur = googleMap.length;
+			height = googleMap[0].length;
+			length = googleMap.length;
 			type = GOOGLE;
 		}
 		setMapInfo();
