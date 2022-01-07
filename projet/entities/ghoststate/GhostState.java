@@ -7,6 +7,9 @@ import projet.PacManGame;
 import projet.entities.Character;
 import projet.entities.Ghost;
 
+/**
+ * Classe permettant de mettre en place le patron de conception State pour les fantomes
+ */
 public abstract class GhostState {
     protected Ghost ghost;
     protected PacManGame context;
@@ -18,15 +21,14 @@ public abstract class GhostState {
         random = new Random();
     }
 
-
     /**
      * Methode appelee quand le sujet performe une action
      */
     public abstract void action();
 
     /**
-	 * Fait bouger le fantome dans la direction definie
-	 */
+     * Fait bouger le fantome dans la direction definie
+     */
     protected void move() {
         switch (ghost.getDirection()) {
             case Character.UP:

@@ -6,6 +6,9 @@ import projet.PacManGame;
 import projet.entities.Ghost;
 import projet.entities.PacMan;
 
+/**
+ * Representation de l'etat "normal" de pacman dans le patron State
+ */
 public class NormalState extends PacmanState {
 
     public NormalState(PacManGame context, PacMan pacman) {

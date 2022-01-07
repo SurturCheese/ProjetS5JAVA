@@ -4,6 +4,9 @@ import java.awt.Color;
 
 import projet.entities.ghoststate.GhostState;
 
+/**
+ * Implémentation des fantomes du jeu
+ */
 public class Ghost extends Character {
 
 	private Color baseColor;

@@ -3,6 +3,10 @@ package projet.blocs;
 import projet.PacManGame;
 import projet.entities.Ghost;
 
+/**
+ * Representation du point de teleportation
+ * Donne un effet de "wraparound" quand un fantome ou pacman va dessus
+ */
 public class TeleportPoint extends Element {
 
     public TeleportPoint(int posX, int posY, PacManGame game) {
@@ -10,7 +14,7 @@ public class TeleportPoint extends Element {
     }
     
     /**
-	 * Methode appelee quand le sujet performe une action
+	 * Cette méthode vérifie si un fantome ou pacman est sur le point de teleportation et change la position de l'entitee si c'est le cas
 	 */
     @Override
     public void action() {

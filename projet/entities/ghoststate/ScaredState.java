@@ -5,6 +5,10 @@ import java.awt.Color;
 import projet.PacManGame;
 import projet.entities.Ghost;
 
+/**
+ * Representation de l'etat "scared" des fantomes dans le patron State
+ */
+
 public class ScaredState extends GhostState {
     private boolean skipTurn;
 
@@ -15,8 +19,8 @@ public class ScaredState extends GhostState {
     }
 
     /**
-	 * Methode appelee quand le sujet performe une action
-	 */
+     * Methode appelee quand le sujet performe une action
+     */
     @Override
     public void action() {
         if (skipTurn) {

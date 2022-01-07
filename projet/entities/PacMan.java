@@ -4,6 +4,9 @@ import java.awt.Color;
 
 import projet.entities.pacmanstate.PacmanState;
 
+/**
+ * Implémentation du pacman que le joueur controle
+ */
 public class PacMan extends Character {
 
 	private PacmanState state;

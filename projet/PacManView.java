@@ -14,6 +14,9 @@ import projet.blocs.VioletPellet;
 import projet.entities.Ghost;
 import projet.entities.PacMan;
 
+/**
+ * Classe gerant l'affichage du jeu. 
+ */
 public class PacManView extends JComponent {
 
 	private static final long serialVersionUID = 1L;

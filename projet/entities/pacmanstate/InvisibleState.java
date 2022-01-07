@@ -5,7 +5,9 @@ import java.awt.Color;
 import projet.PacManGame;
 import projet.entities.PacMan;
 
-
+/**
+ * Representation de l'etat "invisible" de pacman dans le patron State
+ */
 public class InvisibleState extends PacmanState {
 
     public InvisibleState(PacManGame context, PacMan pacman) {

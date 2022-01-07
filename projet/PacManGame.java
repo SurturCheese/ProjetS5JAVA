@@ -17,6 +17,10 @@ import projet.blocs.VioletPellet;
 import projet.entities.Ghost;
 import projet.entities.PacMan;
 
+/**
+ * Classe qui a pour rôle de mettre en place et connecter les differents elements de jeu pour son fonctionnemment 
+ * 
+ */
 public class PacManGame {
 
 	private PacMan pacman;

@@ -2,6 +2,9 @@ package projet.entities;
 
 import java.awt.Color;
 
+/**
+ * Super classe abstrait pour factoriser l'implementation des fantomes et de pacman
+ */
 public abstract class Character {
 
 	public static final String UP = "UP";

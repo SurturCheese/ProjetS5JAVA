@@ -2,9 +2,19 @@ package projet.blocs;
 
 import java.util.Arrays;
 
+/**
+ * Implémentation de la grille de jeu
+ * case vide (0)
+ * mur (1)
+ * pellet (2)
+ * pellet violet (3)
+ * pellet orange (4),
+ * pellet vert (5)
+ * spawnPacman (6)
+ * spawnGhost (7)
+ * wrap around (8)
+ */
 public class Map {
-
-	// case vide (0), mur (1), pellet (2), pellet violet (3), pellet orange (4), pellet vert (5), spawnPacman (6), spawnGhost (7), wrap around (8)
 	private int height;
 	private int length;
 	private String type;

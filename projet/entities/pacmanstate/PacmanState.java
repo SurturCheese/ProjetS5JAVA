@@ -7,6 +7,9 @@ import projet.entities.Character;
 import projet.entities.Ghost;
 import projet.entities.PacMan;
 
+/**
+ * Classe permettant de mettre en place le patron de conception State pour pacman
+ */
 public abstract class PacmanState {
 
     protected PacMan pacman;

@@ -4,6 +4,10 @@ import java.awt.Color;
 
 import projet.PacManGame;
 
+/**
+ * Representation du pacgomme violet avec ses actions
+ * Herite de la super classe Pellet
+ */
 public class VioletPellet extends Pellet {
 
     public VioletPellet(int posX, int posY, PacManGame game) {

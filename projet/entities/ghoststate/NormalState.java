@@ -3,6 +3,10 @@ package projet.entities.ghoststate;
 import projet.PacManGame;
 import projet.entities.Ghost;
 
+/**
+ * Representation de l'etat "normal" des fantomes dans le patron State 
+ */
+
 public class NormalState extends GhostState {
 
     public NormalState(PacManGame context, Ghost ghost) {
@@ -11,8 +15,8 @@ public class NormalState extends GhostState {
     }
 
     /**
-	 * Methode appelee quand le sujet performe une action
-	 */
+     * Methode appelee quand le sujet performe une action
+     */
     @Override
     public void action() {
         if (context.getMap().isTeleportPoint(ghost.getPosX(), ghost.getPosY()))

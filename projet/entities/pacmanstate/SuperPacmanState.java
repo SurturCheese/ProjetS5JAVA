@@ -6,6 +6,9 @@ import projet.PacManGame;
 import projet.entities.Ghost;
 import projet.entities.PacMan;
 
+/**
+ * Representation de l'etat "invisible" de pacman dans le patron State
+ */
 public class SuperPacmanState extends PacmanState {
 
     public SuperPacmanState(PacManGame context, PacMan pacman) {

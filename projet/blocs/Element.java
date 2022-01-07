@@ -4,6 +4,9 @@ import java.awt.Color;
 
 import projet.PacManGame;
 
+/**
+ * Super classe abstraite pour factoriser la declaration des elements de la grille de jeu
+ */
 public abstract class Element {
 	protected int posX;
 	protected int posY;
