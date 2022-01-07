@@ -19,7 +19,9 @@ public class GreenPellet extends Pellet {
         game.addPoints(1000);
         if (!game.getMapChanged()) {
             game.getMap().swapMap();
-            game.getView().swapMap();
+            //game.getView().swapMap();
+            setPreferredSize(new Dimension(TILESIZE * game.getMap().getLength(), TILESIZE * game.getMap().getHeight()));
+		    SwingUtilities.getWindowAncestor(this).pack();
             game.setGame();
             game.setMapChanged();
         }
