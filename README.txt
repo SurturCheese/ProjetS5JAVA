@@ -8,7 +8,7 @@ java projet.App
 
 Problème de compilation / éxécution ? 
     -> Etre sûr d'avoir au moins java 8 
-    -> La fenêtre doit être en focus
+    -> Le jeu est un peu saccadé sur Linux
 
 Règle de notre jeu : 
   Victoire / perte :
