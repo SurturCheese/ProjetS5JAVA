@@ -16,6 +16,7 @@ import projet.Blocs.TeleportPoint;
 import projet.Blocs.VioletPellet;
 import projet.Entities.Ghost;
 import projet.Entities.PacMan;
+import projet.Entities.ghoststate.NormalState;
 
 public class PacManGame {
 
@@ -41,19 +42,22 @@ public class PacManGame {
 	}
 
 	public void setGame() {
-		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY(), this);
+		pacman = new PacMan(map.getSpawnPacmanX(), map.getSpawnPacmanY());
+		pacman.setState(new projet.Entities.pacmanstate.NormalState(this, pacman));
 		listGhost = new ArrayList<>();
-		listGhost.add(new Ghost(new Color(252, 37, 2), map.getSpawnGhostX(), map.getSpawnGhostY(), this));
-		listGhost.add(new Ghost(new Color(249, 163, 0), map.getSpawnGhostX(), map.getSpawnGhostY(), this));
-		listGhost.add(new Ghost(new Color(254, 179, 177), map.getSpawnGhostX(), map.getSpawnGhostY(), this));
-		listGhost.add(new Ghost(new Color(1, 221, 225), map.getSpawnGhostX(), map.getSpawnGhostY(), this));
+		listGhost.add(new Ghost(new Color(252, 37, 2), map.getSpawnGhostX(), map.getSpawnGhostY()));
+		listGhost.add(new Ghost(new Color(249, 163, 0), map.getSpawnGhostX(), map.getSpawnGhostY()));
+		listGhost.add(new Ghost(new Color(254, 179, 177), map.getSpawnGhostX(), map.getSpawnGhostY()));
+		listGhost.add(new Ghost(new Color(1, 221, 225), map.getSpawnGhostX(), map.getSpawnGhostY()));
+		for (Ghost ghost : listGhost) {
+			ghost.setState(new NormalState(this , ghost));
+		}
 		listPellet = new ArrayList<>();
 		listElement = new ArrayList<>();
-		int[][] temp = map.getMap();
-		for (int i = 0; i < temp.length; i++) {
-			for (int j = 0; j < temp[i].length; j++) {
-				int valCase = temp[i][j];
-				switch (valCase) {
+		
+		for (int i = 0; i < map.getMap().length; i++) {
+			for (int j = 0; j < map.getMap()[i].length; j++) {
+				switch (map.getMap()[i][j]) {
 					case 2:
 						listPellet.add(new BluePellet(i, j, this));
 						break;
@@ -120,7 +124,7 @@ public class PacManGame {
 		if (powerTime > 0)
 			powerTime--;
 		if (powerTime == 0) {
-			pacman.setStateNormal();
+			pacman.setState(new projet.Entities.pacmanstate.NormalState(this, pacman));
 			for (Ghost ghost : listGhost)
 				ghost.setState(new projet.Entities.ghoststate.NormalState(this, ghost));
 		}
