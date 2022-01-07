@@ -42,7 +42,7 @@ public class App {
 			}
 		});
 		frame.setVisible(true);
-		while (frame.isActive()) {
+		while (frame.isEnabled()) {
 			game.step();
 			view.repaint();
 			try {
