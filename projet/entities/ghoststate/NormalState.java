@@ -15,7 +15,7 @@ public class NormalState extends GhostState {
     }
 
     /**
-     * Methode appelee quand le sujet performe une action
+     * Performe le deplacement du fantome
      */
     @Override
     public void action() {
@@ -28,5 +28,4 @@ public class NormalState extends GhostState {
                         changeDirectionCross();
 
     }
-
 }

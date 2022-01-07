@@ -19,7 +19,7 @@ public class ScaredState extends GhostState {
     }
 
     /**
-     * Methode appelee quand le sujet performe une action
+     * Performe le deplacement du fantome un tour sur deux
      */
     @Override
     public void action() {
