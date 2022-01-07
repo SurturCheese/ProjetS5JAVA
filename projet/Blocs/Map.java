@@ -15,8 +15,8 @@ public class Map {
 	private int spawnPacmanY;
 	private int spawnGhostX;
 	private int spawnGhostY;
-	public int[] teleportA;
-	public int[] teleportB;
+	private int[] teleportA;
+	private int[] teleportB;
 	private final int[][] googleMap = { { 1, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1 },
 			{ 1, 2, 2, 4, 2, 1, 1, 1, 0, 1, 1, 1, 2, 2, 2, 3, 1 },
 			{ 1, 2, 1, 1, 2, 1, 1, 1, 0, 1, 1, 1, 2, 1, 1, 2, 1 },
@@ -124,11 +124,11 @@ public class Map {
 		return getMap()[x][y] == 8;
 	}
 
-	public int getheight() {
+	public int getHeight() {
 		return height;
 	}
 
-	public int getlength() {
+	public int getLength() {
 		return length;
 	}
 

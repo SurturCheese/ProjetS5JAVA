@@ -23,7 +23,7 @@ public class PacManView extends JComponent {
 	public PacManView(PacManGame game) {
 		super();
 		this.game = game;
-		setPreferredSize(new Dimension(TILESIZE * game.getMap().getLongueur(), TILESIZE * game.getMap().getHauteur()));
+		setPreferredSize(new Dimension(TILESIZE * game.getMap().getLength(), TILESIZE * game.getMap().getHeight()));
 	}
 
 	@Override
@@ -78,8 +78,9 @@ public class PacManView extends JComponent {
 		g.fillOval(pacMan.getPosX() * TILESIZE, pacMan.getPosY() * TILESIZE, TILESIZE, TILESIZE);
 	}
 
+
 	public void swapMap() {
-		setPreferredSize(new Dimension(TILESIZE * game.getMap().getLongueur(), TILESIZE * game.getMap().getHauteur()));
+		setPreferredSize(new Dimension(TILESIZE * game.getMap().getLength(), TILESIZE * game.getMap().getHeight()));
 		SwingUtilities.getWindowAncestor(this).pack();
 	}
 }
