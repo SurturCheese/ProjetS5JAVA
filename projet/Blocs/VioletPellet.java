@@ -14,7 +14,7 @@ public class VioletPellet extends Pellet {
     @Override
     public void action() {
         game.addPoints(300);
-        game.getPacman().setStateInvisible();
+        game.getPacman().setState(new projet.Entities.pacmanstate.InvisibleState(game, game.getPacman()));
         game.setPowerTime(40);
     }
 

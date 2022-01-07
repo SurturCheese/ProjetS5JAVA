@@ -1,26 +1,19 @@
 package projet.Entities;
 
 import java.awt.Color;
-
-import projet.PacManGame;
 import projet.Entities.ghoststate.GhostState;
-import projet.Entities.ghoststate.NormalState;
-import projet.Entities.ghoststate.ScaredState;
 
 public class Ghost extends Character {
 
-	private PacManGame game;
 	private Color baseColor;
 	private GhostState state;
 
-	public Ghost(Color color, int posX, int posY, PacManGame game) {
-		this.game = game;
+	public Ghost(Color color, int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
 		this.color = color;
 		baseColor = color;
 		direction = UP;
-		state = new NormalState(game, this);
 	}
 
 	public void setState(GhostState state) {
@@ -33,13 +26,5 @@ public class Ghost extends Character {
 
 	public void action() {
 		state.action();
-	}
-
-	public void setNormalState() {
-		state = new NormalState(game, this);
-	}
-
-	public void setStateScared() {
-		state = new ScaredState(game, this);
 	}
 }

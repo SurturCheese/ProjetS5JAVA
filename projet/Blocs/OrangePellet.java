@@ -15,10 +15,10 @@ public class OrangePellet extends Pellet {
     @Override
     public void action() {
         game.addPoints(500);
-        game.getPacman().setStateSuperpacman();
+        game.getPacman().setState(new projet.Entities.pacmanstate.SuperPacmanState(game, game.getPacman()));
         game.setPowerTime(20);
         for (Ghost ghost : game.getGhost())
-            ghost.setStateScared();
+            ghost.setState(new projet.Entities.ghoststate.ScaredState(game,ghost));
     }
 
 }
