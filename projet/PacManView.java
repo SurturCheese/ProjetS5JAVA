@@ -98,11 +98,4 @@ public class PacManView extends JComponent {
 		g.fillOval(pacMan.getPosX() * TILESIZE, pacMan.getPosY() * TILESIZE, TILESIZE, TILESIZE);
 	}
 
-	/**
-	 * Permet de rafraichir la fenêtre lors d'un changement de map de jeu
-	 */
-	public void swapMap() {
-		setPreferredSize(new Dimension(TILESIZE * game.getMap().getLength(), TILESIZE * game.getMap().getHeight()));
-		SwingUtilities.getWindowAncestor(this).pack();
-	}
 }
